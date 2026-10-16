@@ -8,6 +8,7 @@ import os
 import os.path as op
 import logging
 import tempfile
+import time
 
 import pytest
 from pathlib import Path
@@ -25,6 +26,15 @@ from dupeguru.core.scanner import ScanType
 def add_fake_files_to_directories(directories, files):
     directories.get_files = lambda j=None: iter(files)
     directories._dirs.append("this is just so Scan() doesn't return 3")
+
+
+def scan_and_wait(app):
+    # start_scanning() runs the scan on a thread, and the GUI's timer calls pulse() to deliver its
+    # end (_job_completed). last_progress is -1 from the start of the job and None at its end.
+    app.start_scanning()
+    while app.progress_window.last_progress is not None:
+        time.sleep(0.01)
+    app.progress_window.pulse()
 
 
 class TestCaseDupeGuru:
@@ -117,6 +127,28 @@ class TestCaseDupeGuru:
         assert not (bool(f1) and bool(f2))
         add_fake_files_to_directories(app.directories, [f1, f2])
         app.start_scanning()  # no exception
+
+    def test_warn_about_duplicates_matched_by_samples_only(self, tmpdir):
+        # Two big files that differ in a single byte at 1 MiB, which neither the partial digest nor
+        # the samples cover.
+        tmppath = Path(str(tmpdir))
+        data = bytearray(os.urandom(8 * 1024 * 1024))
+        tmppath.joinpath("a.bin").write_bytes(data)
+        data[1024 * 1024] ^= 0xFF
+        tmppath.joinpath("b.bin").write_bytes(data)
+        app = TestApp().app
+        app.directories.add_path(tmppath)
+        app.options["scan_type"] = ScanType.CONTENTS
+        app.options["big_file_size_threshold"] = 1024 * 1024
+        scan_and_wait(app)
+        eq_(len(app.results.groups), 0)
+        eq_(app.view.messages, ["No duplicates found."])
+        app.options["big_file_trust_samples"] = True
+        scan_and_wait(app)
+        eq_(len(app.results.groups), 1)
+        eq_(app.sample_matched_file_count, 2)
+        assert "Don't hash them in full" in app.view.messages[-1]
+        assert "matched by samples only" in app.stat_line
 
     @pytest.mark.skipif("not hasattr(os, 'link')")
     def test_ignore_hardlink_matches(self, tmpdir):

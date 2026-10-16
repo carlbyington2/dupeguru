@@ -598,6 +598,14 @@ class TestCaseGetMatchesByContents:
         eq_(getmatches_by_contents(f, bigsize=bigsize), [])
         eq_([o.digest_reads for o in f], [0, 0])
 
+    def test_trusted_samples_match_big_files_without_hashing_them_in_full(self):
+        bigsize = 100 * 1024 * 1024
+        f = [DigestCountingObject("bigfoo", size=bigsize + 1), DigestCountingObject("bigbar", size=bigsize + 1)]
+        f[0].digest_partial = f[1].digest_partial = "same partial"
+        f[0].digest_samples = f[1].digest_samples = "same samples"
+        eq_(len(getmatches_by_contents(f, bigsize=bigsize, trust_samples=True)), 1)
+        eq_([o.digest_reads for o in f], [0, 0])
+
     def test_big_files_that_differ_outside_the_samples_dont_match(self, tmpdir):
         # Real files, so that the partial digests and samples are really computed from them. They
         # differ in a single byte at 1 MiB, which neither the partial digest nor the samples cover.

@@ -180,6 +180,9 @@ class DupeGuru(QObject):
             * 1024
             # threshold is in MiB. The scanner wants bytes
         )
+        self.model.options["big_file_trust_samples"] = (
+            self.prefs.big_file_partial_hashes and self.prefs.big_file_trust_samples
+        )
         scanned_tags = set()
         if self.prefs.scan_tag_track:
             scanned_tags.add("track")

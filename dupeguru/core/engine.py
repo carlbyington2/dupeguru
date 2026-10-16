@@ -279,7 +279,7 @@ def getmatches(
     return result
 
 
-def getmatches_by_contents(files, bigsize=0, j=job.nulljob):
+def getmatches_by_contents(files, bigsize=0, j=job.nulljob, trust_samples=False):
     """Returns a list of :class:`Match` within ``files`` if their contents is the same.
 
     :param bigsize: The size in bytes over which files are first compared by samples taken at a
@@ -287,6 +287,9 @@ def getmatches_by_contents(files, bigsize=0, j=job.nulljob):
                     Files whose samples match are still fully hashed before they can match. If 0,
                     files are fully hashed as soon as their partial digests match.
     :param j: A :ref:`job progress instance <jobs>`.
+    :param trust_samples: Unsafe. Match files bigger than ``bigsize`` as soon as their samples
+                          match, without hashing them in full: files that differ anywhere outside the
+                          sampled parts are then reported as duplicates.
     """
     size2files = defaultdict(set)
     for f in files:
@@ -311,6 +314,9 @@ def getmatches_by_contents(files, bigsize=0, j=job.nulljob):
                     # Samples can only tell that big files differ: files that differ outside the
                     # sampled parts have the same samples, so a match still needs the full digest.
                     if first.digest_samples is None or first.digest_samples != second.digest_samples:
+                        continue
+                    if trust_samples:
+                        result.append(Match(first, second, 100))
                         continue
                 if first.digest is not None and first.digest == second.digest:
                     result.append(Match(first, second, 100))

@@ -44,6 +44,9 @@ class DupeGuruView:
     def create_results_window(self):
         pass
 
+    def show_results_window(self):
+        pass
+
 
 class ResultTable(ResultTableBase):
     COLUMNS = [

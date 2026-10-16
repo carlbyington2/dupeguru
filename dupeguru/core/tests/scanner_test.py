@@ -148,6 +148,23 @@ def test_content_scan_compare_sizes_first(fake_fileexists):
     eq_(len(s.get_dupe_groups(f)), 0)
 
 
+def test_big_file_trust_samples(fake_fileexists):
+    s = Scanner()
+    s.scan_type = ScanType.CONTENTS
+    s.big_file_size_threshold = bigsize = 100 * 1024 * 1024  # 100MB
+    f = [no("bigfoo", bigsize + 1), no("bigbar", bigsize + 1), no("smallfoo", 1), no("smallbar", 1)]
+    # The big files differ, but only outside their samples. The small files are identical.
+    for big in f[:2]:
+        big.digest, big.digest_partial, big.digest_samples = big.name, "same partial", "same samples"
+    for small in f[2:]:
+        small.digest = small.digest_partial = "small"
+    eq_(len(s.get_dupe_groups(f)), 1)
+    eq_(s.sample_matched_file_count, 0)
+    s.big_file_trust_samples = True
+    eq_(len(s.get_dupe_groups(f)), 2)
+    eq_(s.sample_matched_file_count, 2)  # only the big files, matched by their samples
+
+
 def test_ignore_file_size(fake_fileexists):
     s = Scanner()
     s.scan_type = ScanType.CONTENTS

@@ -7,6 +7,7 @@
 from typing import Callable
 from PyQt6.QtCore import QSize
 from PyQt6.QtWidgets import QSpinBox, QVBoxLayout, QHBoxLayout, QLabel, QSizePolicy, QSpacerItem, QWidget, QCheckBox
+from PyQt6.QtWidgets import QMessageBox
 
 from dupeguru.hscommon.trans import trget
 
@@ -91,6 +92,35 @@ class PreferencesDialog(PreferencesDialogBase):
         spacer_item2 = QSpacerItem(40, 20, QSizePolicy.Policy.Expanding, QSizePolicy.Policy.Minimum)
         self.horizontalLayout_2b.addItem(spacer_item2)
         self.verticalLayout_4.addLayout(self.horizontalLayout_2b)
+        self.bigFilePartialHashesBox.setToolTip(
+            tr(
+                "Files bigger than this size are first compared by hashing samples taken at a few places "
+                "in them, so that files whose samples differ are never read in full. Files whose samples "
+                "match are then hashed in full, so only identical files are reported as duplicates."
+            )
+        )
+        self.horizontalLayout_2c = QHBoxLayout()
+        # Indented under the option it depends on
+        self.horizontalLayout_2c.addItem(QSpacerItem(20, 0, QSizePolicy.Fixed, QSizePolicy.Minimum))
+        self._setupAddCheckbox(
+            "bigFileTrustSamplesBox",
+            tr("Don't hash them in full: trust matching samples (UNSAFE)"),
+            self.widget,
+        )
+        self.trustSamplesRisk = tr(
+            "UNSAFE: files bigger than the size above are reported as duplicates as soon as their samples "
+            "match, without being hashed in full. Files that differ anywhere outside the sampled parts are "
+            "then reported as identical: for example files whose tags or other metadata were edited in "
+            "place, downloads that are still incomplete, or damaged copies. Deleting one of those "
+            '"duplicates" loses data. Only use this if you know that the files you scan are either exact '
+            "copies of each other or entirely different."
+        )
+        self.bigFileTrustSamplesBox.setToolTip(self.trustSamplesRisk)
+        self.horizontalLayout_2c.addWidget(self.bigFileTrustSamplesBox)
+        self.verticalLayout_4.addLayout(self.horizontalLayout_2c)
+        self.bigFilePartialHashesBox.toggled.connect(self.bigFileTrustSamplesBox.setEnabled)
+        # clicked, unlike toggled, isn't emitted when _load() sets the saved state
+        self.bigFileTrustSamplesBox.clicked.connect(self.confirmTrustSamples)
         self._setupAddCheckbox(
             "ignoreHardlinkMatches",
             tr("Ignore duplicates hardlinking to the same file"),
@@ -109,6 +139,8 @@ class PreferencesDialog(PreferencesDialogBase):
         self.sizeSaturationSpinBox.setValue(prefs.large_file_threshold)
         setchecked(self.bigFilePartialHashesBox, prefs.big_file_partial_hashes)
         self.bigSizeThresholdSpinBox.setValue(prefs.big_file_size_threshold)
+        setchecked(self.bigFileTrustSamplesBox, prefs.big_file_trust_samples)
+        self.bigFileTrustSamplesBox.setEnabled(prefs.big_file_partial_hashes)
 
         # Update UI state based on selected scan type
         scan_type = prefs.get_scan_type(AppMode.STANDARD)
@@ -126,3 +158,17 @@ class PreferencesDialog(PreferencesDialogBase):
         prefs.large_file_threshold = self.sizeSaturationSpinBox.value()
         prefs.big_file_partial_hashes = ischecked(self.bigFilePartialHashesBox)
         prefs.big_file_size_threshold = self.bigSizeThresholdSpinBox.value()
+        prefs.big_file_trust_samples = ischecked(self.bigFileTrustSamplesBox)
+
+    def confirmTrustSamples(self, checked):
+        if not checked:
+            return
+        answer = QMessageBox.warning(
+            self,
+            tr("Unsafe option"),
+            self.trustSamplesRisk + "\n\n" + tr("Turn it on anyway?"),
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No,
+        )
+        if answer != QMessageBox.Yes:
+            self.bigFileTrustSamplesBox.setChecked(False)

@@ -75,6 +75,9 @@ def remove_dupe_paths(files):
 class Scanner:
     def __init__(self):
         self.discarded_file_count = 0
+        # Duplicates that were only matched by their samples (big_file_trust_samples), so that the
+        # user can be warned that they may not be identical.
+        self.sample_matched_file_count = 0
 
     def _getmatches(self, files, j):
         if (
@@ -92,7 +95,12 @@ class Scanner:
             if self.large_size_threshold:
                 files = [f for f in files if f.size <= self.large_size_threshold]
         if self.scan_type in {ScanType.CONTENTS, ScanType.FOLDERS}:
-            return engine.getmatches_by_contents(files, bigsize=self.big_file_size_threshold, j=j)
+            return engine.getmatches_by_contents(
+                files,
+                bigsize=self.big_file_size_threshold,
+                j=j,
+                trust_samples=self.big_file_trust_samples,
+            )
         else:
             j = j.start_subjob([2, 8])
             kw = {}
@@ -199,6 +207,14 @@ class Scanner:
             # reporting discarded matches.
             self.discarded_file_count = 0
         groups = [g for g in groups if any(not f.is_ref for f in g)]
+        if (
+            self.scan_type in {ScanType.CONTENTS, ScanType.FOLDERS}
+            and self.big_file_size_threshold
+            and self.big_file_trust_samples
+        ):
+            self.sample_matched_file_count = sum(1 for g in groups for f in g if f.size > self.big_file_size_threshold)
+        else:
+            self.sample_matched_file_count = 0
         logging.info("Created %d groups" % len(groups))
         for g in groups:
             g.prioritize(self._key_func, self._tie_breaker)
@@ -212,5 +228,6 @@ class Scanner:
     size_threshold = 0
     large_size_threshold = 0
     big_file_size_threshold = 0
+    big_file_trust_samples = False
     word_weighting = False
     include_exists_check = True
