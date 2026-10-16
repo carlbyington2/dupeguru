@@ -5,13 +5,15 @@
 # http://www.gnu.org/licenses/gpl-3.0.html
 
 import sys
+from os import urandom
+from pathlib import Path
 
 from dupeguru.hscommon.jobprogress import job
 from dupeguru.hscommon.util import first
 from dupeguru.hscommon.testutil import eq_, log_calls
 
 from dupeguru.core.tests.base import NamedObject
-from dupeguru.core import engine
+from dupeguru.core import engine, fs
 from dupeguru.core.engine import (
     get_match,
     getwords,
@@ -532,13 +534,31 @@ class TestCaseGetMatches:
         eq_(42, len(r))
 
 
+class DigestCountingObject(NamedObject):
+    """Counts the reads of its full digest: on a real file, each read hashes the whole file."""
+
+    def __init__(self, *args, **kwargs):
+        self.digest_reads = 0
+        super().__init__(*args, **kwargs)
+
+    @property
+    def digest(self):
+        self.digest_reads += 1
+        return self._digest
+
+    @digest.setter
+    def digest(self, value):
+        self._digest = value
+
+
 class TestCaseGetMatchesByContents:
     def test_big_file_partial_hashing(self):
         smallsize = 1
         bigsize = 100 * 1024 * 1024  # 100MB
         f = [
-            no("bigfoo", size=bigsize),
-            no("bigbar", size=bigsize),
+            # Partial hashing applies to files bigger than the threshold, not to files of its size
+            no("bigfoo", size=bigsize + 1),
+            no("bigbar", size=bigsize + 1),
             no("smallfoo", size=smallsize),
             no("smallbar", size=smallsize),
         ]
@@ -558,6 +578,41 @@ class TestCaseGetMatchesByContents:
         eq_(len(r), 1)
         r = getmatches_by_contents(f, bigsize=0)
         eq_(len(r), 1)
+
+    def test_big_files_with_matching_samples_are_fully_hashed(self):
+        # Files that differ only outside the sampled parts have the same samples: only their full
+        # digests tell them apart.
+        bigsize = 100 * 1024 * 1024
+        f = [no("bigfoo", size=bigsize + 1), no("bigbar", size=bigsize + 1)]
+        f[0].digest_partial = f[1].digest_partial = "same partial"
+        f[0].digest_samples = f[1].digest_samples = "same samples"
+        eq_(getmatches_by_contents(f, bigsize=bigsize), [])
+        f[1].digest = f[0].digest
+        eq_(len(getmatches_by_contents(f, bigsize=bigsize)), 1)
+
+    def test_big_files_with_different_samples_are_not_fully_hashed(self):
+        bigsize = 100 * 1024 * 1024
+        f = [DigestCountingObject("bigfoo", size=bigsize + 1), DigestCountingObject("bigbar", size=bigsize + 1)]
+        f[0].digest_partial = f[1].digest_partial = "same partial"
+        f[0].digest_samples, f[1].digest_samples = "samples", "different samples"
+        eq_(getmatches_by_contents(f, bigsize=bigsize), [])
+        eq_([o.digest_reads for o in f], [0, 0])
+
+    def test_big_files_that_differ_outside_the_samples_dont_match(self, tmpdir):
+        # Real files, so that the partial digests and samples are really computed from them. They
+        # differ in a single byte at 1 MiB, which neither the partial digest nor the samples cover.
+        data = bytearray(urandom(8 * 1024 * 1024))
+        path_a = Path(str(tmpdir)).joinpath("a.bin")
+        path_a.write_bytes(data)
+        data[1024 * 1024] ^= 0xFF
+        path_b = Path(str(tmpdir)).joinpath("b.bin")
+        path_b.write_bytes(data)
+        files = [fs.get_file(path_a), fs.get_file(path_b)]
+        for f in files:
+            f.is_ref = False
+        eq_(files[0].digest_partial, files[1].digest_partial)
+        eq_(files[0].digest_samples, files[1].digest_samples)
+        eq_(getmatches_by_contents(files, bigsize=1024 * 1024), [])
 
 
 class TestCaseGroup:
