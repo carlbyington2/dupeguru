@@ -230,6 +230,24 @@ def test_z_to_a_filename_prioritization(app):
 
 
 # ---
+def app_with_names_differing_by_extension():
+    dupes = [
+        [no("a.ext1"), no("b.ext1"), no("b.ext2")],
+    ]
+    return app_with_dupes(dupes)
+
+
+@with_app(app_with_names_differing_by_extension)
+def test_z_to_a_tie_goes_to_the_next_criterion(app):
+    # Without their extension, "b.ext1" and "b.ext2" have the same name: the Kind criterion
+    # picks between them.
+    app.add_pri_criterion("Filename", 7)  # Z to A
+    app.add_pri_criterion("Kind", 1)  # ext2
+    app.pdialog.perform_reprioritization()
+    eq_(app.rtable[0].data["name"], "b.ext2")
+
+
+# ---
 def app_with_numbered_names():
     dupes = [
         [no("file9.ext"), no("file10.ext"), no("file2.ext")],

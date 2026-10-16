@@ -8,6 +8,7 @@
 
 import re
 from functools import total_ordering
+from typing import Any, List, Union
 
 from dupeguru.hscommon.util import dedupe, flatten, rem_file_ext
 from dupeguru.hscommon.trans import trget, tr
@@ -22,17 +23,17 @@ class Descending:
     Numbers can be negated to sort them in descending order, but strings and lists can't.
     """
 
-    def __init__(self, key):
+    def __init__(self, key: Any) -> None:
         self.key = key
 
-    def __eq__(self, other):
-        return self.key == other.key
+    def __eq__(self, other: object) -> bool:
+        return isinstance(other, Descending) and self.key == other.key
 
-    def __lt__(self, other):
+    def __lt__(self, other: "Descending") -> bool:
         return self.key > other.key
 
 
-def natural_sort_key(text):
+def natural_sort_key(text: str) -> List[Union[str, int]]:
     """Sort key that compares runs of digits by their value, so that "file9" comes before "file10".
 
     Everything else compares case-insensitively.
@@ -41,8 +42,7 @@ def natural_sort_key(text):
     # at the odd indexes, so two keys never compare a number with a string. \d only matches the
     # decimal digits int() accepts, unlike str.isdigit(), which also accepts "²".
     parts = re.split(r"(\d+)", text.casefold())
-    parts[1::2] = [int(digits) for digits in parts[1::2]]
-    return parts
+    return [int(part) if i % 2 else part for i, part in enumerate(parts)]
 
 
 class CriterionCategory:
