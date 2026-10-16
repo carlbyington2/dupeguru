@@ -93,11 +93,7 @@ class PreferencesDialog(PreferencesDialogBase):
         self.horizontalLayout_2b.addItem(spacer_item2)
         self.verticalLayout_4.addLayout(self.horizontalLayout_2b)
         self.bigFilePartialHashesBox.setToolTip(
-            tr(
-                "Files bigger than this size are first compared by hashing samples taken at a few places "
-                "in them, so that files whose samples differ are never read in full. Files whose samples "
-                "match are then hashed in full, so only identical files are reported as duplicates."
-            )
+            tr("Speeds up scans of big files. Only identical files are reported as duplicates.")
         )
         self.horizontalLayout_2c = QHBoxLayout()
         # Indented under the option it depends on
@@ -108,12 +104,8 @@ class PreferencesDialog(PreferencesDialogBase):
             self.widget,
         )
         self.trustSamplesRisk = tr(
-            "UNSAFE: files bigger than the size above are reported as duplicates as soon as their samples "
-            "match, without being hashed in full. Files that differ anywhere outside the sampled parts are "
-            "then reported as identical: for example files whose tags or other metadata were edited in "
-            "place, downloads that are still incomplete, or damaged copies. Deleting one of those "
-            '"duplicates" loses data. Only use this if you know that the files you scan are either exact '
-            "copies of each other or entirely different."
+            "UNSAFE: faster, but files bigger than the size above may be reported as duplicates even "
+            "though they are different. Deleting one of them would lose data."
         )
         self.bigFileTrustSamplesBox.setToolTip(self.trustSamplesRisk)
         self.horizontalLayout_2c.addWidget(self.bigFileTrustSamplesBox)

@@ -148,7 +148,7 @@ class TestCaseDupeGuru:
         eq_(len(app.results.groups), 1)
         eq_(app.sample_matched_file_count, 2)
         assert "Don't hash them in full" in app.view.messages[-1]
-        assert "matched by samples only" in app.stat_line
+        assert "(2 may not be identical)" in app.stat_line
 
     @pytest.mark.skipif("not hasattr(os, 'link')")
     def test_ignore_hardlink_matches(self, tmpdir):

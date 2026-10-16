@@ -49,11 +49,8 @@ MSG_MANY_FILES_TO_OPEN = tr(
     "files are opened with, doing so can create quite a mess. Continue?"
 )
 MSG_SAMPLE_MATCHED_FILES = tr(
-    'The unsafe option "Don\'t hash them in full" is on in the preferences.\n\n'
-    "Duplicates bigger than {size} MB that were only matched by their samples, without being "
-    "hashed in full: {count}. They may not be identical: files that differ anywhere outside the "
-    "sampled parts are reported as duplicates too. Compare them before deleting anything, or turn "
-    "the option off and scan again."
+    'The unsafe option "Don\'t hash them in full" is on, so {count} of the duplicates found, the ones '
+    "bigger than {size} MB, may actually be different files. Check them before deleting any of them."
 )
 
 
@@ -895,7 +892,7 @@ class DupeGuru(Broadcaster):
         if self.discarded_file_count:
             result = tr("%s (%d discarded)") % (result, self.discarded_file_count)
         if self.sample_matched_file_count:
-            result = tr("%s (%d matched by samples only, may not be identical)") % (
+            result = tr("%s (%d may not be identical)") % (
                 result,
                 self.sample_matched_file_count,
             )
