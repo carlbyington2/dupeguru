@@ -106,6 +106,10 @@ MD5 hashes are used to compute compare contents. Yes, it is widely known that fo
 the same MD5 hash is easy, but this file has to be knowingly forged. The possibilities of two files
 having the same MD5 hash *and* the same size by accident is still very, very small.
 
+Every file reported as a duplicate has been hashed in full, unless the unsafe
+:ref:`"Don't hash them in full" <trust-samples>` preference is on: big files are then only compared
+by samples taken from them.
+
 The :ref:`filter hardness <filter-hardness>` preference is ignored in this scan.
 
 Folders

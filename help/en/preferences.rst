@@ -43,6 +43,28 @@ Preferences
     When this option is enabled, folders are deleted after a file is deleted or moved and the folder
     is empty.
 
+**Partially hash files bigger than:**
+    Only used by the **Contents** and **Folders** scan types. Files bigger than this size are first
+    compared by hashing samples taken at a few places in them. Files whose samples differ can't be
+    duplicates and are never read in full, which saves time on big files that have the same size but
+    different contents. Files whose samples match are then hashed in full, so only identical files
+    are reported as duplicates.
+
+.. _trust-samples:
+
+**Don't hash them in full: trust matching samples (UNSAFE):**
+    Reports files bigger than the size above as duplicates as soon as their samples match, without
+    hashing them in full. This is faster, but files that differ anywhere outside the sampled parts
+    are then reported as identical: for example files whose tags or other metadata were edited in
+    place, downloads that are still incomplete, or damaged copies.
+
+    .. warning::
+
+        Deleting a file that was only matched by its samples can lose data. Only use this option if
+        you know that the files you scan are either exact copies of each other or entirely
+        different. After a scan, dupeGuru says how many duplicates were only matched by their
+        samples, and the results' status line keeps showing it.
+
 **Copy and Move:**
     Determines how the Copy and Move operations (in the Action menu) will behave.
 
