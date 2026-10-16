@@ -160,7 +160,7 @@ class PreferencesDialog(PreferencesDialogBase):
         prefs.big_file_size_threshold = self.bigSizeThresholdSpinBox.value()
         prefs.big_file_trust_samples = ischecked(self.bigFileTrustSamplesBox)
 
-    def confirmTrustSamples(self, checked):
+    def confirmTrustSamples(self, checked: bool) -> None:
         if not checked:
             return
         answer = QMessageBox.warning(
