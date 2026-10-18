@@ -132,7 +132,7 @@ class TestCaseDupeGuru:
         # Two big files that differ in a single byte at 1 MiB, which neither the partial digest nor
         # the samples cover.
         tmppath = Path(str(tmpdir))
-        data = bytearray(os.urandom(8 * 1024 * 1024))
+        data = bytearray(range(256)) * (8 * 1024 * 1024 // 256)
         tmppath.joinpath("a.bin").write_bytes(data)
         data[1024 * 1024] ^= 0xFF
         tmppath.joinpath("b.bin").write_bytes(data)

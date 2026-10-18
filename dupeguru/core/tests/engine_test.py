@@ -5,7 +5,6 @@
 # http://www.gnu.org/licenses/gpl-3.0.html
 
 import sys
-from os import urandom
 from pathlib import Path
 
 from dupeguru.hscommon.jobprogress import job
@@ -609,7 +608,7 @@ class TestCaseGetMatchesByContents:
     def test_big_files_that_differ_outside_the_samples_dont_match(self, tmpdir):
         # Real files, so that the partial digests and samples are really computed from them. They
         # differ in a single byte at 1 MiB, which neither the partial digest nor the samples cover.
-        data = bytearray(urandom(8 * 1024 * 1024))
+        data = bytearray(range(256)) * (8 * 1024 * 1024 // 256)
         path_a = Path(str(tmpdir)).joinpath("a.bin")
         path_a.write_bytes(data)
         data[1024 * 1024] ^= 0xFF
