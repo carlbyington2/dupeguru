@@ -48,10 +48,6 @@ MSG_MANY_FILES_TO_OPEN = tr(
     "You're about to open many files at once. Depending on what those "
     "files are opened with, doing so can create quite a mess. Continue?"
 )
-MSG_SAMPLE_MATCHED_FILES = tr(
-    'The unsafe option "Don\'t hash them in full" is on, so {count} of the duplicates found, the ones '
-    "bigger than {size} MB, may actually be different files. Check them before deleting any of them."
-)
 
 
 class DestType:
@@ -142,7 +138,6 @@ class DupeGuru(Broadcaster):
             os.makedirs(self.appdata)
         self.app_mode = AppMode.STANDARD
         self.discarded_file_count = 0
-        self.sample_matched_file_count = 0
         self.exclude_list = ExcludeList()
         hash_cache_file = op.join(self.appdata, "hash_cache.db")
         fs.filesdb.connect(hash_cache_file)
@@ -309,11 +304,6 @@ class DupeGuru(Broadcaster):
                 self.view.show_message(tr("No duplicates found."))
             else:
                 self.view.show_results_window()
-                if self.sample_matched_file_count:
-                    size = self.options.get("big_file_size_threshold", 0) // (1024 * 1024)
-                    self.view.show_message(
-                        MSG_SAMPLE_MATCHED_FILES.format(size=size, count=self.sample_matched_file_count)
-                    )
         if jobid in {JobType.MOVE, JobType.DELETE}:
             self._results_changed()
         if jobid == JobType.LOAD:
@@ -621,8 +611,6 @@ class DupeGuru(Broadcaster):
         def do(j):
             self.results.load_from_xml(filename, self._get_file, j)
 
-        # Saved results don't record how their duplicates were matched.
-        self.sample_matched_file_count = 0
         self._start_job(JobType.LOAD, do)
 
     def make_selected_reference(self):
@@ -849,7 +837,6 @@ class DupeGuru(Broadcaster):
             logging.info("Scanning %d files" % len(files))
             self.results.groups = scanner.get_dupe_groups(files, self.ignore_list, j)
             self.discarded_file_count = scanner.discarded_file_count
-            self.sample_matched_file_count = scanner.sample_matched_file_count
             if profile_scan:
                 pr.disable()
                 pr.dump_stats(op.join(self.appdata, f"{datetime.datetime.now():%Y-%m-%d_%H-%M-%S}.profile"))
@@ -891,11 +878,6 @@ class DupeGuru(Broadcaster):
         result = self.results.stat_line
         if self.discarded_file_count:
             result = tr("%s (%d discarded)") % (result, self.discarded_file_count)
-        if self.sample_matched_file_count:
-            result = tr("%s (%d may not be identical)") % (
-                result,
-                self.sample_matched_file_count,
-            )
         return result
 
     @property
