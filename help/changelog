@@ -1,3 +1,13 @@
+=== 4.3.1^20261019git (2026-10-19)
+* better forge automation in the spec file
+
+=== 4.3.1^20261018git (2026-10-18)
+* Add alphabetical and natural filename order criteria to the Filename
+  category of Re-Prioritize Results.
+* Fully hash big files whose samples match before matching them.
+* Walk directories iteratively to avoid RecursionError during scans.
+* Fix picture scans crashing on incompatible cache schemas.
+
 === 4.3.1^20260909git (2026-09-09)
 * Only treat files as hardlinks when the device matches too
 * fix: Report a problem instead of crashing on relative copy/move
