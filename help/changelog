@@ -1,3 +1,6 @@
+=== 4.3.1^20261020git (2026-10-20)
+* cleanup an old 4-Clause BSD License
+
 === 4.3.1^20261019git (2026-10-19)
 * better forge automation in the spec file
 
