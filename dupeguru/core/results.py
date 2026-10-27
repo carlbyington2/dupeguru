@@ -11,6 +11,7 @@ import re
 import os
 import os.path as op
 from errno import EISDIR, EACCES
+from typing import List
 from xml.etree import ElementTree as ET
 from defusedxml.ElementTree import parse as safe_parse
 
@@ -20,6 +21,7 @@ from dupeguru.hscommon.util import flatten, nonone, FileOrPath, format_size
 from dupeguru.hscommon.trans import tr
 
 from dupeguru.core import engine
+from dupeguru.core.fs import File
 from dupeguru.core.markable import Markable
 
 
@@ -225,7 +227,7 @@ class Results(Markable):
 
     is_markable = _is_markable
 
-    def is_ref_markable(self, file):
+    def is_ref_markable(self, file: File) -> bool:
         """Whether ``file`` is a group's reference that can be marked.
 
         Only with the ``allow_marking_refs`` option on, and never for a file from a reference
@@ -242,24 +244,24 @@ class Results(Markable):
             return False
         return True
 
-    def is_ref_marked(self, file):
+    def is_ref_marked(self, file: File) -> bool:
         """Whether ``file`` is a marked reference. A mark is valid only while the file is still
         its group's reference."""
         return file in self.__marked_refs and self.is_ref_markable(file)
 
-    def mark_ref(self, file):
+    def mark_ref(self, file: File) -> bool:
         if not self.is_ref_markable(file):
             return False
         self.__marked_refs.add(file)
         return True
 
-    def unmark_ref(self, file):
+    def unmark_ref(self, file: File) -> bool:
         if file not in self.__marked_refs:
             return False
         self.__marked_refs.discard(file)
         return True
 
-    def forget_moved_ref_marks(self):
+    def forget_moved_ref_marks(self) -> None:
         """Drop the marks of files that are no longer their group's reference.
 
         Without this, a reference that was marked, lost its position, then got it back, would be
@@ -269,14 +271,14 @@ class Results(Markable):
         self.__marked_refs = {f for f, g in groups.items() if g is not None and g.ref is f}
 
     @property
-    def marked_refs(self):
+    def marked_refs(self) -> List[File]:
         """The marked references, in :attr:`groups` order."""
         if not self.__marked_refs:
             return []
         return [g.ref for g in self.groups if g.ref is not None and self.is_ref_marked(g.ref)]
 
     @property
-    def marked_file_count(self):
+    def marked_file_count(self) -> int:
         """How many files the actions on marked files act on: marked duplicates and references."""
         return self.mark_count + len(self.marked_refs)
 
@@ -387,7 +389,7 @@ class Results(Markable):
                     # A duplicate that took the place of a removed reference stays unmarked.
                     self.mark(dupe)
 
-    def __remove_refs(self, refs):
+    def __remove_refs(self, refs: List[File]) -> None:
         """Remove references from their groups; the first duplicate of each takes the reference
         position. A group left with a single file is removed."""
         if not refs:

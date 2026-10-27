@@ -366,7 +366,7 @@ class DupeGuru(Broadcaster):
         self.selected_dupes = dupes
         self.notify("dupes_selected")
 
-    def _confirm_references(self, ref_count, file_count, msg):
+    def _confirm_references(self, ref_count: int, file_count: int, msg: str) -> bool:
         """Asks before an action on files proceeds with ``ref_count`` references among its
         ``file_count`` files. True when there are none."""
         if not ref_count:

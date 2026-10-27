@@ -416,7 +416,7 @@ class DupeGuru(QObject):
     def ask_yes_no(self, prompt: str) -> bool:
         return self.confirm("", prompt)
 
-    def ask_proceed_cancel(self, prompt):
+    def ask_proceed_cancel(self, prompt: str) -> bool:
         box = QMessageBox(QMessageBox.Warning, "", prompt, parent=QApplication.activeWindow())
         proceed = box.addButton(tr("Proceed"), QMessageBox.AcceptRole)
         box.setDefaultButton(box.addButton(QMessageBox.Cancel))
