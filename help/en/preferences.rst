@@ -49,6 +49,11 @@ Preferences
     in full. This saves time on big files of the same size. Files whose samples match are still
     compared in full.
 
+**Allow marking reference files:**
+    On the Advanced tab. When this option is enabled, reference files get a mark box too, so that
+    every file of a group can be deleted, moved or copied. See :doc:`results` for how marked
+    references behave and how dupeGuru protects them.
+
 **Copy and Move:**
     Determines how the Copy and Move operations (in the Action menu) will behave.
 
