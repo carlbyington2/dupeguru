@@ -274,7 +274,7 @@ most users should not have to modify these."
         self.allow_marking_refs_box.setToolTip(
             tr(
                 "Reference files get a mark box too, so that a whole group can be deleted.\n\
-Mark All and marking the selection still leave them alone, files in reference folders \
+Mark All and Invert Marking still leave them alone, files in reference folders \
 can never be marked, and acting on marked references asks first."
             )
         )

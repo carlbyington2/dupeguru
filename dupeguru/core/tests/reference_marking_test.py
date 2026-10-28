@@ -46,16 +46,38 @@ class TestMarking:
         row.marked = False
         assert not row.marked
 
-    def test_bulk_marking_leaves_references_alone(self, tapp):
+    def test_mark_all_and_invert_leave_references_alone(self, tapp):
         app = tapp.app
         app.mark_all()
         eq_(app.results.marked_refs, [])
         app.mark_invert()
         app.mark_invert()
         eq_(app.results.marked_refs, [])
-        app.selected_dupes = [g.ref for g in app.results.groups]
+
+    def test_space_marks_selected_references(self, tapp):
+        app = tapp.app
+        group = app.results.groups[0]
+        app.selected_dupes = [group.ref, group.dupes[0]]
+        app.toggle_selected_mark_state()
+        eq_(app.results.marked_refs, [group.ref])
+        assert app.results.is_marked(group.dupes[0])
         app.toggle_selected_mark_state()
         eq_(app.results.marked_refs, [])
+        assert not app.results.is_marked(group.dupes[0])
+        # mixed marks: everything selected gets marked
+        app.results.mark(group.dupes[0])
+        app.toggle_selected_mark_state()
+        eq_(app.results.marked_refs, [group.ref])
+        assert app.results.is_marked(group.dupes[0])
+
+    def test_space_leaves_references_alone_with_marking_off(self, tapp):
+        app = tapp.app
+        app.options["allow_marking_refs"] = False
+        group = app.results.groups[0]
+        app.selected_dupes = [group.ref, group.dupes[0]]
+        app.toggle_selected_mark_state()
+        eq_(app.results.marked_refs, [])
+        assert app.results.is_marked(group.dupes[0])
 
     def test_mark_none_clears_references(self, tapp):
         ref_row(tapp).marked = True

@@ -880,15 +880,31 @@ class DupeGuru(Broadcaster):
         self._start_job(JobType.SCAN, do)
 
     def toggle_selected_mark_state(self):
-        selected = self.without_ref(self.selected_dupes)
+        """Toggle the mark of :attr:`selected_dupes`, or mark them all if their marks differ.
+
+        Selected references are included when they can be marked: the warning before acting on
+        marked references is what guards against marking them by accident.
+        """
+        results = self.results
+        refs = [d for d in self.selected_dupes if results.is_ref_markable(d)]
+        selected = self.without_ref(self.selected_dupes) + refs
+
+        def is_marked(dupe):
+            return results.is_ref_marked(dupe) if dupe in refs else results.is_marked(dupe)
+
         if not selected:
             return
-        if allsame(self.results.is_marked(d) for d in selected):
-            markfunc = self.results.mark_toggle
-        else:
-            markfunc = self.results.mark
+        mark = not is_marked(selected[0]) if allsame(is_marked(d) for d in selected) else True
         for dupe in selected:
-            markfunc(dupe)
+            if dupe in refs:
+                if mark:
+                    results.mark_ref(dupe)
+                else:
+                    results.unmark_ref(dupe)
+            elif mark:
+                results.mark(dupe)
+            else:
+                results.unmark(dupe)
         self.notify("marking_changed")
 
     def without_ref(self, dupes):
