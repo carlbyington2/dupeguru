@@ -49,11 +49,6 @@ Preferences
     in full. This saves time on big files of the same size. Files whose samples match are still
     compared in full.
 
-**Allow marking reference files:**
-    On the Advanced tab. When this option is enabled, reference files get a mark box too, so that
-    every file of a group can be deleted, moved or copied. See :doc:`results` for how marked
-    references behave and how dupeGuru protects them.
-
 **Copy and Move:**
     Determines how the Copy and Move operations (in the Action menu) will behave.
 
@@ -73,6 +68,11 @@ Preferences
 
 In all cases, dupeGuru nicely handles naming conflicts by prepending a number to the destination
 filename if the filename already exists in the destination.
+
+**Allow marking reference files:**
+    On the Advanced tab. When this option is enabled, reference files get a mark box too, so that
+    every file of a group can be deleted, moved or copied. See :doc:`results` for how marked
+    references behave and how dupeGuru protects them.
 
 **Custom Command:**
     This preference determines the command that will be invoked by the "Invoke Custom Command"
