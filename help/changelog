@@ -1,3 +1,8 @@
+=== 4.3.1^20261029git (2026-10-29)
+* Pick the same reference in every scan when files tie on every rule
+* Allow marking reference files, and confirm actions on them
+* Select the revealed file even in a folder Explorer has not listed
+
 === 4.3.1^20261020git (2026-10-20)
 * cleanup an old 4-Clause BSD License
 
