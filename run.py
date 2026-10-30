@@ -19,7 +19,7 @@ from dupeguru.qt.error_report_dialog import install_excepthook
 from dupeguru.qt.util import setup_qt_logging, create_qsettings
 from dupeguru.qt import dg_rc  # noqa: F401
 from dupeguru.qt.platform import BASE_PATH
-from dupeguru.core import __version__, __appname__
+from dupeguru.core import __full_version__, __appname__
 
 # SIGQUIT is not defined on Windows
 if sys.platform == "win32":
@@ -56,7 +56,7 @@ def main():
     app.setDesktopFileName("dupeguru")
     QApplication.setOrganizationName("Hardcoded Software")
     QApplication.setApplicationName(__appname__)
-    QApplication.setApplicationVersion(__version__)
+    QApplication.setApplicationVersion(__full_version__)
     QDir.addSearchPath("images", op.join(BASE_PATH, "images"))
     setup_qt_logging()
     settings = create_qsettings()
