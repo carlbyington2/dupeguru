@@ -1,3 +1,6 @@
+=== 4.3.1^20261030git (2026-10-30)
+* cleanup 2015 license change from BSD to GPLv3
+
 === 4.3.1^20261029git (2026-10-29)
 * Pick the same reference in every scan when files tie on every rule
 * Allow marking reference files, and confirm actions on them
