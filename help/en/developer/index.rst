@@ -31,12 +31,6 @@ interface to the python's code for the GUI code. A duplicate scan is started wit
 :meth:`core.app.DupeGuru.start_scanning()`, directories are added through
 :meth:`core.app.DupeGuru.add_directory()`, etc..
 
-A lot of functionalities of the App are implemented in the platform-specific subclasses of
-:class:`core.app.DupeGuru`, like ``DupeGuru`` in ``cocoa/inter/app.py``, or the ``DupeGuru`` class
-in ``qt/base/app.py``. For example, when performing "Remove Selected From Results",
-``RemoveSelected()`` on the cocoa side, and ``remove_duplicates()`` on the PyQt side, are
-respectively called to perform the thing.
-
 .. _jobs:
 
 Jobs
