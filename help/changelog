@@ -1,3 +1,8 @@
+=== 4.3.1^20261101git (2026-11-01)
+* cleanup packaging requirements, remove references to OSX cocoa
+* remove obsolete hscommon license file
+* allow sphinx 9.1.0 in f45+
+
 === 4.3.1^20261030git (2026-10-30)
 * cleanup 2015 license change from BSD to GPLv3
 * allow xxhash 4.0.2 in f45+
