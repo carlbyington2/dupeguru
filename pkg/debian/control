@@ -15,8 +15,6 @@ Provides: dupeguru-se, dupeguru-me, dupeguru-pe
 Replaces: dupeguru-se, dupeguru-me, dupeguru-pe
 Conflicts: dupeguru-se, dupeguru-me, dupeguru-pe
 Description: {longname}
- dupeGuru is a cross-platform (Linux and OS X) GUI tool to find duplicate files in a system.
- It's written mostly in Python 3 and has the peculiarity of using multiple GUI toolkits,
- all using the same core Python code.
- On OS X, the UI layer is written in Objective-C and uses Cocoa.
- On Linux, it's written in Python and uses Qt6.
+ dupeGuru is a cross-platform (Linux and OS X) GUI tool to find
+ duplicate files.  It is written mostly in Python 3 and uses Qt6 for
+ the UI.

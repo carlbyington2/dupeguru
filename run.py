@@ -32,10 +32,10 @@ else:
 global dgapp
 dgapp = None
 
-# force Qt6 to use the X11 interfaces since Fedora now runs wayland
+# recommend Qt6 to use the X11 interfaces since Fedora now runs wayland
 # and under wayland, Qt6 application window does not use the proper
 # styling.
-os.environ["QT_QPA_PLATFORM"] = "xcb"
+os.environ.setdefault("QT_QPA_PLATFORM", "xcb")
 
 def signal_handler(sig, frame):
     global dgapp
