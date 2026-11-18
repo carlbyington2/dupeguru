@@ -12,7 +12,7 @@ import shutil
 from pytest import raises
 from pathlib import Path
 from dupeguru.hscommon.testutil import eq_
-from dupeguru.hscommon.plat import ISWINDOWS
+from dupeguru.hscommon.plat import ISWINDOWS, ISOSX
 
 from dupeguru.core.fs import File
 from dupeguru.core.directories import (
@@ -399,7 +399,8 @@ def test_get_files_handles_deeply_nested_directories(tmpdir):
         rootpath = Path("\\\\?\\" + str(rootpath))
     currentpath = rootpath
     currentpath.mkdir(parents=True)
-    for _ in range(1200):
+    limit = 440 if ISOSX else 1200
+    for _ in range(limit):
         currentpath = currentpath.joinpath("d")
         currentpath.mkdir()
     currentpath.joinpath("deepfile.test").touch()
