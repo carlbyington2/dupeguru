@@ -1,14 +1,13 @@
 # Translators:
-# Andrew Senetar <arsenetar@gmail.com>, 2021
-# Fuan <jcfrt@posteo.net>, 2021
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Fuan <jcfrt@posteo.net>, 2021\n"
-"Language-Team: Greek (https://app.transifex.com/voltaicideas/teams/116153/el/)\n"
-"Language: el\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Greek (https://app.transifex.com/five-ten-sg/teams/311749/el/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: dupeguru/core/app.py:44
@@ -19,6 +18,14 @@ msgstr "Δεν υπάρχουν μαρκαρισμένα διπλότυπα. Δ�
 msgid "There are no selected duplicates. Nothing has been done."
 msgstr "Δεν υπάρχουν επιλεγμένα διπλότυπα. Δεν έγινε τίποτα."
 
+#: dupeguru/core/app.py:46
+msgid ""
+"The file is not under any folder in the Directories panel. Can't recreate "
+"relative path."
+msgstr ""
+"Το αρχείο δεν βρίσκεται σε κανέναν φάκελο στον πίνακα Καταλόγων. Δεν είναι "
+"δυνατή η αναδημιουργία της σχετικής διαδρομής."
+
 #: dupeguru/core/app.py:47
 msgid ""
 "You're about to open many files at once. Depending on what those files are "
@@ -27,6 +34,23 @@ msgstr ""
 "Πρόκειται να ανοίξετε πολλά αρχεία ταυτόχρονα. Ανάλογα με το ποιο πρόγραμμα "
 "ανοίγουν αυτάτα αρχεία, κάτι τέτοιο μπορεί να προκαλέσει ένα μικρό χάος. "
 "Συνέχεια;"
+
+#: dupeguru/core/app.py:51
+msgid "{} of the {} marked files are reference files!"
+msgstr "Από τα {} επισημασμένα αρχεία, τα {} είναι αρχεία αναφοράς!"
+
+#: dupeguru/core/app.py:52
+msgid "{} of the {} selected files are reference files!"
+msgstr "Τα {} από τα {} επιλεγμένα αρχεία είναι αρχεία αναφοράς!"
+
+#: dupeguru/core/app.py:53
+msgid ""
+"Deleted files can't be replaced with links while reference files are marked:"
+" the links would point to files being deleted. Nothing has been done."
+msgstr ""
+"Τα διαγραμμένα αρχεία δεν μπορούν να αντικατασταθούν με συνδέσμους, εφόσον "
+"υπάρχουν επισημασμένα αρχεία αναφοράς: οι σύνδεσμοι θα έδειχναν σε αρχεία "
+"που διαγράφονται. Δεν έχει γίνει καμία ενέργεια."
 
 #: dupeguru/core/app.py:80
 msgid "Scanning for duplicates"
@@ -70,7 +94,7 @@ msgstr "Όλα τα επιλεγμένα αρχεία μετακινήθηκαν
 
 #: dupeguru/core/app.py:331
 msgid "All marked files were deleted successfully."
-msgstr ""
+msgstr "Όλα τα επιλεγμένα αρχεία διαγράφηκαν επιτυχώς."
 
 #: dupeguru/core/app.py:333
 msgid "All marked files were successfully sent to Trash."
@@ -83,6 +107,15 @@ msgstr "Δεν ήταν δυνατή η φόρτωση του αρχείου: {}
 #: dupeguru/core/app.py:405
 msgid "'{}' already is in the list."
 msgstr "'{}' υπάρχει ήδη στη λίστα."
+
+#: dupeguru/core/app.py:408
+msgid ""
+"'{}' could not be read. It might be on a disconnected network share, or you "
+"might not have the permission to access it."
+msgstr ""
+"Δεν ήταν δυνατή η ανάγνωση του '{}'. Ίσως βρίσκεται σε μια αποσυνδεδεμένη "
+"κοινόχρηστη θέση δικτύου ή ενδέχεται να μην έχετε δικαιώματα πρόσβασης σε "
+"αυτό."
 
 #: dupeguru/core/app.py:414
 msgid "'{}' does not exist."
@@ -115,6 +148,14 @@ msgstr "Δεν ήταν δυνατή η εγγραφή στο αρχείο: {}"
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr "Δεν έχετε ορίσει ειδική εντολή. Ρυθμίστε τη στις προτιμήσεις σας. "
 
+#: dupeguru/core/app.py:600
+msgid "Invalid custom command syntax: {}"
+msgstr "Μη έγκυρη σύνταξη προσαρμοσμένης εντολής: {}"
+
+#: dupeguru/core/app.py:610
+msgid "Failed to execute custom command: {}"
+msgstr "Αποτυχία εκτέλεσης προσαρμοσμένης εντολής: {}"
+
 #: dupeguru/core/app.py:753 dupeguru/core/app.py:765
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "Πρόκειται να αφαιρέσετε %d αρχεία από τα αποτελέσματα. Συνέχεια;"
@@ -137,15 +178,15 @@ msgstr "%s (%d απορρίφθηκαν)"
 
 #: dupeguru/core/directories.py:227
 msgid "Collected {} files to scan"
-msgstr ""
+msgstr "Συλλέχθηκαν {} αρχεία για σάρωση"
 
 #: dupeguru/core/directories.py:243
 msgid "Collected {} folders to scan"
-msgstr ""
+msgstr "Συλλέχθηκαν {} φάκελοι για σάρωση"
 
 #: dupeguru/core/engine.py:27
 msgid "%d matches found from %d groups"
-msgstr ""
+msgstr "%d αντιστοιχίσεις βρέθηκαν από %d ομάδες"
 
 #: dupeguru/core/gui/deletion_options.py:71
 msgid "You are sending {} file(s) to the Trash."
@@ -224,6 +265,30 @@ msgstr "Μεγαλύτερο"
 msgid "Shortest"
 msgstr "Μικρότερο"
 
+#: dupeguru/core/prioritize.py:145
+msgid "Longest Path"
+msgstr "Μεγαλύτερη διαδρομή"
+
+#: dupeguru/core/prioritize.py:146
+msgid "Shortest Path"
+msgstr "Συντομότερη Διαδρομή"
+
+#: dupeguru/core/prioritize.py:147
+msgid "A to Z"
+msgstr "Α έως Ω"
+
+#: dupeguru/core/prioritize.py:148
+msgid "Z to A"
+msgstr "Z έως A"
+
+#: dupeguru/core/prioritize.py:149
+msgid "A to Z, natural order"
+msgstr "Α έως Ω, φυσική σειρά"
+
+#: dupeguru/core/prioritize.py:150
+msgid "Z to A, natural order"
+msgstr "Ζ προς Α, φυσική σειρά"
+
 #: dupeguru/core/prioritize.py:203
 msgid "Highest"
 msgstr "Υψηλότερη"
@@ -244,6 +309,10 @@ msgstr "Παλαιότερο"
 msgid "%d / %d (%s / %s) duplicates marked."
 msgstr "%d / %d (%s / %s) επιλεγμένα διπλότυπα."
 
+#: dupeguru/core/results.py:151
+msgid " Reference files marked: %d (%s)."
+msgstr " Αρχεία αναφοράς επισημασμένα: %d (%s)."
+
 #: dupeguru/core/results.py:156
 msgid " filter: %s"
 msgstr " φίλτρο: %s"
@@ -259,65 +328,3 @@ msgstr "Σχεδόν τελείωσα! Παιχνίδι με αποτελέσμ�
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "ντοσιέ"
-
-#: dupeguru/core/app.py:46
-msgid ""
-"The file is not under any folder in the Directories panel. Can't recreate "
-"relative path."
-msgstr ""
-
-#: dupeguru/core/app.py:51
-msgid "{} of the {} marked files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:52
-msgid "{} of the {} selected files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:53
-msgid ""
-"Deleted files can't be replaced with links while reference files are marked:"
-" the links would point to files being deleted. Nothing has been done."
-msgstr ""
-
-#: dupeguru/core/app.py:408
-msgid ""
-"'{}' could not be read. It might be on a disconnected network share, or you "
-"might not have the permission to access it."
-msgstr ""
-
-#: dupeguru/core/app.py:600
-msgid "Invalid custom command syntax: {}"
-msgstr ""
-
-#: dupeguru/core/app.py:610
-msgid "Failed to execute custom command: {}"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:145
-msgid "Longest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:146
-msgid "Shortest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:147
-msgid "A to Z"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:148
-msgid "Z to A"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:149
-msgid "A to Z, natural order"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:150
-msgid "Z to A, natural order"
-msgstr ""
-
-#: dupeguru/core/results.py:151
-msgid " Reference files marked: %d (%s)."
-msgstr ""
