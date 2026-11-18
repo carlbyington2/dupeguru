@@ -1,14 +1,13 @@
 # Translators:
-# Sangdon Lim, 2022
-# Andrew Senetar <arsenetar@gmail.com>, 2023
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Andrew Senetar <arsenetar@gmail.com>, 2023\n"
-"Language-Team: Korean (https://app.transifex.com/voltaicideas/teams/116153/ko/)\n"
-"Language: ko\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Korean (https://app.transifex.com/five-ten-sg/teams/311749/ko/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: ko\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: dupeguru/core/gui/ignore_list_table.py:19
