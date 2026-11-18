@@ -1,17 +1,13 @@
 # Translators:
-# Andrew Senetar <arsenetar@gmail.com>, 2021
-# Chris Ocelot, 2021
-# Fuan <jcfrt@posteo.net>, 2021
-# YaNing Lu, 2021
-# Mèng yáo, 2023
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Mèng yáo, 2023\n"
-"Language-Team: Chinese (China) (https://app.transifex.com/voltaicideas/teams/116153/zh_CN/)\n"
-"Language: zh_CN\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Chinese (China) (https://app.transifex.com/five-ten-sg/teams/311749/zh_CN/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: zh_CN\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: dupeguru/core/app.py:44
@@ -22,11 +18,31 @@ msgstr "没有已标记的重复项。无需任何操作。"
 msgid "There are no selected duplicates. Nothing has been done."
 msgstr "没有已选定的重复项。无需任何操作。"
 
+#: dupeguru/core/app.py:46
+msgid ""
+"The file is not under any folder in the Directories panel. Can't recreate "
+"relative path."
+msgstr "该文件不在“目录”面板的任何文件夹中。无法重新创建相对路径。"
+
 #: dupeguru/core/app.py:47
 msgid ""
 "You're about to open many files at once. Depending on what those files are "
 "opened with, doing so can create quite a mess. Continue?"
 msgstr "您即将一次性打开多个文件。取决于这些文件的默认打开方式，此项操作可能导致非常混乱的状况。是否继续？"
+
+#: dupeguru/core/app.py:51
+msgid "{} of the {} marked files are reference files!"
+msgstr "{}个已标记文件中的{}个是参考文件！"
+
+#: dupeguru/core/app.py:52
+msgid "{} of the {} selected files are reference files!"
+msgstr "已选定的 {} 个文件中有 {} 个是参考文件！"
+
+#: dupeguru/core/app.py:53
+msgid ""
+"Deleted files can't be replaced with links while reference files are marked:"
+" the links would point to files being deleted. Nothing has been done."
+msgstr "标记了参考文件时，无法用链接替换已删除的文件：链接将指向正在删除的文件。未做任何更改。"
 
 #: dupeguru/core/app.py:80
 msgid "Scanning for duplicates"
@@ -82,6 +98,12 @@ msgstr "无法加载文件：{}"
 msgid "'{}' already is in the list."
 msgstr "“{}”已在列表中。"
 
+#: dupeguru/core/app.py:408
+msgid ""
+"'{}' could not be read. It might be on a disconnected network share, or you "
+"might not have the permission to access it."
+msgstr "无法读取“{}”。它可能位于已断开连接的网络共享上，或者您没有访问它的权限。"
+
 #: dupeguru/core/app.py:414
 msgid "'{}' does not exist."
 msgstr "“{}”不存在。"
@@ -111,6 +133,14 @@ msgstr "不能写入文件：{}"
 #: dupeguru/core/app.py:584
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr "您没有设定自定义命令。请在设置中进行设定。"
+
+#: dupeguru/core/app.py:600
+msgid "Invalid custom command syntax: {}"
+msgstr "自定义命令语法无效：{}"
+
+#: dupeguru/core/app.py:610
+msgid "Failed to execute custom command: {}"
+msgstr "执行自定义命令失败：{}"
 
 #: dupeguru/core/app.py:753 dupeguru/core/app.py:765
 msgid "You are about to remove %d files from results. Continue?"
@@ -221,6 +251,30 @@ msgstr "最长"
 msgid "Shortest"
 msgstr "最短"
 
+#: dupeguru/core/prioritize.py:145
+msgid "Longest Path"
+msgstr "最长路径"
+
+#: dupeguru/core/prioritize.py:146
+msgid "Shortest Path"
+msgstr "最短路径"
+
+#: dupeguru/core/prioritize.py:147
+msgid "A to Z"
+msgstr "从 A 到 Z"
+
+#: dupeguru/core/prioritize.py:148
+msgid "Z to A"
+msgstr "Z 到 A"
+
+#: dupeguru/core/prioritize.py:149
+msgid "A to Z, natural order"
+msgstr "A到Z，自然顺序"
+
+#: dupeguru/core/prioritize.py:150
+msgid "Z to A, natural order"
+msgstr "Z 到 A，自然顺序"
+
 #: dupeguru/core/prioritize.py:203
 msgid "Highest"
 msgstr "最高"
@@ -241,6 +295,10 @@ msgstr "最旧"
 msgid "%d / %d (%s / %s) duplicates marked."
 msgstr "已标记 %d / %d (%s / %s) 个重复项。"
 
+#: dupeguru/core/results.py:151
+msgid " Reference files marked: %d (%s)."
+msgstr " 已标记的参考文件：%d (%s)。"
+
 #: dupeguru/core/results.py:156
 msgid " filter: %s"
 msgstr " 过滤：%s"
@@ -256,65 +314,3 @@ msgstr "即将完成！整理结果中..."
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "文件夹"
-
-#: dupeguru/core/app.py:46
-msgid ""
-"The file is not under any folder in the Directories panel. Can't recreate "
-"relative path."
-msgstr ""
-
-#: dupeguru/core/app.py:51
-msgid "{} of the {} marked files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:52
-msgid "{} of the {} selected files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:53
-msgid ""
-"Deleted files can't be replaced with links while reference files are marked:"
-" the links would point to files being deleted. Nothing has been done."
-msgstr ""
-
-#: dupeguru/core/app.py:408
-msgid ""
-"'{}' could not be read. It might be on a disconnected network share, or you "
-"might not have the permission to access it."
-msgstr ""
-
-#: dupeguru/core/app.py:600
-msgid "Invalid custom command syntax: {}"
-msgstr ""
-
-#: dupeguru/core/app.py:610
-msgid "Failed to execute custom command: {}"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:145
-msgid "Longest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:146
-msgid "Shortest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:147
-msgid "A to Z"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:148
-msgid "Z to A"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:149
-msgid "A to Z, natural order"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:150
-msgid "Z to A, natural order"
-msgstr ""
-
-#: dupeguru/core/results.py:151
-msgid " Reference files marked: %d (%s)."
-msgstr ""
