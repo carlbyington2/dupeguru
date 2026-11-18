@@ -1,14 +1,13 @@
 # Translators:
-# Andrew Senetar <arsenetar@gmail.com>, 2021
-# Bas <duvel3@gmail.com>, 2021
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Bas <duvel3@gmail.com>, 2021\n"
-"Language-Team: Dutch (https://www.transifex.com/voltaicideas/teams/116153/nl/)\n"
-"Language: nl\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Dutch (https://app.transifex.com/five-ten-sg/teams/311749/nl/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: dupeguru/core/gui/ignore_list_table.py:19
