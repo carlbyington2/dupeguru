@@ -115,4 +115,3 @@ msgstr ""
 #: dupeguru/core/prioritize.py:219
 msgid "Size"
 msgstr ""
-
