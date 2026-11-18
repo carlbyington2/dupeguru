@@ -1,13 +1,13 @@
 # Translators:
-# Yaya - Nurul Azeera Hidayah @ Muhammad Nur Hidayat Yasuyoshi (MNH48) <admin@mnh48.moe>, 2021
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Yaya - Nurul Azeera Hidayah @ Muhammad Nur Hidayat Yasuyoshi (MNH48) <admin@mnh48.moe>, 2021\n"
-"Language-Team: Malay (https://app.transifex.com/voltaicideas/teams/116153/ms/)\n"
-"Language: ms\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Malay (https://app.transifex.com/five-ten-sg/teams/311749/ms/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: ms\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: dupeguru/core/app.py:44
@@ -18,6 +18,14 @@ msgstr "Tiada duplikasi yang ditandai. Tiada apa yang dilakukan."
 msgid "There are no selected duplicates. Nothing has been done."
 msgstr "Tiada duplikasi yang dipilih. Tiada apa yang dilakukan."
 
+#: dupeguru/core/app.py:46
+msgid ""
+"The file is not under any folder in the Directories panel. Can't recreate "
+"relative path."
+msgstr ""
+"Fail tersebut tidak berada di bawah mana-mana folder dalam panel Direktori. "
+"Tidak dapat mencipta semula laluan relatif."
+
 #: dupeguru/core/app.py:47
 msgid ""
 "You're about to open many files at once. Depending on what those files are "
@@ -26,6 +34,23 @@ msgstr ""
 "Anda bakal membuka banyak fail serentak. Bergantung kepada apa yang "
 "digunakan untuk membuka fail tersebut, ia mungkin menyebabkan sepah. Ingin "
 "teruskan?"
+
+#: dupeguru/core/app.py:51
+msgid "{} of the {} marked files are reference files!"
+msgstr "{} daripada {} fail yang ditanda adalah fail rujukan!"
+
+#: dupeguru/core/app.py:52
+msgid "{} of the {} selected files are reference files!"
+msgstr "{} daripada {} fail yang dipilih adalah fail rujukan!"
+
+#: dupeguru/core/app.py:53
+msgid ""
+"Deleted files can't be replaced with links while reference files are marked:"
+" the links would point to files being deleted. Nothing has been done."
+msgstr ""
+"Fail yang dipadamkan tidak boleh digantikan dengan pautan semasa fail "
+"rujukan ditanda: pautan tersebut akan merujuk kepada fail yang sedang "
+"dipadamkan. Tiada apa-apa yang dilakukan."
 
 #: dupeguru/core/app.py:80
 msgid "Scanning for duplicates"
@@ -83,6 +108,14 @@ msgstr "Tidak mampu memuatkan fail: {}"
 msgid "'{}' already is in the list."
 msgstr "'{}' sudah ada dalam senarai."
 
+#: dupeguru/core/app.py:408
+msgid ""
+"'{}' could not be read. It might be on a disconnected network share, or you "
+"might not have the permission to access it."
+msgstr ""
+"'{}' tidak dapat dibaca. Ia mungkin berada pada perkongsian rangkaian yang "
+"terputus, atau anda mungkin tidak mempunyai kebenaran untuk mengaksesnya."
+
 #: dupeguru/core/app.py:414
 msgid "'{}' does not exist."
 msgstr "'{}' tidak wujud."
@@ -116,6 +149,14 @@ msgid "You have no custom command set up. Set it up in your preferences."
 msgstr ""
 "Anda tidak ada perintah tersuai ditetapkan. Tetapkannya melalui menu "
 "keutamaan anda."
+
+#: dupeguru/core/app.py:600
+msgid "Invalid custom command syntax: {}"
+msgstr "Sintaks perintah tersuai tidak sah: {}"
+
+#: dupeguru/core/app.py:610
+msgid "Failed to execute custom command: {}"
+msgstr "Gagal melaksanakan perintah tersuai: {}"
 
 #: dupeguru/core/app.py:753 dupeguru/core/app.py:765
 msgid "You are about to remove %d files from results. Continue?"
@@ -227,6 +268,30 @@ msgstr "Terpanjang"
 msgid "Shortest"
 msgstr "Terpendek"
 
+#: dupeguru/core/prioritize.py:145
+msgid "Longest Path"
+msgstr "Laluan Terpanjang"
+
+#: dupeguru/core/prioritize.py:146
+msgid "Shortest Path"
+msgstr "Laluan Terpendek"
+
+#: dupeguru/core/prioritize.py:147
+msgid "A to Z"
+msgstr "A hingga Z"
+
+#: dupeguru/core/prioritize.py:148
+msgid "Z to A"
+msgstr "Z ke A"
+
+#: dupeguru/core/prioritize.py:149
+msgid "A to Z, natural order"
+msgstr "A hingga Z, susunan semula jadi"
+
+#: dupeguru/core/prioritize.py:150
+msgid "Z to A, natural order"
+msgstr "Z hingga A, susunan asli"
+
 #: dupeguru/core/prioritize.py:203
 msgid "Highest"
 msgstr "Tertinggi"
@@ -247,6 +312,10 @@ msgstr "Terlama"
 msgid "%d / %d (%s / %s) duplicates marked."
 msgstr "%d / %d (%s / %s) duplikasi ditandai."
 
+#: dupeguru/core/results.py:151
+msgid " Reference files marked: %d (%s)."
+msgstr " Fail rujukan ditandakan: %d (%s)."
+
 #: dupeguru/core/results.py:156
 msgid " filter: %s"
 msgstr "penapis: %s"
@@ -262,65 +331,3 @@ msgstr "Hampir selesai! Menyusun keputusan..."
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "Folder"
-
-#: dupeguru/core/app.py:46
-msgid ""
-"The file is not under any folder in the Directories panel. Can't recreate "
-"relative path."
-msgstr ""
-
-#: dupeguru/core/app.py:51
-msgid "{} of the {} marked files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:52
-msgid "{} of the {} selected files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:53
-msgid ""
-"Deleted files can't be replaced with links while reference files are marked:"
-" the links would point to files being deleted. Nothing has been done."
-msgstr ""
-
-#: dupeguru/core/app.py:408
-msgid ""
-"'{}' could not be read. It might be on a disconnected network share, or you "
-"might not have the permission to access it."
-msgstr ""
-
-#: dupeguru/core/app.py:600
-msgid "Invalid custom command syntax: {}"
-msgstr ""
-
-#: dupeguru/core/app.py:610
-msgid "Failed to execute custom command: {}"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:145
-msgid "Longest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:146
-msgid "Shortest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:147
-msgid "A to Z"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:148
-msgid "Z to A"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:149
-msgid "A to Z, natural order"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:150
-msgid "Z to A, natural order"
-msgstr ""
-
-#: dupeguru/core/results.py:151
-msgid " Reference files marked: %d (%s)."
-msgstr ""
