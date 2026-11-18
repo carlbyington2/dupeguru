@@ -1,15 +1,13 @@
 # Translators:
-# Andrew Senetar <arsenetar@gmail.com>, 2021
-# Fuan <jcfrt@posteo.net>, 2021
-# Bas <duvel3@gmail.com>, 2021
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Bas <duvel3@gmail.com>, 2021\n"
-"Language-Team: Dutch (https://app.transifex.com/voltaicideas/teams/116153/nl/)\n"
-"Language: nl\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Dutch (https://app.transifex.com/five-ten-sg/teams/311749/nl/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: dupeguru/core/app.py:44
@@ -20,6 +18,14 @@ msgstr "Er zijn geen gemarkeerde dubbelingen. Er is niks gedaam"
 msgid "There are no selected duplicates. Nothing has been done."
 msgstr "Er zijn geen dubelingen geselecteerd. Er is niks gedaan"
 
+#: dupeguru/core/app.py:46
+msgid ""
+"The file is not under any folder in the Directories panel. Can't recreate "
+"relative path."
+msgstr ""
+"Het bestand bevindt zich niet in een map in het paneel 'Mappen'. Relatief "
+"pad kan niet opnieuw worden aangemaakt."
+
 #: dupeguru/core/app.py:47
 msgid ""
 "You're about to open many files at once. Depending on what those files are "
@@ -28,6 +34,23 @@ msgstr ""
 "Je staat op het punt om zeer veel bestanden tegelijkertijd te openen. "
 "Afhankelijk met welke applicaties die bestanden worden geopened kan het best"
 " een rommeltje worden. Doorgaan?"
+
+#: dupeguru/core/app.py:51
+msgid "{} of the {} marked files are reference files!"
+msgstr "{} van de {} gemarkeerde bestanden zijn referentiebestanden!"
+
+#: dupeguru/core/app.py:52
+msgid "{} of the {} selected files are reference files!"
+msgstr "{} van de {} geselecteerde bestanden zijn referentiebestanden!"
+
+#: dupeguru/core/app.py:53
+msgid ""
+"Deleted files can't be replaced with links while reference files are marked:"
+" the links would point to files being deleted. Nothing has been done."
+msgstr ""
+"Verwijderde bestanden kunnen niet worden vervangen door links zolang er "
+"referentiebestanden zijn geselecteerd: de links zouden verwijzen naar "
+"bestanden die worden verwijderd. Er is niets gedaan."
 
 #: dupeguru/core/app.py:80
 msgid "Scanning for duplicates"
@@ -71,7 +94,7 @@ msgstr "Alle gemarkeerde bestanden zijn succesvol verplaatst."
 
 #: dupeguru/core/app.py:331
 msgid "All marked files were deleted successfully."
-msgstr ""
+msgstr "Alle gemarkeerde bestanden zijn succesvol verwijderd."
 
 #: dupeguru/core/app.py:333
 msgid "All marked files were successfully sent to Trash."
@@ -84,6 +107,14 @@ msgstr "Kan bestand niet laden: {}"
 #: dupeguru/core/app.py:405
 msgid "'{}' already is in the list."
 msgstr "'{}' staat al in de lijst."
+
+#: dupeguru/core/app.py:408
+msgid ""
+"'{}' could not be read. It might be on a disconnected network share, or you "
+"might not have the permission to access it."
+msgstr ""
+"'{}' kon niet worden gelezen. Het bestand staat mogelijk op een niet-"
+"verbonden netwerkshare, of u hebt geen toestemming om toegang te krijgen."
 
 #: dupeguru/core/app.py:414
 msgid "'{}' does not exist."
@@ -121,6 +152,14 @@ msgstr ""
 "Er is nog geen \"aangepaste opdracht\" ingericht. Je kan dit doen bij de "
 "voorkeuren."
 
+#: dupeguru/core/app.py:600
+msgid "Invalid custom command syntax: {}"
+msgstr "Ongeldige syntaxis voor aangepaste opdracht: {}"
+
+#: dupeguru/core/app.py:610
+msgid "Failed to execute custom command: {}"
+msgstr "Uitvoeren van aangepaste opdracht mislukt: {}"
+
 #: dupeguru/core/app.py:753 dupeguru/core/app.py:765
 msgid "You are about to remove %d files from results. Continue?"
 msgstr ""
@@ -148,15 +187,15 @@ msgstr "%s (%d weggelaten)"
 
 #: dupeguru/core/directories.py:227
 msgid "Collected {} files to scan"
-msgstr ""
+msgstr "{} bestanden verzameld om te onderzoeken"
 
 #: dupeguru/core/directories.py:243
 msgid "Collected {} folders to scan"
-msgstr ""
+msgstr "{} mappen verzameld om te scannen"
 
 #: dupeguru/core/engine.py:27
 msgid "%d matches found from %d groups"
-msgstr ""
+msgstr "%d overeenkomsten gevonden uit %d groepen"
 
 #: dupeguru/core/gui/deletion_options.py:71
 msgid "You are sending {} file(s) to the Trash."
@@ -236,6 +275,30 @@ msgstr "langste"
 msgid "Shortest"
 msgstr "kortste"
 
+#: dupeguru/core/prioritize.py:145
+msgid "Longest Path"
+msgstr "langste pad"
+
+#: dupeguru/core/prioritize.py:146
+msgid "Shortest Path"
+msgstr "kortste pad"
+
+#: dupeguru/core/prioritize.py:147
+msgid "A to Z"
+msgstr "A tot Z"
+
+#: dupeguru/core/prioritize.py:148
+msgid "Z to A"
+msgstr "Z tot A"
+
+#: dupeguru/core/prioritize.py:149
+msgid "A to Z, natural order"
+msgstr "A tot Z, natuurlijke volgorde"
+
+#: dupeguru/core/prioritize.py:150
+msgid "Z to A, natural order"
+msgstr "Z naar A, natuurlijke volgorde"
+
 #: dupeguru/core/prioritize.py:203
 msgid "Highest"
 msgstr "hoogste"
@@ -256,6 +319,10 @@ msgstr "oudste"
 msgid "%d / %d (%s / %s) duplicates marked."
 msgstr "%d / %d (%s /%s) dubbelingen gemarkeerd"
 
+#: dupeguru/core/results.py:151
+msgid " Reference files marked: %d (%s)."
+msgstr " Gemarkeerde referentiebestanden: %d (%s)."
+
 #: dupeguru/core/results.py:156
 msgid " filter: %s"
 msgstr "filter: %s"
@@ -271,65 +338,3 @@ msgstr "Bijna klaar! Gehannes met resultaten..."
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "Mappen"
-
-#: dupeguru/core/app.py:46
-msgid ""
-"The file is not under any folder in the Directories panel. Can't recreate "
-"relative path."
-msgstr ""
-
-#: dupeguru/core/app.py:51
-msgid "{} of the {} marked files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:52
-msgid "{} of the {} selected files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:53
-msgid ""
-"Deleted files can't be replaced with links while reference files are marked:"
-" the links would point to files being deleted. Nothing has been done."
-msgstr ""
-
-#: dupeguru/core/app.py:408
-msgid ""
-"'{}' could not be read. It might be on a disconnected network share, or you "
-"might not have the permission to access it."
-msgstr ""
-
-#: dupeguru/core/app.py:600
-msgid "Invalid custom command syntax: {}"
-msgstr ""
-
-#: dupeguru/core/app.py:610
-msgid "Failed to execute custom command: {}"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:145
-msgid "Longest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:146
-msgid "Shortest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:147
-msgid "A to Z"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:148
-msgid "Z to A"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:149
-msgid "A to Z, natural order"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:150
-msgid "Z to A, natural order"
-msgstr ""
-
-#: dupeguru/core/results.py:151
-msgid " Reference files marked: %d (%s)."
-msgstr ""
