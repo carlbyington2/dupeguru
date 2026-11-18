@@ -25,7 +25,7 @@ jobs:
       - name: Build application
         run: python build.py
       - name: Run core and Qt regression tests
-        run: python -m pytest core hscommon dupeguru/qt/tests --junitxml=build/test-results.xml
+        run: python -m pytest dupeguru/core dupeguru/hscommon dupeguru/qt/tests --junitxml=build/test-results.xml
       - name: Package Windows installer
         run: |
           python package.py
@@ -44,7 +44,7 @@ jobs:
       - name: Prepare release assets
         run: |
           New-Item -ItemType Directory release
-          Copy-Item dist/dupeguru_win64_4.3.2.exe release/dupeguru-4.3.2-windows-x64-setup.exe
+          Copy-Item dist/dupeguru_win64_4.3.1.exe release/dupeguru-4.3.1-windows-x64-setup.exe
           New-Item -ItemType File dist/dupeguru-win64/settings.ini
           Compress-Archive -Path dist/dupeguru-win64 -DestinationPath release/dupeguru-4.3.2-windows-x64-portable.zip
           Get-ChildItem release -File | ForEach-Object {

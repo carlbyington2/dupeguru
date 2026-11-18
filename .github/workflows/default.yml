@@ -46,7 +46,7 @@ jobs:
           python build.py --modules
       - name: Run tests
         run: |
-          pytest core hscommon
+          pytest dupeguru/core dupeguru/hscommon
       - name: Upload Artifacts
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0

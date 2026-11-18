@@ -43,8 +43,6 @@ as 4.21.0
 manrajidevi91/dupeguru - A web/server based project, not a desktop
 app.
 
-gunnerman1/dupeguru - 3 commits that could be merged here.
-
 Ikkoru/dupeguru - all the changes here have been submitted as PRs to
 arsenetar.
 
