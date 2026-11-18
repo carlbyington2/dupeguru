@@ -1,14 +1,13 @@
 # Translators:
-# Andrew Senetar <arsenetar@gmail.com>, 2021
-# Fuan <jcfrt@posteo.net>, 2021
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Fuan <jcfrt@posteo.net>, 2021\n"
-"Language-Team: Ukrainian (https://www.transifex.com/voltaicideas/teams/116153/uk/)\n"
-"Language: uk\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Ukrainian (https://app.transifex.com/five-ten-sg/teams/311749/uk/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: dupeguru/core/gui/ignore_list_table.py:19
