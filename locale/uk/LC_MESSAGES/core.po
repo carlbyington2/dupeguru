@@ -1,14 +1,13 @@
 # Translators:
-# Andrew Senetar <arsenetar@gmail.com>, 2021
-# Fuan <jcfrt@posteo.net>, 2021
-#
+# carl byington, 2026
+# 
 msgid ""
 msgstr ""
-"Last-Translator: Fuan <jcfrt@posteo.net>, 2021\n"
-"Language-Team: Ukrainian (https://app.transifex.com/voltaicideas/teams/116153/uk/)\n"
-"Language: uk\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Last-Translator: carl byington, 2026\n"
+"Language-Team: Ukrainian (https://app.transifex.com/five-ten-sg/teams/311749/uk/)\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: utf-8\n"
+"Language: uk\n"
 "Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != 11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % 100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || (n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
 
 #: dupeguru/core/app.py:44
@@ -19,6 +18,14 @@ msgstr "Немає позначених дублікатів - нічого ро
 msgid "There are no selected duplicates. Nothing has been done."
 msgstr "Немає обраних дублікатів - нічого робити."
 
+#: dupeguru/core/app.py:46
+msgid ""
+"The file is not under any folder in the Directories panel. Can't recreate "
+"relative path."
+msgstr ""
+"Файл не знаходиться в жодній папці на панелі \"Каталоги\". Неможливо "
+"відтворити відносний шлях."
+
 #: dupeguru/core/app.py:47
 msgid ""
 "You're about to open many files at once. Depending on what those files are "
@@ -26,6 +33,23 @@ msgid ""
 msgstr ""
 "Ви збираєтеся відкрити багато файлів одночасно.\n"
 "Залежно від того, з чим відкриваються ці файли, це може створити неабияку халепу. Продовжити?"
+
+#: dupeguru/core/app.py:51
+msgid "{} of the {} marked files are reference files!"
+msgstr "{} з {} позначених файлів є контрольними файлами!"
+
+#: dupeguru/core/app.py:52
+msgid "{} of the {} selected files are reference files!"
+msgstr "{} із {} вибраних файлів є контрольними файлами!"
+
+#: dupeguru/core/app.py:53
+msgid ""
+"Deleted files can't be replaced with links while reference files are marked:"
+" the links would point to files being deleted. Nothing has been done."
+msgstr ""
+"Видалені файли не можна замінити посиланнями, поки файли-посилання "
+"позначені: посилання вказуватимуть на файли, що видаляються. Нічого не "
+"зроблено."
 
 #: dupeguru/core/app.py:80
 msgid "Scanning for duplicates"
@@ -69,7 +93,7 @@ msgstr "Усі позначені файли були переміщені ус�
 
 #: dupeguru/core/app.py:331
 msgid "All marked files were deleted successfully."
-msgstr ""
+msgstr "Усі позначені файли були видалені успішно."
 
 #: dupeguru/core/app.py:333
 msgid "All marked files were successfully sent to Trash."
@@ -82,6 +106,14 @@ msgstr "Не вдалося завантажити файл: {}"
 #: dupeguru/core/app.py:405
 msgid "'{}' already is in the list."
 msgstr "'{}' вже є в списку."
+
+#: dupeguru/core/app.py:408
+msgid ""
+"'{}' could not be read. It might be on a disconnected network share, or you "
+"might not have the permission to access it."
+msgstr ""
+"'{}' не вдалося прочитати. Можливо, він знаходиться на відключеному "
+"мережевому ресурсі, або у вас немає дозволу на доступ до нього."
 
 #: dupeguru/core/app.py:414
 msgid "'{}' does not exist."
@@ -115,6 +147,14 @@ msgstr "Не вдалося записати у файл: {}"
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr "Власна команда не встановлена. Встановіть її у налаштуваннях."
 
+#: dupeguru/core/app.py:600
+msgid "Invalid custom command syntax: {}"
+msgstr "Неправильний синтаксис спеціальної команди: {}"
+
+#: dupeguru/core/app.py:610
+msgid "Failed to execute custom command: {}"
+msgstr "Не вдалося виконати власну команду: {}"
+
 #: dupeguru/core/app.py:753 dupeguru/core/app.py:765
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "Ви збираєтеся видалити %d файлів з результату пошуку. Продовжити?"
@@ -139,15 +179,15 @@ msgstr "%s (%d відкинуто)"
 
 #: dupeguru/core/directories.py:227
 msgid "Collected {} files to scan"
-msgstr ""
+msgstr "Зібрано файлів для пошуку: {}"
 
 #: dupeguru/core/directories.py:243
 msgid "Collected {} folders to scan"
-msgstr ""
+msgstr "Зібрано {} папок для сканування"
 
 #: dupeguru/core/engine.py:27
 msgid "%d matches found from %d groups"
-msgstr ""
+msgstr "Знайдено співпадінь: %d із %d груп"
 
 #: dupeguru/core/gui/deletion_options.py:71
 msgid "You are sending {} file(s) to the Trash."
@@ -226,6 +266,30 @@ msgstr "Найдовший"
 msgid "Shortest"
 msgstr "Найкоротший"
 
+#: dupeguru/core/prioritize.py:145
+msgid "Longest Path"
+msgstr "Найдовший шлях"
+
+#: dupeguru/core/prioritize.py:146
+msgid "Shortest Path"
+msgstr "Найкоротший шлях"
+
+#: dupeguru/core/prioritize.py:147
+msgid "A to Z"
+msgstr "Від А до Я"
+
+#: dupeguru/core/prioritize.py:148
+msgid "Z to A"
+msgstr "Від Я до А"
+
+#: dupeguru/core/prioritize.py:149
+msgid "A to Z, natural order"
+msgstr "Від А до Я, за природним порядком"
+
+#: dupeguru/core/prioritize.py:150
+msgid "Z to A, natural order"
+msgstr "Від Я до А, природний порядок"
+
 #: dupeguru/core/prioritize.py:203
 msgid "Highest"
 msgstr "Найвища"
@@ -246,6 +310,10 @@ msgstr "Найдавніший"
 msgid "%d / %d (%s / %s) duplicates marked."
 msgstr "%d / %d (%s / %s) дублікатів позначено."
 
+#: dupeguru/core/results.py:151
+msgid " Reference files marked: %d (%s)."
+msgstr " Позначені опорні файли: %d (%s)."
+
 #: dupeguru/core/results.py:156
 msgid " filter: %s"
 msgstr "фільтр: %s"
@@ -261,65 +329,3 @@ msgstr "Майже зроблено! Возився з результатами.
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "Папки"
-
-#: dupeguru/core/app.py:46
-msgid ""
-"The file is not under any folder in the Directories panel. Can't recreate "
-"relative path."
-msgstr ""
-
-#: dupeguru/core/app.py:51
-msgid "{} of the {} marked files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:52
-msgid "{} of the {} selected files are reference files!"
-msgstr ""
-
-#: dupeguru/core/app.py:53
-msgid ""
-"Deleted files can't be replaced with links while reference files are marked:"
-" the links would point to files being deleted. Nothing has been done."
-msgstr ""
-
-#: dupeguru/core/app.py:408
-msgid ""
-"'{}' could not be read. It might be on a disconnected network share, or you "
-"might not have the permission to access it."
-msgstr ""
-
-#: dupeguru/core/app.py:600
-msgid "Invalid custom command syntax: {}"
-msgstr ""
-
-#: dupeguru/core/app.py:610
-msgid "Failed to execute custom command: {}"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:145
-msgid "Longest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:146
-msgid "Shortest Path"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:147
-msgid "A to Z"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:148
-msgid "Z to A"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:149
-msgid "A to Z, natural order"
-msgstr ""
-
-#: dupeguru/core/prioritize.py:150
-msgid "Z to A, natural order"
-msgstr ""
-
-#: dupeguru/core/results.py:151
-msgid " Reference files marked: %d (%s)."
-msgstr ""
