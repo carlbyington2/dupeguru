@@ -13,7 +13,7 @@ jobs:
       - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
       - uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548
         with:
-          python-version: "3.10"
+          python-version: "3.12"
       - name: Install build dependencies
         run: |
           python -m pip install -r requirements.txt -r requirements-extra.txt setuptools black==26.5.1 flake8==7.0.0
@@ -44,7 +44,7 @@ jobs:
       - name: Prepare release assets
         run: |
           New-Item -ItemType Directory release
-          Copy-Item dist/dupeguru_win64_4.3.1.exe release/dupeguru-4.3.1-windows-x64-setup.exe
+          Copy-Item dist/dupeguru_win64_4.3.2.exe release/dupeguru-4.3.2-windows-x64-setup.exe
           New-Item -ItemType File dist/dupeguru-win64/settings.ini
           Compress-Archive -Path dist/dupeguru-win64 -DestinationPath release/dupeguru-4.3.2-windows-x64-portable.zip
           Get-ChildItem release -File | ForEach-Object {
@@ -73,5 +73,5 @@ jobs:
           path: release
       - name: Publish tested Windows release
         env:
-          GH_TOKEN: ${{ github.token }}
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }
         run: gh release create v4.3.2 release/* --target "$GITHUB_SHA" --title "dupeGuru 4.3.2 — bulk folder states" --notes-file RELEASE_NOTES.md

@@ -99,11 +99,11 @@ def build_localizations():
 def build_updatepot():
     print("Building .pot files from source files")
     print("Building core.pot")
-    loc.generate_pot(["core"], Path("locale", "core.pot"), ["tr"])
+    loc.generate_pot(["dupeguru/core"], Path("locale", "core.pot"), ["tr"])
     print("Building columns.pot")
-    loc.generate_pot(["core"], Path("locale", "columns.pot"), ["coltr"])
+    loc.generate_pot(["dupeguru/core"], Path("locale", "columns.pot"), ["coltr"])
     print("Building ui.pot")
-    loc.generate_pot(["qt"], Path("locale", "ui.pot"), ["tr"], merge=True)
+    loc.generate_pot(["dupeguru/qt"], Path("locale", "ui.pot"), ["tr"], merge=True)
 
 
 def build_mergepot():
