@@ -39,7 +39,6 @@ os.environ.setdefault("QT_QPA_PLATFORM", "xcb")
 
 
 def signal_handler(sig, frame):
-    global dgapp
     if dgapp is None:
         return
     if sig in (SIGINT, SIGTERM, SIGQUIT):
