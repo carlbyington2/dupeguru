@@ -1,3 +1,8 @@
+=== 4.3.1^20261125git (2026-11-25)
+* cleanup packaging and documentation
+* update help files
+* change references to voltaicideas.net to github carlbyington2/dupeguru
+
 === 4.3.1^20261120git (2026-11-20)
 * Add bulk folder-state changes using Ctrl/Shift selection
 * Preserve selected rows and expanded folders when changing Normal, Reference, or Excluded

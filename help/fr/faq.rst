@@ -3,190 +3,191 @@ Foire aux questions
 
 .. contents::
 
-Qu'est-ce que dupeGuru?
+Qu'est-ce que dupeGuru ?
 ------------------------
 
-.. only:: edition_se
+dupeGuru est un outil permettant de trouver les fichiers en double sur votre ordinateur. Il
+possède trois modes de fonctionnement : Standard, Musique et Image. Chaque mode a ses propres
+préférences spécialisées.
 
-    dupeGuru est un outil pour trouver des doublons parmi vos fichiers. Il peut comparer soit les
-    noms de fichiers, soit le contenu. Le comparateur de nom de fichier peut trouver des doublons
-    même si les noms ne sont pas exactement pareils.
+Chaque mode propose plusieurs types d'analyse, comme le nom de fichier, le contenu ou les tags.
+Certains types d'analyse disposent d'un algorithme de rapprochement flou avancé, qui vous permet
+de trouver des doublons que d'autres outils de recherche de doublons, plus rigides, ne peuvent
+pas trouver.
 
-.. only:: edition_me
+Qu'est-ce qui le rend spécial ?
+-------------------------------
 
-    dupeGuru Music Editon est un outil pour trouver des doublons parmi vos chansons. Il peut
-    comparer les noms de fichiers, les tags ou bien le contenu. Les comparaisons de nom de fichier
-    ou de tags peuvent trouver des doublons même si les noms de sont pas exactement pareils.
+C'est surtout une question de personnalisation. Il existe de nombreuses options d'analyse qui
+vous permettent d'obtenir le type de résultats que vous cherchez vraiment.
 
-.. only:: edition_pe
+L'utilisation de dupeGuru est-elle sûre ?
+-----------------------------------------
 
-    dupeGuru Picture Edition est un outil pour trouver des doublons parmi vos images. Non seulement
-    il permet de trouver les doublons exactes, mais il est aussi capable de trouver les images ayant
-    de légères différences, étant de format différent ou bien ayant une qualité différente.
+Très sûre. dupeGuru a été conçu pour vous éviter de supprimer des fichiers que vous ne vouliez
+pas supprimer. D'abord, il y a le système de dossiers de référence qui vous permet de définir des
+dossiers dans lesquels vous ne voulez absolument **pas** que dupeGuru vous laisse supprimer des
+fichiers, ensuite il y a le système de référence de groupe qui garantit que vous conserverez
+**toujours** au moins un membre du groupe de doublons.
 
-En quoi est-il mieux que les autres applications?
--------------------------------------------------
+Comment signaler un bogue ou suggérer une fonctionnalité ?
+----------------------------------------------------------
 
-dupeGuru est hautement configurable. Vous pouvez changer les options de comparaison afin de trouver
-exactement le type de doublons recherché. Plus de détails sur la
-:doc:`page de préférences <preferences>`.
+dupeGuru est hébergé sur `GitHub`_, qui sert aussi au suivi des tickets. Le meilleur moyen de
+signaler un bogue ou de suggérer une fonctionnalité est de vous inscrire sur GitHub et
+d'`ouvrir un ticket`_.
 
-dupeGuru est-il sécuritaire?
-----------------------------
+La case de marquage d'un fichier que je veux supprimer est désactivée. Que dois-je faire ?
+------------------------------------------------------------------------------------------
 
-Oui. dupeGuru a été conçu afin d'être certain que vous conserviez toujours au moins une copie des
-doublons que vous trouvez. Il est aussi possible de configurer dupeGuru afin de déterminer certains
-dossier à partir desquels aucun fichier ne sera effacé.
+Vous ne pouvez pas marquer la référence (le premier fichier) d'un groupe de doublons. En
+revanche, vous pouvez promouvoir un fichier en double au rang de référence. Ainsi, si un fichier
+que vous voulez marquer est la référence, sélectionnez dans le groupe un doublon que vous voulez
+promouvoir en référence et cliquez sur **Actions-->Faire de la sélection la référence**. Si le
+fichier de référence provient d'un dossier de référence (nom de fichier écrit en bleu), vous ne
+pouvez pas le retirer de la position de référence.
 
-Quelles sont les limitation démo de dupeGuru?
----------------------------------------------
+J'ai un dossier dans lequel je ne veux vraiment pas supprimer de fichiers.
+--------------------------------------------------------------------------
 
-En mode de démonstration, les actions sont limitées à 10 doublons par session. En mode `Fairware`_,
-il n'y a pas de limitation.
+Si vous voulez être certain que dupeGuru ne supprimera jamais de fichier d'un dossier donné,
+veillez à définir son état sur **Référence** dans :doc:`folders`.
 
-Je ne peux pas marquer le doublons que je veux effacer, pourquoi?
------------------------------------------------------------------
-
-Tour groupe de doublons contient au moins un fichier dit "référence" et ce fichier ne peut pas être
-effacé. Par contre, ce que vous pouvez faire c'est de le remplacer par un autre fichier du groupe.
-Pour ce faire, sélectionnez un fichier du groupe et cliquez sur l'action **Transformer sélectionnés
-en références**.
-
-Notez que si le fichier référence du groupe vient d'un dossier qui a été défini comme dossier
-référence, ce fichier ne peut pas être déplacé de sa position de référence du groupe.
-
-J'ai un dossier duquel je ne veut jamais effacer de fichier.
+Que signifie cet avis « (X écartés) » dans la barre d'état ?
 ------------------------------------------------------------
 
-Si vous faites un scan avec un dossier qui ne doit servir que de référence pour effacer des doublons
-dans un autre dossier, changez le type de dossier à "Référence" dans la fenêtre de
-:doc:`sélection de dossiers <folders>`.
+Dans certains cas, certaines correspondances ne sont pas incluses dans les résultats finaux pour
+des raisons de sécurité. Prenons un exemple. Nous avons 3 fichiers : A, B et C. Nous les
+analysons avec un niveau de filtrage bas. L'analyseur détermine que A correspond à B, A
+correspond à C, mais que B ne correspond **pas** à C. Ici, dupeGuru a un petit problème. Il ne
+peut pas créer un groupe de doublons contenant A, B et C car tous les fichiers du groupe ne
+correspondraient pas entre eux. Il pourrait créer 2 groupes : un groupe A-B et un groupe A-C,
+mais il ne le fait pas, pour des raisons de sécurité. Réfléchissons : si B ne correspond pas à C,
+cela signifie probablement que B, C, ou les deux, ne sont pas réellement des doublons. S'il y
+avait 2 groupes (A-B et A-C), vous finiriez par supprimer à la fois B et C. Et si l'un d'eux
+n'est pas un doublon, ce n'est vraiment pas ce que vous voulez faire, n'est-ce pas ? Dans un cas
+comme celui-ci, dupeGuru écarte donc la correspondance A-C (et ajoute un avis dans la barre
+d'état). Ainsi, si vous supprimez B et relancez une analyse, vous obtiendrez une correspondance
+A-C dans vos prochains résultats.
 
-Que veut dire '(X hors-groupe)' dans la barre de statut?
---------------------------------------------------------
+Je veux marquer tous les fichiers d'un dossier donné. Que puis-je faire ?
+-------------------------------------------------------------------------
 
-Lors de certaines comparaisons, il est impossible de correctement grouper les paires de doublons et
-certaines paires doivent être retirées des résultats pour être certain de ne pas effacer de faux
-doublons. Example: Nous avons 3 fichiers, A, B et C. Nous les comparons en utilisant un petit seuil
-de filtre. La comparaison détermine que A est un double de B, A est un double C, mais que B n'est
-**pas** un double de C. dupeGuru a ici un problème. Il ne peut pas créer un groupe avec A, B et C.
-Il décide donc de jeter C hors du groupe. C'est de là que vient la notice '(X hors-groupe)'.
+Activez le mode :doc:`Doublons uniquement <results>` et cliquez sur la colonne Dossier pour
+trier vos doublons par dossier. Il vous sera alors facile de sélectionner tous les doublons d'un
+même dossier, puis d'appuyer sur Espace pour marquer tous les doublons sélectionnés.
 
-Cette notice veut dire que si jamais vous effacez tout les doubles contenus dans vos résultats et
-que vous faites un nouveau scan, vous pourriez avoir de nouveaux résultats.
+Je veux retirer tous les fichiers dont la taille diffère de plus de 300 Ko de celle de leur fichier de référence. Que puis-je faire ?
+-------------------------------------------------------------------------------------------------------------------------------------
 
-Je veux marquer tous les fichiers provenant d'un certain dossier. Quoi faire?
------------------------------------------------------------------------------
+* Activez le mode :doc:`Doublons uniquement <results>`.
+* Activez le mode **Valeurs delta**.
+* Cliquez sur la colonne « Taille » pour trier les résultats par taille.
+* Sélectionnez tous les doublons inférieurs à -300.
+* Cliquez sur **Retirer la sélection des résultats**.
+* Sélectionnez tous les doublons supérieurs à 300.
+* Cliquez sur **Retirer la sélection des résultats**.
 
-Activez l'option :doc:`Ne pas montrer les références <results>` et cliquez sur la colonne Dossier
-afin de trier par dossier. Il sera alors facile de sélectionner tous les fichiers de ce dossier
-(avec Shift+selection) puis ensuite d'appuyer sur Espace pour marquer les fichiers sélectionnés.
+Je veux que mes fichiers modifiés le plus récemment deviennent des fichiers de référence. Que puis-je faire ?
+-------------------------------------------------------------------------------------------------------------
 
-.. only:: edition_se or edition_pe
+* Activez le mode :doc:`Doublons uniquement <results>`.
+* Activez le mode **Valeurs delta**.
+* Cliquez sur la colonne « Modification » pour trier les résultats par date de modification.
+* Cliquez à nouveau sur la colonne « Modification » pour inverser l'ordre de tri.
+* Sélectionnez tous les doublons supérieurs à 0.
+* Cliquez sur **Faire de la sélection la référence**.
 
-    Je veux enlever tous les doublons qui ont une différence de plus de 300KB avec leur référence.
-    ----------------------------------------------------------------------------------------------
+Je veux marquer tous les doublons contenant le mot « copy ». Comment faire ?
+----------------------------------------------------------------------------
 
-    * Activez l'option :doc:`Ne pas montrer les références <results>`.
-    * Activez l'option **Montrer les valeurs en tant que delta**.
-    * Cliquez sur la colonne Taille pour changer le tri.
-    * Sélectionnez tous les fichiers en dessous de -300.
-    * Cliquez sur l'action **Retirer sélectionnés des résultats**.
-    * Sélectionnez tous les fichiers au dessus de 300.
-    * Cliquez sur l'action **Retirer sélectionnés des résultats**.
+* Saisissez « copy » dans le champ « Filtre » en haut à droite de la fenêtre de résultats.
+* Cliquez sur **Marquer --> Tout marquer**.
 
-    Je veux que le fichier avec la plus grande date de dernière modification soit la référence.
-    -------------------------------------------------------------------------------------------
+Je veux retirer toutes les chansons dont la durée diffère de plus de 3 secondes de celle de leur fichier de référence. Que puis-je faire ?
+------------------------------------------------------------------------------------------------------------------------------------------
 
-    * Activez l'option :doc:`Ne pas montrer les références <results>`.
-    * Activez l'option **Montrer les valeurs en tant que delta**.
-    * Cliquez sur la colonne Modification (deux fois, afin d'avoir un ordre descendant) pour changer le tri.
-    * Sélectionnez tous les fichiers au dessus de 0.
-    * Cliquez sur l'action **Transformer sélectionnés en références**.
+* Activez le mode :doc:`Doublons uniquement <results>`.
+* Activez le mode **Valeurs delta**.
+* Cliquez sur la colonne « Durée » pour trier les résultats par durée.
+* Sélectionnez tous les doublons inférieurs à -00:03.
+* Cliquez sur **Retirer la sélection des résultats**.
+* Sélectionnez tous les doublons supérieurs à 00:03.
+* Cliquez sur **Retirer la sélection des résultats**.
 
-    Je veux marquer tous les fichiers contenant le mot "copie".
-    -----------------------------------------------------------
+Je veux que mes chansons au débit le plus élevé deviennent des fichiers de référence. Que puis-je faire ?
+---------------------------------------------------------------------------------------------------------
 
-    * Entrez le mot "copie" dans le champ "Filtre" dans la fenêtre de résultats puis appuyez sur
-      Entrée.
-    * Cliquez sur **Tout Marquer** dans le menu Marquer.
+* Activez le mode :doc:`Doublons uniquement <results>`.
+* Activez le mode **Valeurs delta**.
+* Cliquez sur la colonne « Débit » pour trier les résultats par débit.
+* Cliquez à nouveau sur la colonne « Débit » pour inverser l'ordre de tri.
+* Sélectionnez tous les doublons supérieurs à 0.
+* Cliquez sur **Faire de la sélection la référence**.
 
-.. only:: edition_me
+Je ne veux pas que les versions [live] et [remix] de mes chansons soient comptées comme des doublons. Comment faire ?
+---------------------------------------------------------------------------------------------------------------------
 
-    Je veux enlever les doublons qui ont une différence de plus de 3 secondes avec leur référence.
-    ----------------------------------------------------------------------------------------------
+Si votre seuil de comparaison est suffisamment bas, vous vous retrouverez probablement avec des
+versions live et remix de vos chansons dans vos résultats. Il n'y a rien que vous puissiez faire
+pour l'empêcher, mais vous pouvez facilement les retirer de vos résultats après l'analyse : le
+filtrage post-analyse. Si, par exemple, vous voulez retirer toutes les chansons comportant
+quelque chose entre crochets [] :
 
-    * Activez l'option :doc:`Ne pas montrer les références <results>`.
-    * Activez l'option **Montrer les valeurs en tant que delta**.
-    * Cliquez sur la colonne Temps pour changer le tri.
-    * Sélectionnez tous les fichiers en dessous de -00:03.
-    * Cliquez sur l'action **Retirer sélectionnés des résultats**.
-    * Sélectionnez tous les fichiers au dessus de 00:03.
-    * Cliquez sur l'action **Retirer sélectionnés des résultats**.
+* Saisissez « [*] » dans le champ « Filtre » en haut à droite de la fenêtre de résultats.
+* Cliquez sur **Marquer --> Tout marquer**.
+* Cliquez sur **Actions --> Retirer la sélection des résultats**.
 
-    Je veux que mes chansons aux bitrate le plus élevé soient mes références.
-    -------------------------------------------------------------------------
+Le curseur « Niveau de filtrage » des préférences ne bouge pas !
+----------------------------------------------------------------
 
-    * Activez l'option :doc:`Ne pas montrer les références <results>`.
-    * Activez l'option **Montrer les valeurs en tant que delta**.
-    * Cliquez sur la colonne Bitrate (deux fois, afin d'avoir un ordre descendant) pour changer le tri.
-    * Sélectionnez tous les fichiers au dessus de 0.
-    * Cliquez sur l'action **Transformer sélectionnés en références**.
+Ce curseur n'est pertinent que pour les types d'analyse qui prennent en charge le « flou ». De
+nombreux types d'analyse, comme le type « Contenu », ne prennent en charge que les correspondances
+exactes. Lorsque ces types sont sélectionnés, le curseur est désactivé.
 
-    Je veux enlever les chansons contenant "[live]" ou "[remix]" de mes résultat.
-    -----------------------------------------------------------------------------
+Sur certains systèmes, le fait qu'il soit désactivé est plus difficile à voir que sur d'autres,
+mais si vous ne pouvez pas déplacer le curseur, cela signifie que cette préférence n'est pas
+pertinente pour votre type d'analyse actuel.
 
-    Si votre seuil de filtre est assez bas, il se pourrait que vos chansons live ou vos remix soient
-    détectés comme des doublons. Vous n'y pouvez rien, mais ce que vous pouvez faire est d'enlever
-    ces fichiers de vous résultats après le scan. Si, par exemple, vous voulez enlever tous les
-    doublons contenant quelque mot que ce soit entre des caractères "[]", faites:
-
-    * Entrez "[*]" dans le champ "Filtre" dans la fenêtre de résultats puis appuyez sur Entrée.
-    * Cliquez sur **Tout Marquer** dans le menu Marquer.
-    * Cliquez sur l'action **Retirer marqués des résultats**.
-
-J'essaie d'envoyer mes doublons à la corbeille, mais dupeGuru me dit que je ne peux pas. Pourquoi?
---------------------------------------------------------------------------------------------------
+J'ai essayé d'envoyer mes doublons à la corbeille, mais dupeGuru m'indique qu'il ne peut pas le faire. Pourquoi ? Que puis-je faire ?
+-------------------------------------------------------------------------------------------------------------------------------------
 
 La plupart du temps, la raison pour laquelle dupeGuru ne peut pas envoyer des fichiers à la
-corbeille est un problème de permissions. Vous devez avoir une permission d'écrire dans les fichiers
-que vous voulez effacer. Si vous n'êtes pas familiers avec la ligne de commande, vous pouvez
-utiliser des outils comme `BatChmod`_ pour modifier vos permissions.
+corbeille tient aux permissions des fichiers. Vous avez besoin des permissions d'*écriture* sur
+les fichiers que vous voulez envoyer à la corbeille.
 
-Si malgré cela vous ne pouvez toujours pas envoyer vos fichiers à la corbeille, essayez l'option
-"Supprimer les fichiers directement" qui vous est offerte lorsque vous procédez à l'effacement des
-doublons. Cette option fera en sorte de supprimer directement les fichiers sans les faire passer par
-la corbeille. Dans certains cas, ça règle le problème.
+Si dupeGuru vous pose encore des problèmes après la correction de vos permissions, essayez
+d'activer l'option « Supprimer directement les fichiers » qui vous est proposée lorsque vous
+activez « Envoyer à la corbeille ». Cela n'enverra pas les fichiers à la corbeille, mais les
+supprimera immédiatement. Dans certains cas, par exemple sur un stockage réseau (NAS), il est
+arrivé que cela fonctionne alors que la suppression normale échouait.
 
-.. only:: edition_pe
+Pourquoi l'analyse par contenu du mode Image est-elle si lente ?
+----------------------------------------------------------------
 
-    Si vous essayez d'effacer des photos dans iPhoto, alors la raison du problème est différente.
-    L'opération rate parce que dupeGuru ne peut pas communiquer avec iPhoto. Il faut garder à
-    l'esprit qu'il ne faut pas toucher à iPhoto pendant l'opération parce que ça peut déranger la
-    communication entre dupeGuru et iPhoto. Aussi, quelque fois, dupeGuru ne peut pas trouver
-    l'application iPhoto. Il faut mieux alors démarrer iPhoto avant l'opération.
+Cette méthode d'analyse est très différente des autres méthodes. Elle peut détecter des photos en
+double même si elles ne sont pas exactement identiques. Cette fonctionnalité très sympathique a
+un coût : le temps. Chaque image doit être comparée individuellement et de façon floue à toutes
+les autres, ce qui demande beaucoup de puissance de calcul.
 
-Dans le pire des cas, `contactez le support HS`_, on trouvera bien.
+Si vous avez seulement besoin de trouver des doublons exacts, utilisez simplement le mode
+Standard de dupeGuru avec la méthode d'analyse par contenu. Si vos photos ont des tags EXIF, vous
+pouvez aussi essayer la méthode d'analyse « EXIF », bien plus rapide.
 
-Où sont les fichiers de configuration de dupeGuru?
---------------------------------------------------
+Où se trouvent les fichiers utilisateur ?
+-----------------------------------------
 
-Si, pour une raison ou une autre, vous voulez effacer ou modifier les fichiers générés par dupeGuru,
-voici où ils sont:
+Pour une raison ou une autre, vous voudrez peut-être supprimer ou modifier les fichiers
+utilisateur de dupeGuru (journaux de débogage, caches, etc.). Leur emplacement dépend de votre
+plateforme :
 
-* Linux: ``~/.local/share/data/Hardcoded Software/dupeGuru``
-* Mac OS X: ``~/Library/Application Support/dupeGuru``
-* Windows: ``\Users\<username>\AppData\Local\Hardcoded Software\dupeGuru``
+* Linux : ``~/.local/share/data/Hardcoded Software/dupeGuru``
+* Mac OS X : ``~/Library/Application Support/dupeGuru``
 
-Les fichiers de préférences sont ailleurs:
+Les préférences sont stockées ailleurs :
 
-* Linux: ``~/.config/Hardcoded Software/dupeGuru.conf``
-* Mac OS X: Dans le système ``defaults`` sous ``com.hardcoded-software.dupeguru``
-* Windows: Dans le Registre, sous ``HKEY_CURRENT_USER\Software\Hardcoded Software\dupeGuru``
+* Linux : ``~/.config/Hardcoded Software/dupeGuru.conf``
+* Mac OS X : dans le système intégré ``defaults``, sous le nom ``com.hardcoded-software.dupeguru``
 
-Pour la Music Edition et Picture Edition, remplacer "dupeGuru" par "dupeGuru Music Edition" et
-"dupeGuru Picture Edition", respectivement.
-
-.. _Fairware: http://open.hardcoded.net/about/
-.. _BatChmod: http://www.lagentesoft.com/batchmod/index.html
-.. _contactez le support HS: http://www.hardcoded.net/support
+.. _GitHub: https://github.com/carlbyington2/dupeguru
+.. _ouvrir un ticket: https://github.com/carlbyington2/dupeguru/issues

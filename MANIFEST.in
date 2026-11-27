@@ -1,5 +1,5 @@
-recursive-include core *.h
-recursive-include core *.m
+recursive-include dupeguru/core *.h
+recursive-include dupeguru/core *.m
 include run.py
 graft locale
 graft help

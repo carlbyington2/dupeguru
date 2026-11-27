@@ -12,7 +12,7 @@ a community around this project.
 
 So, whatever your skills, if you're interested in contributing to dupeGuru, please do so. Normally,
 this documentation should be enough to get you started, but if it isn't, then **please**,
-open a discussion at https://github.com/arsenetar/dupeguru/discussions.  If there's any situation where you'd
+open a discussion at https://github.com/carlbyington2/dupeguru/discussions.  If there's any situation where you'd
 wish to contribute but some doubt you're having prevent you from going forward, please contact me.
 I'd much prefer to spend the time figuring out with you whether (and how) you can contribute than
 taking the chance of missing that opportunity.
@@ -22,7 +22,6 @@ Development process
 
 * `Source code repository`_
 * `Issue Tracker`_
-* `Issue labels meaning`_
 
 dupeGuru's source code is on GitHub and thus managed in a Git repository. At all times, you should
 be able to build from source a fresh checkout of the ``master`` branch using instructions from the
@@ -79,12 +78,10 @@ doing the formatting myself. But in that case, it's better to contact me first t
 agree on what should be added to the documentation.
 
 **Translation**. Creating or improving an existing translation is a very good way to contribute to
-dupeGuru. For more information about how to do that, you can refer to the `translator guide`_.
+dupeGuru.
 
 .. _been open source: https://www.hardcoded.net/articles/free-as-in-speech-fair-as-in-trade
-.. _Source code repository: https://github.com/arsenetar/dupeguru
-.. _Issue Tracker: https://github.com/arsenetar/issues
-.. _Issue labels meaning: https://github.com/arsenetar/wiki/issue-labels
+.. _Source code repository: https://github.com/carlbyington2/dupeguru
+.. _Issue Tracker: https://github.com/carlbyington2/issues
 .. _Sphinx: http://sphinx-doc.org/
 .. _reST: http://en.wikipedia.org/wiki/ReStructuredText
-.. _translator guide: https://github.com/arsenetar/wiki/Translator-Guide

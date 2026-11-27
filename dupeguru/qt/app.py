@@ -396,7 +396,7 @@ class DupeGuru(QObject):
         if op.exists(help_path):
             url = QUrl.fromLocalFile(help_path)
         else:
-            url = QUrl("https://dupeguru.voltaicideas.net/help/en/")
+            url = QUrl("https://github.com/carlbyington2/dupeguru/issues/")
         QDesktopServices.openUrl(url)
 
     def handleSIGTERM(self) -> None:

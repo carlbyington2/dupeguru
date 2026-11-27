@@ -1,0 +1,33 @@
+# script to package files for translation by Claude
+
+cat >/tmp/xx <<EOF
+French fr
+German de
+Armenian hy
+Russian ru
+Ukrainian uk
+EOF
+
+# remove the developer stuff fron the index
+sed -i -e '/developer.index/d' en/index.rst
+
+# convert the files
+cat /tmp/xx | while read lang code; do
+    echo $code
+
+    f=en-$code.zip
+    rm $f
+    zip $f en/*.rst ../locale/$code/LC_MESSAGES/ui.po >/dev/null
+    cat <<EOF
+translate the .rst files in $f to $lang, preserving
+the .rst markup. The $lang translations for UI labels
+are in the ui.po file. List any UI labels without an
+existing translation in the ui.po file. Produce an output
+.zip file with the translated .rst files.
+
+EOF
+done
+
+# restore the en/index
+git restore en/index.rst
+

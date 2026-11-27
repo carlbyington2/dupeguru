@@ -10,68 +10,150 @@ jobs:
   build:
     runs-on: windows-latest
     steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
-      - uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548
+      - name: checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Set up Python 3.14
+        uses: actions/setup-python@83679a892e2d95755f2dac6acb0bfd1e9ac5d548
         with:
-          python-version: "3.12"
+          python-version: "3.14"
+
+      - name: 'Update full version to {ver}+{date}git{hash}.windows'
+        id: version
+        shell: bash
+        run: |
+          echo '*** Update full version to {ver}+{date}git{hash}.windows'
+          python - << 'EOF'
+          import os, re, subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("dupeguru/core/__init__.py")
+          text = path.read_text(encoding="utf-8")
+
+          match = re.search(r'^__version__\s*=\s*["\']([^"\']+)["\']', text, re.MULTILINE)
+          version = match.group(1)
+          build_date = datetime.now(timezone.utc).strftime("%Y%m%d")
+          short_sha = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
+          new_full_version = f"{version}+{build_date}git{short_sha}.windows"
+
+          updated_text = re.sub(
+              r'^(__full_version__\s*=\s*)["\'][^"\']+["\']',
+              rf'\g<1>"{new_full_version}"',
+              text,
+              flags=re.MULTILINE,
+          )
+          path.write_text(updated_text, encoding="utf-8")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"version={version}\n")
+              out.write(f"full_version={new_full_version}\n")
+          EOF
+
       - name: Install build dependencies
         run: |
-          python -m pip install -r requirements.txt -r requirements-extra.txt setuptools
-          choco install nsis --no-progress -y
+          echo "*** Install Python build dependencies"
+          python -m pip install -r requirements.txt -r requirements-extra.txt setuptools PySide6-Essentials
+          echo "*** Install nsis"
+          choco install nsis --no-progress --verbose -y
+          echo "C:\Program Files (x86)\NSIS" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+
       - name: Check feature formatting and lint
         run: |
+          echo "*** python -m black --check ."
           python -m black --check .
+          echo "*** python -m flake8"
           python -m flake8
+
       - name: Build application
-        run: python build.py
+        run: |
+          echo "*** Build application"
+          python build.py --clean
+          echo "*** Remove build-only PySide6 so PyInstaller only bundles PyQt6"
+          python -m pip uninstall -y PySide6-Essentials shiboken6
+
       - name: Run core and Qt regression tests
-        run: python -m pytest dupeguru --junitxml=build/test-results.xml
-      - name: Package Windows installer
         run: |
-          python package.py
-          if (!(Test-Path 'dist/dupeguru_win64_4.3.2.exe')) { throw 'Installer missing' }
+          echo "*** Run core and Qt regression tests"
+          python -m pytest dupeguru --junitxml=build/test-results.xml
+
+      - name: Package to Windows .exe files
+        run: python package.py
+
+      - name: Inspect generated files
+        run: |
+          echo "*** throw if not correct names"
+          if (!(Test-Path 'dist/dupeguru_win64_${{ steps.version.outputs.version }}.exe')) { throw 'Installer missing' }
           if (!(Test-Path 'dist/dupeguru-win64/dupeguru-win64.exe')) { throw 'Application missing' }
-      - name: Smoke test packaged application
+          echo "*** Inspect generated files"
+          (Get-Item ./dist/dupeguru-win64/dupeguru-win64.exe).VersionInfo | Format-List *
+
+      - name: Smoke test packaged application (5s survival)
         run: |
-          $process = Start-Process -FilePath 'dist/dupeguru-win64/dupeguru-win64.exe' -ArgumentList '--smoke-test' -PassThru -WindowStyle Hidden
+          echo "*** Smoke test one, test it does not crash within 5 seconds"
+          $process = Start-Process -FilePath 'dist/dupeguru-win64/dupeguru-win64.exe' -PassThru
           try {
-            if (!$process.WaitForExit(30000)) { throw 'Packaged application startup timed out' }
+            Start-Sleep -Seconds 5
+            if ($process.HasExited) {
+              throw "Packaged application exited prematurely with code: $($process.ExitCode)"
+            }
+            Write-Output "Packaged Qt application started and is running cleanly (PID: $($process.Id))"
+          } finally {
+            if (!$process.HasExited) {
+              $process.CloseMainWindow() | Out-Null
+              if (!$process.WaitForExit(5000)) {
+                Stop-Process -Id $process.Id -Force
+              }
+            }
+            $logFile = "$env:APPDATA\Hardcoded Software\dupeGuru\debug.log"
+            if (Test-Path $logFile) { Get-Content $logFile }
+          }
+
+      - name: Smoke test packaged application (--smoke-test flag)
+        run: |
+          echo "*** Smoke test two, test with --smoke-test arg it stops within 10 seconds"
+          $process = Start-Process -FilePath 'dist/dupeguru-win64/dupeguru-win64.exe' -ArgumentList '--smoke-test' -PassThru
+          try {
+            if (!$process.WaitForExit(10000)) { throw 'Packaged application startup timed out' }
             if ($process.ExitCode -ne 0) { throw "Packaged application failed: $($process.ExitCode)" }
             Write-Output 'Packaged Qt application initialized and exited successfully'
           } finally {
             if (!$process.HasExited) { Stop-Process -Id $process.Id }
+            $logFile = "$env:APPDATA\Hardcoded Software\dupeGuru\debug.log"
+            if (Test-Path $logFile) { Get-Content $logFile }
           }
+
       - name: Prepare release assets
         run: |
+          echo "*** Prepare release assets"
           New-Item -ItemType Directory release
-          Copy-Item dist/dupeguru_win64_4.3.2.exe release/dupeguru-4.3.2-windows-x64-setup.exe
+          Copy-Item dist/dupeguru_win64_${{ steps.version.outputs.version }}.exe release/dupeguru-${{ steps.version.outputs.full_version }}-windows-x64-setup.exe
           New-Item -ItemType File dist/dupeguru-win64/settings.ini
-          Compress-Archive -Path dist/dupeguru-win64 -DestinationPath release/dupeguru-4.3.2-windows-x64-portable.zip
+
+          echo "*** Use full version in names"
+          $versionedDir = "dist/dupeguru-${{ steps.version.outputs.full_version }}"
+          Rename-Item -Path "dist/dupeguru-win64" -NewName "dupeguru-${{ steps.version.outputs.full_version }}"
+          Compress-Archive -Path $versionedDir -DestinationPath "release/dupeguru-${{ steps.version.outputs.full_version }}-windows-x64-portable.zip"
+
+          echo "*** Compute hashs for release items"
           Get-ChildItem release -File | ForEach-Object {
             $hash = (Get-FileHash $_.FullName -Algorithm SHA256).Hash.ToLower()
             "$hash  $($_.Name)"
           } | Set-Content release/SHA256SUMS.txt
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+          echo "*** list recursive release assets"
+          Get-ChildItem -Force -Recurse release
+
+      - name: Upload windows installers
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         with:
-          name: windows-release
+          name: dupeguru.${{ steps.version.outputs.full_version }}
+          retention-days: 2
           path: release/*
-      - uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
+
+      - name: Upload test results
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f
         if: always()
         with:
           name: test-results
+          retention-days: 2
           path: build/test-results.xml
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
-    steps:
-      - uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
-      - uses: actions/download-artifact@v4
-        with:
-          name: windows-release
-          path: release
-      - name: Publish tested Windows release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release create v4.3.2 release/* --target "$GITHUB_SHA" --title "dupeGuru 4.3.2 — bulk folder states" --notes-file RELEASE_NOTES.md

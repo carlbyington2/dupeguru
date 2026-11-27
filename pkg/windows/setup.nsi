@@ -5,7 +5,7 @@
 ; makensis /DVERSIONMAJOR=x /DVERSIONMINOR=x /DVERSIONPATCH=x /DBITS=x \
 ;   /DSOURCEPATH=x
 ; NOTE:
-; If SOURCEPATH is not set it will default to build (uses subdir based on app).
+; If SOURCEPATH is not set it will default to dist since this file is in pkg/windows
 ;==============================================================================
 Unicode true
 ; Compression Setting
@@ -51,8 +51,8 @@ SetCompressor /SOLID lzma
 !define APPICON "images\dgse_logo.ico" ; nor is the icon
 !define DISTDIR "dist"
 !define HELPURL "https://github.com/carlbyington2/dupeguru/issues"
-!define UPDATEURL "https://dupeguru.voltaicideas.net/"
-!define ABOUTURL "https://dupeguru.voltaicideas.net/"
+!define UPDATEURL "https://github.com/carlbyington2/dupeguru/"
+!define ABOUTURL "https://github.com/carlbyington2/dupeguru/"
 
 ; Static Defines
 !define UNINSTALLREGBASE "Software\Microsoft\Windows\CurrentVersion\Uninstall"

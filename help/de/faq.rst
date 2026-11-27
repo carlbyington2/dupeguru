@@ -1,115 +1,189 @@
 Häufig gestellte Fragen
-==========================
+=======================
 
-.. topic:: What is dupeGuru?
+.. contents::
 
-    .. only:: edition_se
+Was ist dupeGuru?
+-----------------
 
-        DupeGuru ist ein Tool zum Auffinden von Duplikaten auf Ihrem Computer. Es kann entweder Dateinamen oder Inhalte scannen. Der Dateiname-Scan stellt einen lockeren Suchalgorithmus zur Verfügung, der sogar Duplikate findet, die nicht den exakten selben Namen haben.
+dupeGuru ist ein Werkzeug, um doppelte Dateien auf Ihrem Computer zu finden. Es hat drei
+Betriebsmodi: Standard, Musik und Bilder. Jeder Modus hat seine eigenen spezialisierten
+Einstellungen.
 
-    .. only:: edition_me
+Jeder Modus bietet mehrere Scan-Typen, etwa Dateiname, Inhalt oder Tags. Einige Scan-Typen
+verfügen über fortgeschrittene Fuzzy-Matching-Algorithmen, mit denen Sie Duplikate finden
+können, die andere, starrere Duplikat-Scanner nicht finden.
 
-        dupeGuru Music Edition ist ein Tool zum Auffinden von Duplikaten in Ihrer Musiksammlung. Es kann seine Suche auf Dateinamen, Tags oder Inhalte basieren. Der Dateiname-Scan und Tag-Scan stellt einen lockeren Suchalgorithmus zur Verfügung, der sogar Dateinamen und Tags findet, die nicht den exakt selben Namen haben.
+Was macht es besonders?
+-----------------------
 
-    .. only:: edition_pe
+Vor allem die Anpassbarkeit. Es gibt viele Scan-Optionen, mit denen Sie genau die Art von
+Ergebnissen erhalten, die Sie wirklich suchen.
 
-        dupeGuru Picture Edition (kurz PE) ist ein Tool zum Auffinden von doppelten Bildern auf Ihrem Computer. Es findet nicht nur exakte Übereinstimmungen, sondern auch Duplikate unterschiedlichen Dateityps (PNG, JPG, GIF etc..) und Qualität.
+Wie sicher ist die Verwendung von dupeGuru?
+-------------------------------------------
 
-.. topic:: Was macht es besser ala andere Duplikatscanner?
+Sehr sicher. dupeGuru wurde so entworfen, dass Sie keine Dateien löschen, die Sie nicht löschen
+wollten. Zum einen gibt es das Referenzordner-System, mit dem Sie Ordner festlegen können, aus
+denen dupeGuru Sie absolut **keine** Dateien löschen lassen soll, und zum anderen das
+Gruppenreferenz-System, das sicherstellt, dass Sie **immer** mindestens ein Mitglied der
+Duplikatgruppe behalten.
 
-    Die Scan-Engine ist extrem flexibel. Sie können sie modifizieren, um die Art von Ergebnissen zu bekommen die Sie möchten. Sie können mehr über die dupeGuru Modifikationen finden auf der :doc:`Einstellungen Seite <preferences>`.
+Wie kann ich einen Fehler melden oder eine Funktion vorschlagen?
+----------------------------------------------------------------
 
-.. topic:: Wie sicher ist dupeGuru?
+dupeGuru wird auf `GitHub`_ gehostet, und dort werden auch die Issues verfolgt. Am besten melden
+Sie einen Fehler oder schlagen eine Funktion vor, indem Sie sich bei GitHub anmelden und
+`ein Issue eröffnen`_.
 
-    Sehr sicher. DupeGuru wurde entwickelt, um sicherzustellen keine Dateien zu löschen, die nicht gelöscht werden sollen. Erstens, es existiert ein Referenzordnersystem welches Ordner definiert, die auf **keinen** Fall angefasst werden sollen. Dann gibt es noch das Referenzgruppensystem, das sicherstellt das **immer** ein Mitglied einer Duplikatgruppe behalten wird.
+Das Markierungsfeld einer Datei, die ich löschen möchte, ist deaktiviert. Was muss ich tun?
+-------------------------------------------------------------------------------------------
 
-.. topic:: Was sind die Demo-Einschränkungen von dupeGuru?
+Die Referenz (die erste Datei) einer Duplikatgruppe können Sie nicht markieren. Sie können aber
+eine doppelte Datei zur Referenz befördern. Ist also eine Datei, die Sie markieren möchten, die
+Referenz, wählen Sie in der Gruppe ein Duplikat aus, das Sie zur Referenz befördern möchten, und
+klicken Sie auf **Aktionen-->Ausgewählte zur Referenz machen**. Stammt die Referenzdatei aus
+einem Referenzordner (Dateiname in blauer Schrift), können Sie sie nicht von der Referenzposition
+entfernen.
 
-    Keine, dupeGuru ist `Fairware <http://open.hardcoded.net/about/>`_.
+Ich habe einen Ordner, aus dem ich auf keinen Fall Dateien löschen möchte.
+--------------------------------------------------------------------------
 
-.. topic:: Die Markierungsbox einer Datei, die ich löschen möchte, ist deaktiviert. Was muss ich tun?
+Wenn Sie sicher sein möchten, dass dupeGuru nie Dateien aus einem bestimmten Ordner löscht,
+setzen Sie dessen Zustand unter :doc:`folders` auf **Referenz**.
 
-    Sie können die Referenz nicht markieren (die erste Datei einer Duplikatgruppe). Wie auch immer, Sie können ein Duplikat zur Referenz befördnern. Wenn eine Datei, die Sie markieren möchten, eine Referenz ist, muss ein Duplikat der Gruppe zur Referenz gemacht werden, indem man es auswählt und auf **Aktionen-->Mache Ausgewählte zur Referenz** gehen. Befindet sich die Referenzdatei in einem Referenzordner (Dateiname in blauen Buchstaben), kann sie nicht aus der Referenzposition entfernt werden.
+Was bedeutet der Hinweis „(X verworfen)“ in der Statusleiste?
+-------------------------------------------------------------
 
-.. topic:: ich habe einen Ordner aus dem ich wirklich nichts löschen möchte.
+In manchen Fällen werden einzelne Treffer aus Sicherheitsgründen nicht in die endgültigen
+Ergebnisse aufgenommen. Dazu ein Beispiel. Wir haben 3 Dateien: A, B und C. Wir scannen sie mit
+einer niedrigen Filterschärfe. Der Scanner stellt fest, dass A mit B übereinstimmt, A mit C
+übereinstimmt, B aber **nicht** mit C. Hier hat dupeGuru ein Problem. Es kann keine
+Duplikatgruppe mit A, B und C bilden, weil nicht alle Dateien der Gruppe miteinander
+übereinstimmen würden. Es könnte 2 Gruppen bilden: eine Gruppe A-B und eine Gruppe A-C, tut es
+aber aus Sicherheitsgründen nicht. Überlegen wir: Wenn B nicht mit C übereinstimmt, bedeutet das
+wahrscheinlich, dass B, C oder beide tatsächlich keine Duplikate sind. Gäbe es 2 Gruppen (A-B und
+A-C), würden Sie am Ende sowohl B als auch C löschen. Und wenn eine davon kein Duplikat ist, ist
+das wirklich nicht das, was Sie wollen, oder? Deshalb verwirft dupeGuru in einem solchen Fall den
+Treffer A-C (und fügt einen Hinweis in der Statusleiste hinzu). Löschen Sie also B und führen
+den Scan erneut aus, erhalten Sie in den nächsten Ergebnissen einen Treffer A-C.
 
-    Möchten Sie sicherstellen, das dupeGuru niemals Dateien aus einem bestimmten Ordner löscht, dann versetzen sie den Ordner in den **Referenzzustand**. Siehe :doc:`folders`.
+Ich möchte alle Dateien aus einem bestimmten Ordner markieren. Was kann ich tun?
+--------------------------------------------------------------------------------
 
-.. topic:: Was bedeutet diese '(X verworfen)' Nachricht in der Statusbar?
+Aktivieren Sie den Modus :doc:`Nur Duplikate <results>` und klicken Sie auf die Spalte „Ordner“,
+um Ihre Duplikate nach Ordner zu sortieren. Dann ist es leicht, alle Duplikate aus demselben
+Ordner auszuwählen und mit der Leertaste alle ausgewählten Duplikate zu markieren.
 
-    In einigen Fällen werden manche Treffer aus Sicherheitsgründen nicht in den Ergebnissen angezeigt. Lassen Sie mich ein Beispiel konstruieren. Wir haben 3 Datein: A, B und C. Wir scannen sie mit einer niedrigen Filterempfindlichkeit. Der Scanner findet heraus das A mit B und C übereinstimmt, aber B **nicht** mit C übereinstimmt. Hier hat dupeGuru ein Problem. Es kann keine Duplikatgruppe erstellen mit A, B und C, weil nicht alle Dateien der Gruppe zusammenpassen. Es könnte 2 Gruppen erstellen: eine A-B Gruppe und eine A-C Gruppe, aber es dies aus Sicherheitsbedenken nicht tun. Denken wir darüber nach: Wenn B nicht zu C passt, heißt das, das entweder B oder C keine echten Duplikate sind. Wären es 2 Gruppen (A-B und A-C), würden Sie damit enden sowohl B als auch C zu löschen. Und ist keine der Beiden ein Duplikat, möchten Sie das ganz sicher nicht tun, richtig? Also verwirft dupeGuru in diesem Fall den A-C Treffer (und fügt eine Notiz in der Statusbar hinzu). Folglich, wenn Sie B löschen und den Scan erneut durchführen, haben Sie einen A-C Treffer nächstes Mal in den Ergebnissen.
+Ich möchte alle Dateien entfernen, die mehr als 300 KB von ihrer Referenzdatei abweichen. Was kann ich tun?
+-----------------------------------------------------------------------------------------------------------
 
-.. topic:: Ich möchte alle Dateien aus einem bestimmten Ordner markieren. Was kann ich tun?
+* Aktivieren Sie den Modus :doc:`Nur Duplikate <results>`.
+* Aktivieren Sie den Modus **Delta-Werte**.
+* Klicken Sie auf die Spalte „Größe“, um die Ergebnisse nach Größe zu sortieren.
+* Wählen Sie alle Duplikate unterhalb von -300 aus.
+* Klicken Sie auf **Ausgewählte aus Ergebnissen entfernen**.
+* Wählen Sie alle Duplikate oberhalb von 300 aus.
+* Klicken Sie auf **Ausgewählte aus Ergebnissen entfernen**.
 
-    Aktiveren Sie den :doc:`Nur Duplikate <results>` Modus und klicken auf die Ordnerspalte, um die Duplikate nach Ordner zu sortieren. Es wird dann einfach sein, alle Duplikate aus dem selben Ordner auszuwählen und auf die Leertaste zu drücken, um sie alle zu markieren.
+Ich möchte meine zuletzt geänderten Dateien zu Referenzdateien machen. Was kann ich tun?
+----------------------------------------------------------------------------------------
 
-.. only:: edition_se or edition_pe
+* Aktivieren Sie den Modus :doc:`Nur Duplikate <results>`.
+* Aktivieren Sie den Modus **Delta-Werte**.
+* Klicken Sie auf die Spalte „Änderung“, um die Ergebnisse nach Änderungsdatum zu sortieren.
+* Klicken Sie erneut auf die Spalte „Änderung“, um die Sortierreihenfolge umzukehren.
+* Wählen Sie alle Duplikate oberhalb von 0 aus.
+* Klicken Sie auf **Ausgewählte zur Referenz machen**.
 
-    .. topic:: Ich möchte alle Dateien löschen, deren Größe sich um mehr als 300 KB von ihrer Referenz unterscheidet. Was kann ich tun?
+Ich möchte alle Duplikate markieren, die das Wort „copy“ enthalten. Wie mache ich das?
+--------------------------------------------------------------------------------------
 
-        * Aktivieren Sie den :doc:`Nur Duplikate <results>` Modus.
-        * Aktivieren Sie den **Deltawerte** Modus.
-        * Gehen Sie auf die "Größe" Spalte, um die Ergebnisse nach Größe zu sortieren.
-        * Alle Duplikate unter -300 auswählen.
-        * Klicken Sie auf **Entferne Ausgewählte von den Ergebnissen**.
-        * Alle Duplikate über 300 auswählen
-        * Klicken Sie auf **Entferne Ausgewählte von den Ergebnissen**.
+* Geben Sie „copy“ in das Feld „Filter“ oben rechts im Ergebnisfenster ein.
+* Klicken Sie auf **Markieren --> Alle markieren**.
 
-    .. topic:: Ich möchte meine zuletzt geänderten Dateien zur Referenz machen. Was kann ich tun?
+Ich möchte alle Songs entfernen, die mehr als 3 Sekunden von ihrer Referenzdatei abweichen. Was kann ich tun?
+-------------------------------------------------------------------------------------------------------------
 
-        * Aktivieren Sie den :doc:`Nur Duplikate <results>` Modus.
-        * Aktivieren Sie den **Deltawerte** Modus.
-        * Gehen Sie auf die "Modifikation" Spalte, um die Ergebnisse nach Änderungsdatum zu sortieren.
-        * Klicken Sie erneut auf die "Modifikation" Spalte, um die Reihenfolge umzukehren.
-        * Wählen Sie alle Duplikate über 0.
-        * Klicken Sie auf **Mache Ausgewählte zur Referenz**.
+* Aktivieren Sie den Modus :doc:`Nur Duplikate <results>`.
+* Aktivieren Sie den Modus **Delta-Werte**.
+* Klicken Sie auf die Spalte „Zeit“, um die Ergebnisse nach Zeit zu sortieren.
+* Wählen Sie alle Duplikate unterhalb von -00:03 aus.
+* Klicken Sie auf **Ausgewählte aus Ergebnissen entfernen**.
+* Wählen Sie alle Duplikate oberhalb von 00:03 aus.
+* Klicken Sie auf **Ausgewählte aus Ergebnissen entfernen**.
 
-    .. topic:: Ich möchte alle Duplikate mit dem Wort copy markieren. Wie mache ich das?
+Ich möchte meine Songs mit der höchsten Bitrate zu Referenzdateien machen. Was kann ich tun?
+--------------------------------------------------------------------------------------------
 
-        * **Windows**: Klicken Sie auf **Aktionen --> Filter anwenden**, tippen "copy" und klicken auf OK.
-        * **Mac OS X**: Geben Sie "copy" in das "Filter" Feld in der Werkzeugleiste ein.
-        * Klicken Sie **Markieren --> Alle Markieren**.
+* Aktivieren Sie den Modus :doc:`Nur Duplikate <results>`.
+* Aktivieren Sie den Modus **Delta-Werte**.
+* Klicken Sie auf die Spalte „Bitrate“, um die Ergebnisse nach Bitrate zu sortieren.
+* Klicken Sie erneut auf die Spalte „Bitrate“, um die Sortierreihenfolge umzukehren.
+* Wählen Sie alle Duplikate oberhalb von 0 aus.
+* Klicken Sie auf **Ausgewählte zur Referenz machen**.
 
-.. only:: edition_me
+Ich möchte nicht, dass [Live]- und [Remix]-Versionen meiner Songs als Duplikate gelten. Wie mache ich das?
+----------------------------------------------------------------------------------------------------------
 
-    .. topic:: Ich möchte alle Stücke markieren, die mehr als 3 Sekunden von ihrer Referenz verschieden sind. Was kann ich tun?
+Ist Ihr Vergleichsschwellenwert niedrig genug, enthalten Ihre Ergebnisse wahrscheinlich Live- und
+Remix-Versionen Ihrer Songs. Das lässt sich nicht verhindern, aber Sie können sie nach dem Scan
+leicht aus Ihren Ergebnissen entfernen: mit der Filterung nach dem Scan. Wenn Sie zum Beispiel
+jeden Song entfernen möchten, in dessen Namen etwas in eckigen Klammern [] steht:
 
-        * Aktivieren Sie den :doc:`Nur Duplikate <results>` Modus.
-        * Aktivieren Sie den **Deltawerte** Modus.
-        * Klicken Sie auf die "Zeit" Spalte, um nach Zeit zu sortieren.
-        * Wählen Sie alle Duplikate unter -00:03.
-        * Klicken Sie auf **Entferne Ausgewählte von den Ergebnissen**.
-        * Wählen Sie alle Duplikate über 00:03.
-        * Klicken Sie auf **Entferne Ausgewählte von den Ergebnissen**.
+* Geben Sie „[*]“ in das Feld „Filter“ oben rechts im Ergebnisfenster ein.
+* Klicken Sie auf **Markieren --> Alle markieren**.
+* Klicken Sie auf **Aktionen --> Ausgewählte aus Ergebnissen entfernen**.
 
-    .. topic:: Ich möchte meine Stücke mit der höchsten Bitrate zur Referenz machen. Was kann ich tun?
+Der Schieberegler „Filterschärfe“ in den Einstellungen lässt sich nicht bewegen!
+--------------------------------------------------------------------------------
 
-        * Aktivieren Sie den :doc:`Nur Duplikate <results>` Modus.
-        * Aktivieren Sie den **Deltawerte** Modus.
-        * Klicken Sie auf die "Bitrate" Spalte, um nach Bitrate zu sortieren.
-        * Klicken Sie erneut auf die "Bitrate" Spalte, um die Reihenfolge umzukehren.
-        * Wählen Sie alle Duplikate über 0.
-        * Klicken Sie auf **Mache Ausgewählte zur Referenz**.
+Dieser Schieberegler ist nur für Scan-Typen relevant, die „Unschärfe“ unterstützen. Viele
+Scan-Typen, wie etwa der Typ „Inhalt“, unterstützen nur exakte Übereinstimmungen. Wenn diese
+Typen ausgewählt sind, ist der Schieberegler deaktiviert.
 
-    .. topic:: Ich möchte nicht das [live] und [remix] Versionen meiner Stücke als Duplikate erkannt werden. Was kann ich tun?
+Bei manchen Betriebssystemen ist die Deaktivierung schwerer zu erkennen als bei anderen, aber
+wenn Sie den Schieberegler nicht bewegen können, bedeutet das, dass diese Einstellung für Ihren
+aktuellen Scan-Typ irrelevant ist.
 
-        Ist Ihre Vergleichsschwelle niedrig genug, werden möglicherweise die live und remix Versionen in der Ergebnisliste landen. Das kann nicht verhindert werden, aber es gibt die Möglichkeit die Ergebnisse nach dem Scan zu entfernen, mittels dem Filter. Möchten Sie jedes Stück mit irgendetwas in eckigen Klammern [] im Dateinamen entfernen, so:
+Ich habe versucht, meine Duplikate in den Papierkorb zu verschieben, aber dupeGuru meldet, dass es nicht möglich ist. Warum? Was kann ich tun?
+----------------------------------------------------------------------------------------------------------------------------------------------
 
-        * **Windows**: Klicken Sie auf **Aktionen --> Filter anwenden**, geben "[*]" ein und klicken OK.
-        * **Mac OS X**: Geben Sie "[*]" in das "Filter" Feld der Werkzeugleiste ein.
-        * Klicken Sie auf **Markieren --> Alle Markieren**.
-        * Klicken Sie auf **Entferne Ausgewählte von den Ergebnissen**.
+Meistens liegt der Grund, warum dupeGuru Dateien nicht in den Papierkorb verschieben kann, an den
+Dateiberechtigungen. Sie benötigen *Schreibrechte* für Dateien, die Sie in den Papierkorb
+verschieben möchten.
 
-.. topic:: Ich habe versucht, meine Duplikate in den Mülleimer zu verschieben, aber dupeGuru sagt es ist nicht möglich. Warum? Was kann ich tun?
+Macht dupeGuru auch nach der Korrektur Ihrer Berechtigungen noch Probleme, versuchen Sie, die
+Option „Dateien direkt löschen“ zu aktivieren, die Ihnen beim Aktivieren von „In den Papierkorb
+verschieben“ angeboten wird. Dadurch werden Dateien nicht in den Papierkorb verschoben, sondern
+sofort gelöscht. In manchen Fällen, zum Beispiel bei Netzwerkspeichern (NAS), hat sich gezeigt,
+dass dies funktioniert, wenn das normale Löschen versagte.
 
-    Meistens kann dupeGuru aufgrund von Dateirechten keine Dateien in den Mülleimer schicken. Sie brauchen **Schreib** Rechte für Dateien, die in den Mülleimer sollen. Wenn Sie nicht vertraut mit Kommandozeilenwerkzeugen sind, können dafür auch Dienstprogramme wie `BatChmod <http://macchampion.com/arbysoft/BatchMod>`_ verwendet werden, um die Dateirechte zu reparieren.
+Warum ist der Inhalts-Scan im Bildermodus so langsam?
+-----------------------------------------------------
 
-    Wenn dupeGuru sich nach dem Reparieren der Recht immer noch verweigert, könnte es helfen die Funktion "Verschiebe Markierte nach..." als Workaround zu verwenden. Anstelle die Dateien in den Mülleimer zu schieben, senden SIe sie in einen temporären Ordner, den Sie dann manuell löschen können.
+Diese Scan-Methode unterscheidet sich stark von den anderen Methoden. Sie kann doppelte Fotos
+erkennen, auch wenn sie nicht exakt gleich sind. Diese sehr coole Fähigkeit hat ihren Preis:
+Zeit. Jedes Bild muss einzeln und unscharf mit allen anderen verglichen werden, und das erfordert
+viel CPU-Leistung.
 
-    .. only:: edition_pe
+Wenn Sie nur exakte Duplikate finden müssen, verwenden Sie einfach den Standardmodus von dupeGuru
+mit der Scan-Methode „Inhalt“. Wenn Ihre Fotos EXIF-Tags haben, können Sie auch die Scan-Methode
+„EXIF“ ausprobieren, die viel schneller ist.
 
-        Wenn Sie versuchen *iPhoto* Bilder zu löschen, dann ist der Grund des Versagens ein Anderer. Das Löschen schlägt fehl, weil dupeGuru nicht mit iPhoto kommunizieren kann. Achten Sie darauf nicht mit iPhoto herumzuspielen, während dupeGuru arbeitet, damit das Löschen funktioniert. Außerdem scheint das Applescript System manchmal zu vergessen wo sich iPhoto befindet, um es zu starten. Es hilft in diesen Fällen, wenn Sie iPhoto starten **bevor** Duplikate in den Mülleimer verschoben werden.
+Wo befinden sich die Benutzerdateien?
+-------------------------------------
 
-    Wenn dies alles fehlschlägt, kontaktieren Sie `HS support <http://www.hardcoded.net/support>`_, wir werden das Problem lösen.
+Aus irgendeinem Grund möchten Sie die Benutzerdateien von dupeGuru (Debug-Protokolle, Caches
+usw.) entfernen oder bearbeiten. Wo sie liegen, hängt von Ihrer Plattform ab:
 
-.. todo:: This FAQ qestion is outdated, see english version.
+* Linux: ``~/.local/share/data/Hardcoded Software/dupeGuru``
+* Mac OS X: ``~/Library/Application Support/dupeGuru``
+
+Die Einstellungen werden an anderer Stelle gespeichert:
+
+* Linux: ``~/.config/Hardcoded Software/dupeGuru.conf``
+* Mac OS X: Im eingebauten ``defaults``-System, als ``com.hardcoded-software.dupeguru``
+
+.. _GitHub: https://github.com/carlbyington2/dupeguru
+.. _ein Issue eröffnen: https://github.com/carlbyington2/dupeguru/issues

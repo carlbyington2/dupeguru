@@ -1,31 +1,41 @@
-dupeGuru Hilfe
-===============
+dupeGuru-Hilfe
+==============
 
-.. only:: edition_se
+Dieses Hilfedokument ist auch in diesen Sprachen verfügbar:
 
-    Dieses Dokument ist auch auf `Englisch <http://dupeguru.voltaicideas.net/help/en/>`__ und `Französisch <http://dupeguru.voltaicideas.net/help/fr/>`__ verfügbar.
+* `Englisch <../en/index.html>`__
+* `Französisch <../fr/index.html>`__
+* `Deutsch <../de/index.html>`__
+* `Armenisch <../hy/index.html>`__
+* `Russisch <../ru/index.html>`__
+* `Ukrainisch <../uk/index.html>`__
 
-.. only:: edition_se or edition_me
+dupeGuru ist ein Werkzeug, um doppelte Dateien auf Ihrem Computer zu finden. Es hat drei
+Modi: Standard, Musik und Bilder, wobei jeder Modus seine eigenen Scan-Typen und kleinen
+Zusatzfunktionen mitbringt.
 
-    dupeGuru ist ein Tool zum Auffinden von Duplikaten auf Ihrem Computer. Es kann entweder Dateinamen oder Inhalte scannen. Der Dateiname-Scan stellt einen lockeren Suchalgorithmus zur Verfügung, der sogar Duplikate findet, die nicht den exakten selben Namen haben.
+Obwohl sich dupeGuru auch ohne Dokumentation leicht bedienen lässt, hilft Ihnen die Lektüre
+dieser Datei, es zu meistern. Wenn Sie Hilfe für Ihren ersten Duplikat-Scan suchen, werfen Sie
+einen Blick auf den Abschnitt :doc:`Schnellstart <quick_start>`.
 
-.. only:: edition_pe
-
-    dupeGuru Picture Edition (kurz PE) ist ein Tool zum Auffinden von doppelten Bildern auf Ihrem Computer. Es findet nicht nur exakte Übereinstimmungen, sondern auch Duplikate unterschiedlichen Dateityps (PNG, JPG, GIF etc..) und Qualität.
-
-Obwohl dupeGuru auch leicht ohne Dokumentation genutzt werden kann, ist es sinnvoll die Hilfe zu lesen. Wenn Sie nach einer Führung für den ersten Duplikatscan suchen, werfen Sie einen Blick auf die :doc:`Schnellstart <quick_start>` Sektion
-
-Es ist eine gute Idee dupeGuru aktuell zu halten. Sie können die neueste Version auf der http://dupeguru.voltaicideas.net finden.
-
-Inhalte:
+Inhalt:
 
 .. toctree::
     :maxdepth: 2
 
+    contribute
     quick_start
     folders
     preferences
+    scan
     results
     reprioritize
     faq
+    developer/index
     changelog
+
+Verzeichnisse und Tabellen
+==========================
+
+* :ref:`genindex`
+* :ref:`search`

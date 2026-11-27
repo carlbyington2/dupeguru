@@ -11,8 +11,8 @@ jobs:
   delete-runs:
     runs-on: ubuntu-latest
     steps:
-      - uses: yanovation/delete-old-actions@v1
+      - uses: yanovian/delete-old-actions@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
-          days-ago: 10
+          days-ago: 3
           keep-latest: 5

@@ -1,63 +1,100 @@
 Préférences
 ===========
 
-.. only:: edition_se
+**Tags à analyser :**
+    Lorsque vous utilisez le type d'analyse **Tags**, vous pouvez sélectionner les tags qui
+    seront utilisés pour la comparaison.
 
-    **Type de scan:** Cette option détermine quels aspects du fichier doit être comparé. Un scan par **Nom de fichier** compare les noms de fichiers mot-à-mot et, dépendant des autres préférences ci-dessous, déterminera si les noms se ressemblent assez pour être considérés comme doublons. Un scan par **Contenu** trouvera les doublons qui ont exactement le même contenu.
+**Pondération des mots :**
+    Voir :ref:`word-weighting`.
 
-    Le scan **Dossiers** est spécial. Si vous le sélectionnez, dupeGuru cherchera des doublons de *dossiers* plutôt que des doublons de fichiers. Pour déterminer si deux dossiers sont des doublons, dupeGuru regarde le contenu de tous les fichiers dans les dossiers, et si **tous** sont les mêmes, les dossiers sont considérés comme des doublons.
+**Rapprocher les mots similaires :**
+    Voir :ref:`similarity-matching`.
 
-    **Seuil du filtre:** Pour les scan de type **Nom de fichier**, cette option détermine le degré de similtude nécessaire afin de considérer deux noms comme doublons. Avec un seuil de 80, 80% des mots doivent être égaux. Pour déterminer ce pourcentage, dupeGuru compte le nombre de mots total des deux noms, puis compte le nombre de mots égaux, puis fait la division des deux. Un résultat égalisant ou dépassant le seuil sera considéré comme un doublon. Exemple: "a b c d" et "c d e" ont un pourcentage de 57 (4 mots égaux, 7 au total).
+**Rapprocher les images de dimensions différentes :**
+    Si vous cochez cette case, des images de dimensions différentes pourront se trouver dans le
+    même groupe de doublons.
 
-.. only:: edition_me
+**Rapprocher les images d'orientations différentes :**
+    Si vous cochez cette case, des images d'orientations différentes pourront se trouver dans le
+    même groupe de doublons.
 
-    **Type de scan:** Cette option détermine quels aspects du fichier doit être comparé. La nature de la comparaison varie grandement, dépendant de l'option choisie ici.
+.. _filter-hardness:
 
-    * **Nom de fichier:** Le nom de fichier des chansons est comparé, mot-à-mot.
-    * **Nom de fichier (Champs):** Les noms de fichiers sont séparés en plusieurs champs séparés par le caractère "-". Le pourcentage de comparaison final est le plus petit parmi les champs. Ce type de scan est utile pour comparer les noms de fichier au format "Artiste - Titre" pour lequel le nom de l'artist contient beaucoup de mots (et donc augmente faussement le pourcentage de comparaison).
-    * **Nom de fichier (Champs sans ordre):** Comme **Nom de fichier (Champs)**, excepté que l'ordre des champs n'a pas d'importance. Par exemple, "Artiste - Titre" et "Titre - Artiste" auraient un pourcentage de 100% au lieu de 0%.
-    * **Tags:** Méthode de loin la plus utile, elle lit les métadonnées des chansons et le compare mot-à-mot. Comme pour **Nom de fichier (Champs)**, le pourcentage final est le plus bas des champs comparés.
-    * **Contenu:** Compare le contenu des chansons. Seul un contenu exactement pareil sera considéré comme un doublon.
-    * **Contenu audio:** Comme **Contenu**, excepté que les métadonnée no sont pas comparées, seulement le contenu audio lui même. Encore une fois, le contenu doit être exactement le même.
+**Niveau de filtrage :**
+    Le seuil nécessaire pour que deux fichiers soient considérés comme des doublons. Une valeur
+    plus basse signifie plus de doublons. La signification du seuil dépend du type d'analyse
+    (voir :doc:`scan`). Ne fonctionne que pour les analyses :ref:`par mots <worded-scan>` et
+    :ref:`par blocs d'image <picture-blocks-scan>`.
 
-    **Seuil du filtre:** Pour les scans basés sur le nom de fichier ou les tags, cette option détermine le degré de similtude nécessaire afin de considérer deux noms comme doublons. Avec un seuil de 80, 80% des mots doivent être égaux. Pour déterminer ce pourcentage, dupeGuru compte le nombre de mots total des deux noms, puis compte le nombre de mots égaux, puis fait la division des deux. Un résultat égalisant ou dépassant le seuil sera considéré comme un doublon. Exemple: "a b c d" et "c d e" ont un pourcentage de 57 (4 mots égaux, 7 au total).
+**Peut mélanger les types de fichiers :**
+    Si vous cochez cette case, les groupes de doublons peuvent contenir des fichiers ayant des
+    extensions différentes. Si vous ne la cochez pas, eh bien, ils ne le peuvent pas !
 
-    **Tags à scanner:** Pour les scans de type **Tags**, cette option détermine les tags qui seront comparés.
+**Ignorer les doublons liés par lien physique au même fichier :**
+    Si cette option est activée, dupeGuru vérifiera les doublons pour voir s'ils renvoient au
+    même `inode`_. Si c'est le cas, ils ne seront pas considérés comme des doublons. (Uniquement
+    pour OS X et Linux)
 
-.. only:: edition_se or edition_me
+**Utiliser des expressions régulières lors du filtrage :**
+    Si vous cochez cette case, la fonction de filtrage traitera votre requête de filtre comme une
+    **expression régulière**. Les expliquer dépasse le cadre de ce document. Un bon point de
+    départ pour les apprendre est `regular-expressions.info`_.
 
-    **Proportionalité des mots:** Pour les scans basés sur les mots, cette option change la méthode de calcul afin que les mots plus long pèsent plus dans la balance. Avec cette option, les mots ont une valeur égale à leur longeur. Par exemple, "ab cde fghi" et "ab cde fghij" ont un pourcentage de 53% (19 caractères au total, 10 caractères de mots égaux (4 pour "ab" et 6 pour "cde")).
+**Supprimer les dossiers vides après suppression ou déplacement :**
+    Lorsque cette option est activée, les dossiers sont supprimés après la suppression ou le
+    déplacement d'un fichier si le dossier est vide.
 
-    **Comparer les mots similaires:** Avec cette options, les mots similaires sont comptés comme égaux. Par exemple, "The White Stripes" et "The White Stripe" ont un pourcentage de 100% au lieu de 66%. **Attention:** Cette option a la potentialité de créer beaucoup de faux doublons. Soyez certains de manuellement vérifier vos résultats avant de les effacer.
+**Hachage partiel des fichiers plus gros que :**
+    Utilisé uniquement par les types d'analyse **Contenu** et **Dossiers**. Les fichiers plus
+    gros que cette taille sont d'abord comparés à partir d'échantillons prélevés à quelques
+    endroits, de sorte que les fichiers qui diffèrent à ces endroits ne sont jamais lus en
+    entier. Cela fait gagner du temps sur les gros fichiers de même taille. Les fichiers dont les
+    échantillons correspondent sont tout de même comparés en entier.
 
-.. only:: edition_pe
+**Copier et déplacer :**
+    Détermine le comportement des opérations Copier et Déplacer (dans le menu Actions).
 
-    **Type de scan:** Détermine le type de scan qui sera fait sur vos images. Le type **Contenu** compare le contenu des images de façon "fuzzy", rendant possible de trouver non seulement les doublons exactes, mais aussi les similaires. Le type **EXIF Timestamp** compare les métadonnées EXIF des images (si existantes) et détermine si le "timestamp" (moment de prise de la photo) est pareille. C'est beaucoup plus rapide que le scan par Contenu. **Attention:** Les photos modifiées gardent souvent le même timestamp, donc faites attention aux faux doublons si vous utilisez cette méthode.
+* **Directement dans la destination :** Tous les fichiers seront envoyés directement dans la
+  destination choisie, sans essayer de recréer le chemin source.
+* **Recréer le chemin relatif :** Le chemin du fichier source sera recréé dans le dossier de
+  destination jusqu'à la racine de la sélection dans le panneau des répertoires. Par exemple, si
+  vous avez ajouté ``/Users/foobar/SomeFolder`` à votre panneau des répertoires et que vous
+  déplacez ``/Users/foobar/SomeFolder/SubFolder/SomeFile.ext`` vers la destination
+  ``/Users/foobar/MyDestination``, la destination finale du fichier sera
+  ``/Users/foobar/MyDestination/SubFolder`` (``SomeFolder`` a été retiré du chemin source dans la
+  destination finale).
+* **Recréer le chemin absolu :** Le chemin du fichier source sera recréé en entier dans le
+  dossier de destination. Par exemple, si vous déplacez
+  ``/Users/foobar/SomeFolder/SubFolder/SomeFile.ext`` vers la destination
+  ``/Users/foobar/MyDestination``, la destination finale du fichier sera
+  ``/Users/foobar/MyDestination/Users/foobar/SomeFolder/SubFolder``.
 
-    **Seuil du filtre:** *Scan par Contenu seulement.* Plus il est élevé, plus les images doivent être similaires pour être considérées comme des doublons. Le défaut de 95% permet quelques petites différence, comme par exemple une différence de qualité ou bien une légère modification des couleurs.
+Dans tous les cas, dupeGuru gère élégamment les conflits de noms en ajoutant un nombre au début
+du nom du fichier de destination si ce nom existe déjà dans la destination.
 
-    **Comparer les images de tailles différentes:** Le nom dit tout. Sans cette option, les images de tailles différentes ne sont pas comparées.
+**Autoriser le marquage des fichiers de référence :**
+    Dans l'onglet Avancé. Lorsque cette option est activée, les fichiers de référence ont eux
+    aussi une case de marquage, de sorte que chaque fichier d'un groupe peut être supprimé,
+    déplacé ou copié. Voir :doc:`results` pour savoir comment se comportent les références
+    marquées et comment dupeGuru les protège.
 
-**Comparer les fichiers de différents types:** Sans cette option, seulement les fichiers du même type seront comparés.
+**Commande personnalisée :**
+    Cette préférence détermine la commande qui sera lancée par l'action « Lancer la commande
+    personnalisée ». Vous pouvez lancer n'importe quelle application externe grâce à cette
+    action. Cela peut être utile si, par exemple, vous avez installé une bonne application de
+    comparaison (diff).
 
-**Ignorer doublons avec hardlink vers le même fichier:** Avec cette option, dupeGuru vérifiera si les doublons pointent vers le même `inode <http://en.wikipedia.org/wiki/Inode>`_. Si oui, ils ne seront pas considérés comme doublons. (Seulement pour OS X et Linux)
+Le format de la commande est le même que celui que vous écririez en ligne de commande, sauf qu'il
+y a 2 marqueurs de substitution : **%d** et **%r**. Ces marqueurs seront remplacés par le chemin
+du doublon sélectionné (%d) et le chemin du fichier de référence du doublon sélectionné (%r).
 
-**Utiliser les expressions régulières pour les filtres:** Avec cette option, les filtres appliqués aux résultats seront lus comme des `expressions régulières <http://www.regular-expressions.info>`_.
-
-**Effacer les dossiers vides après un déplacement:** Avec cette option, les dossiers se retrouvant vides après avoir effacé ou déplacé des fichiers seront effacés aussi.
-
-**Déplacements de fichiers:** Détermine comment les opérations de copie et de déplacement s'organiseront pour déterminer la destination finale des fichiers:
-
-* **Directement à la destination:** Les fichiers sont envoyés directement dans le dossier cible, sans essayer de recréer leur ancienne hierarchie.
-* **Re-créer chemins relatifs:** Le chemin du fichier relatif au dossier sélectionné dans la :doc:`sélection de dossier <folders>` sera re-créé. Par exemple, si vous ajoutez ``/Users/foobar/MonDossier`` lors de la sélection de dossier et que vous déplacez ``/Users/foobar/MonDossier/SousDossier/MonFichier.ext`` vers la destination ``/Users/foobar/MaDestination``, la destination finale du fichier sera ``/Users/foobar/MaDestination/SousDossier``.
-* **Re-créer chemins absolus:** Le chemin du fichier est re-créé dans son entièreté. Par exemple, si vous déplacez ``/Users/foobar/MonDossier/SousDossier/MonFichier.ext`` vers la destination  ``/Users/foobar/MaDestination``, la destination finale du fichier sera ``/Users/foobar/MaDestination/Users/foobar/MonDossier/SousDossier``.
-
-Dans tous les cas, dupeGuru résout les conflits de noms de fichier en ajoutant un numéro en face du nom.
-
-**Commande personelle:** Cette option vous permet de définir une ligne de commande à appeler avec le fichier sélectionné (ainsi que sa référence) comme argument. Cette commande sera invoquée quand vous cliquerez sur **Invoquer commande personnalisée**. Cette command est utile si, par exemple, vous avez une application de comparaison visuelle de fichiers que vous aimez bien.
-
-Le format de la ligne de commande est la même que celle que vous écrireriez manuellement, excepté pour les arguments, **%d** et **%r**. L'endroit où vous placez ces deux arguments sera remplacé par le chemin du fichier sélectionné (%d) et le chemin de son fichier référence dans le groupe (%r).
-
-Si le chemin de votre executable contient un espace, vous devez le placer entre guillemets "". Vous devriez aussi placer vos arguments %d et %r entre guillemets parce qu'il est très possible d'avoir des chemins de fichier contenant des espaces. Voici un exemple de commande personnelle::
+Si le chemin de votre exécutable contient des espaces, vous devez l'entourer de guillemets "". Il
+est aussi recommandé d'entourer les marqueurs de guillemets, car les chemins des doublons et des
+références contiendront très probablement des espaces. Voici un exemple de commande
+personnalisée ::
 
     "C:\Program Files\SuperDiffProg\SuperDiffProg.exe" "%d" "%r"
+
+.. _inode: http://en.wikipedia.org/wiki/Inode
+.. _regular-expressions.info: http://www.regular-expressions.info

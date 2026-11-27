@@ -35,7 +35,8 @@ dgapp = None
 # recommend Qt6 to use the X11 interfaces since Fedora now runs wayland
 # and under wayland, Qt6 application window does not use the proper
 # styling.
-os.environ.setdefault("QT_QPA_PLATFORM", "xcb")
+if sys.platform.startswith("linux"):
+    os.environ.setdefault("QT_QPA_PLATFORM", "xcb")
 
 
 def signal_handler(sig, frame):
@@ -83,7 +84,7 @@ def main():
     install_excepthook("https://github.com/carlbyington2/dupeguru/issues")
     # Verify frozen-app startup without relying on visible window handles in CI.
     if "--smoke-test" in sys.argv:
-        QTimer.singleShot(1000, app.quit)
+        QTimer.singleShot(1000, lambda: os._exit(0))
     result = app.exec()
     # I was getting weird crashes when quitting under Windows, and manually deleting main app
     # references with gc.collect() in between seems to fix the problem.

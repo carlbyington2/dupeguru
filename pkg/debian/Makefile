@@ -1,6 +1,8 @@
 #!/usr/bin/make -f
 
 all:
+
+install:
 	dh_prep
 	dh_installdirs
 	touch build_pe_modules.py

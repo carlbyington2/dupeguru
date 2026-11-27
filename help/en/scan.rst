@@ -14,7 +14,7 @@ Worded scans
 ------------
 
 Worded scans extract a string from each file and split it into words. The string can come from two
-different sources: **Filename** or **Tags** (Music Edition only).
+different sources: **Filename** or **Tags** (Music mode only).
 
 When our source is music tags, we have to choose which tags to use. If, for example, we choose to
 analyse *artist* and *title* tags, we'd end up with strings like
@@ -95,16 +95,20 @@ have found otherwise. The scan process also is significantly slower with this op
 Contents scans
 --------------
 
-Contents scans are much simpler than worded scans. We read files and if the contents is exactly the
+Contents scans are much simpler than worded scans. We read files and if the content is exactly the
 same, we consider the two files duplicates.
 
 This is, of course, quite longer than comparing filenames and, to avoid needlessly reading whole
 file contents, we start by looking at file sizes. After having grouped our files by size, we discard
 every file that is alone in its group. Then, we proceed to read the contents of our remaining files.
 
-MD5 hashes are used to compute compare contents. Yes, it is widely known that forging files having
-the same MD5 hash is easy, but this file has to be knowingly forged. The possibilities of two files
-having the same MD5 hash *and* the same size by accident is still very, very small.
+xxhash hashes are used to compare contents. xxhash is not a
+cryptographic hash and so is vulnerable to malicious crafted
+collisions. The attacker would need to generate a fake file of the
+same size and hash as an original file, get you to install them both,
+and then dupeGuru would confuse the two files and you would perhaps
+delete the original thinking the fake one is a duplicate. That
+scenario is very unlikely.
 
 The :ref:`filter hardness <filter-hardness>` preference is ignored in this scan.
 

@@ -94,7 +94,7 @@ def filereplace(filename: os.PathLike, outfilename: Union[os.PathLike, None] = N
 
 def get_module_version(modulename: str) -> str:
     mod = importlib.import_module(modulename)
-    return mod.__version__
+    return mod.__full_version__
 
 
 def setup_package_argparser(parser: ArgumentParser):
@@ -224,15 +224,9 @@ def build_debian_changelog(
     changelogpath: os.PathLike,
     destfile: os.PathLike,
     pkgname: str,
-    from_version: Union[str, None] = None,
     distribution: str = "precise",
-    fix_version: Union[str, None] = None,
 ) -> None:
-    """Builds a debian changelog out of a YAML changelog.
-
-    Use fix_version to patch the top changelog to that version (if, for example, there was a
-    packaging error and you need to quickly fix it)
-    """
+    """Builds a debian changelog out of a YAML changelog."""
 
     def desc2list(desc):
         # We take each item, enumerated with the '*' character, and transform it into a list.
@@ -247,17 +241,10 @@ def build_debian_changelog(
     )
     CHANGE_MODEL = "  * {description}\n"
     changelogs = read_changelog_file(changelogpath)
-    if from_version:
-        # We only want logs from a particular version
-        for index, log in enumerate(changelogs):
-            if log["version"] == from_version:
-                changelogs = changelogs[: index + 1]
-                break
-    if fix_version:
-        changelogs[0]["version"] = fix_version
     rendered_logs = []
     for log in changelogs:
         version = log["version"]
+        debian_version = version.replace("^", "+")
         logdate = log["date"]
         desc = log["description"]
         rendered_date = logdate.strftime("%a, %d %b %Y 00:00:00 +0000")
@@ -265,7 +252,7 @@ def build_debian_changelog(
         changes = "".join(rendered_descs)
         rendered_log = ENTRY_MODEL.format(
             pkg=pkgname,
-            version=version,
+            version=debian_version,
             changes=changes,
             date=rendered_date,
             distribution=distribution,
@@ -277,7 +264,7 @@ def build_debian_changelog(
     fp.close()
 
 
-re_changelog_header = re.compile(r"=== ([\d.b]*) \(([\d\-]*)\)")
+re_changelog_header = re.compile(r"=== (.*) \(([\d\-]*)\)")
 
 
 def read_changelog_file(filename: os.PathLike) -> List[Dict[str, Any]]:

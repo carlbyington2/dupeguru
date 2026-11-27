@@ -66,43 +66,64 @@ def copy_files_to_package(destpath, packages, with_so):
     compileall.compile_dir(destpath)
 
 
+def add_changelog_with_full_version(changelog_dest, project_name, distribution):
+    from dupeguru.core import __full_version__, __maintainer__
+    from email.utils import formatdate
+
+    with open(changelog_dest, "r", encoding="utf-8") as f:
+        existing_changelog = f.read()
+
+    if not existing_changelog.startswith(f"{project_name} ({__full_version__})"):
+        header = (
+            f"{project_name} ({__full_version__}) {distribution}; urgency=low\n\n"
+            f"  * Automated build {__full_version__}\n\n"
+            f" -- {__maintainer__}  {formatdate(localtime=True)}\n\n"
+        )
+        with open(changelog_dest, "w", encoding="utf-8") as f:
+            f.write(header + existing_changelog)
+
+
 def package_debian_distribution(distribution):
-    app_version = get_module_version("core")
-    version = "{}~{}".format(app_version, distribution)
+    from dupeguru.core import __maintainer__
+
+    version = get_module_version("dupeguru.core")
     destpath = op.join("build", "dupeguru-{}".format(version))
     srcpath = op.join(destpath, "src")
-    packages = ["hscommon", "core", "qt", "send2trash"]
+    packages = ["dupeguru.hscommon", "dupeguru.core", "dupeguru.qt"]
     copy_files_to_package(srcpath, packages, with_so=False)
     os.mkdir(op.join(destpath, "modules"))
-    copy_all(op.join("core", "pe", "modules", "*.*"), op.join(destpath, "modules"))
+    copy_all(op.join("dupeguru", "core", "pe", "modules", "*.*"), op.join(destpath, "modules"))
     copy(
-        op.join("qt", "pe", "modules", "block.c"),
+        op.join("dupeguru", "qt", "pe", "modules", "block.c"),
         op.join(destpath, "modules", "block_qt.c"),
     )
     copy(
         op.join("pkg", "debian", "build_pe_modules.py"),
         op.join(destpath, "build_pe_modules.py"),
     )
-    debdest = op.join(destpath, "debian")
     debskel = op.join("pkg", "debian")
-    os.makedirs(debdest)
+    debdest = op.join(destpath, "debian")
     debopts = json.load(open(op.join(debskel, "dupeguru.json")))
-    for fn in ["compat", "copyright", "dirs", "rules", "source"]:
+    debopts["maintainer"] = __maintainer__
+    os.makedirs(debdest)
+    for fn in ["dirs", "rules", "source"]:
         copy(op.join(debskel, fn), op.join(debdest, fn))
-    filereplace(op.join(debskel, "control"), op.join(debdest, "control"), **debopts)
-    filereplace(op.join(debskel, "Makefile"), op.join(destpath, "Makefile"), **debopts)
-    filereplace(op.join(debskel, "dupeguru.desktop"), op.join(debdest, "dupeguru.desktop"), **debopts)
-    changelogpath = op.join("help", "changelog")
+    for fn in ["dupeguru.desktop"]:
+        copy(op.join("pkg", fn), op.join(debdest, fn))
+    for fn in ["copyright", "control"]:
+        filereplace(op.join(debskel, fn), op.join(debdest, fn), **debopts)
+    for fn in ["Makefile"]:
+        filereplace(op.join(debskel, fn), op.join(destpath, fn), **debopts)
+    changelog_src = op.join("help", "changelog")
     changelog_dest = op.join(debdest, "changelog")
     project_name = debopts["pkgname"]
-    from_version = "2.9.2"
     build_debian_changelog(
-        changelogpath,
+        changelog_src,
         changelog_dest,
         project_name,
-        from_version=from_version,
         distribution=distribution,
     )
+    add_changelog_with_full_version(changelog_dest, project_name, distribution)
     shutil.copy(op.join("images", "dgse_logo_128.png"), srcpath)
     os.chdir(destpath)
     cmd = "dpkg-buildpackage -F -us -uc"
@@ -117,21 +138,20 @@ def package_debian():
 
 
 def package_arch():
-    # For now, package_arch() will only copy the source files into build/. It copies less packages
-    # than package_debian because there are more python packages available in Arch (so we don't
-    # need to include them).
+    # For now, package_arch() will only copy the source files into build/.
+    # It copies fewer packages than package_debian because there are more
+    # python packages available in Arch (so we don't # need to include them).
     print("Packaging for Arch")
     srcpath = op.join("build", "dupeguru-arch")
-    packages = ["hscommon", "core", "qt"]
+    packages = ["dupeguru.hscommon", "dupeguru.core", "dupeguru.qt"]
     copy_files_to_package(srcpath, packages, with_so=True)
     shutil.copy(op.join("images", "dgse_logo_128.png"), srcpath)
-    debopts = json.load(open(op.join("pkg", "arch", "dupeguru.json")))
-    filereplace(op.join("pkg", "arch", "dupeguru.desktop"), op.join(srcpath, "dupeguru.desktop"), **debopts)
+    copy(op.join("pkg", "dupeguru.desktop"), op.join(srcpath, "dupeguru.desktop"))
 
 
 def package_source_txz():
     print("Creating git archive")
-    app_version = get_module_version("core")
+    app_version = get_module_version("dupeguru.core")
     name = "dupeguru-src-{}.tar".format(app_version)
     base_path = os.getcwd()
     build_path = op.join(base_path, "build")
@@ -141,10 +161,10 @@ def package_source_txz():
 
 
 def package_windows():
-    app_version = get_module_version("core")
+    app_version = get_module_version("dupeguru.core")
     arch = platform.architecture()[0]
     # Information to pass to pyinstaller and NSIS
-    match = re.search("[0-9]+.[0-9]+.[0-9]+", app_version)
+    match = re.search("[0-9]+\\.[0-9]+\\.[0-9]+", app_version)
     version_array = match.group(0).split(".")
     match = re.search("[0-9]+", arch)
     bits = match.group(0)
@@ -158,12 +178,16 @@ def package_windows():
         print("Exiting...")
         return
     # create version information file from template
+    win_version_template = op.join("pkg", "windows", "win_version_info.template")
+    win_version = op.join("pkg", "windows", "win_version_info.txt")
     try:
-        version_template = open("win_version_info.temp", "r")
+        version_template = open(win_version_template, "r")
         version_info = version_template.read()
         version_template.close()
-        version_info_file = open("win_version_info.txt", "w")
-        version_info_file.write(version_info.format(version_array[0], version_array[1], version_array[2], bits))
+        version_info_file = open(win_version, "w")
+        version_info_file.write(
+            version_info.format(version_array[0], version_array[1], version_array[2], bits, app_version)
+        )
         version_info_file.close()
     except Exception:
         print("Error creating version info file, exiting...")
@@ -180,19 +204,20 @@ def package_windows():
             "--icon=images/dgse_logo.ico",
             "--add-data={0};locale".format(LOCALE_DIR),
             "--add-data={0};help".format(HELP_DIR),
-            "--version-file=win_version_info.txt",
+            "--version-file={0}".format(win_version),
             "--paths=C:\\Program Files (x86)\\Windows Kits\\10\\Redist\\ucrt\\DLLs\\{0}".format(arch),
             ENTRY_SCRIPT,
         ]
     )
     # remove version info file
-    os.remove("win_version_info.txt")
+    os.remove(win_version)
     # Call NSIS (TODO update to not use hardcoded path)
     cmd = (
         '"C:\\Program Files (x86)\\NSIS\\Bin\\makensis.exe" '
-        "/DVERSIONMAJOR={0} /DVERSIONMINOR={1} /DVERSIONPATCH={2} /DBITS={3} setup.nsi"
+        "/NOCD /DVERSIONMAJOR={0} /DVERSIONMINOR={1} /DVERSIONPATCH={2} /DBITS={3} {4}"
     )
-    print_and_do(cmd.format(version_array[0], version_array[1], version_array[2], bits))
+    setupnsi = op.join("pkg", "windows", "setup.nsi")
+    print_and_do(cmd.format(version_array[0], version_array[1], version_array[2], bits, setupnsi))
 
 
 def package_macos():
@@ -213,7 +238,7 @@ def package_macos():
             "--osx-bundle-identifier=com.hardcoded-software.dupeguru",
             "--add-data={0}:locale".format(LOCALE_DIR),
             "--add-data={0}:help".format(HELP_DIR),
-            "{0}".format(ENTRY_SCRIPT),
+            ENTRY_SCRIPT,
         ]
     )
 

@@ -1,0 +1,194 @@
+name: Ubuntu release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: Update pkg/debian/control
+        run: |
+          echo "*** Update pkg/debian/control"
+          # This replacement is equivalent to that done by later by package.py
+          # in package_debian_distribution(). It needs to be done here, before
+          # the call to mk-build-deps which depends on debian/control being valid.
+          JSON_FILE="pkg/debian/dupeguru.json"
+          TARGET_FILE="pkg/debian/control"
+          # Read each key and value from the JSON file and apply sed in-place
+          jq -r 'to_entries[] | "\(.key)\t\(.value)"' "$JSON_FILE" | while IFS=$'\t' read -r key value; do
+              # Escape characters in the replacement value that might break sed (&, \, |)
+              escaped_val=$(printf '%s\n' "$value" | sed -e 's/[&\|]/\\&/g')
+
+              # Replace {key} with its corresponding value
+              sed -i "s|{$key}|$escaped_val|g" "$TARGET_FILE"
+          done
+
+      - name: 'Update full version to {ver}+{date}git{hash}.ubuntu'
+        id: version
+        run: |
+          echo '*** Update full version to {ver}+{date}git{hash}.ubuntu'
+          python3 - << 'EOF'
+          import os, re, subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("dupeguru/core/__init__.py")
+          text = path.read_text(encoding="utf-8")
+
+          match = re.search(r'^__version__\s*=\s*["\']([^"\']+)["\']', text, re.MULTILINE)
+          version = match.group(1)
+          build_date = datetime.now(timezone.utc).strftime("%Y%m%d")
+          short_sha = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
+          new_full_version = f"{version}+{build_date}git{short_sha}.ubuntu"
+
+          updated_text = re.sub(
+              r'^(__full_version__\s*=\s*)["\'][^"\']+["\']',
+              rf'\g<1>"{new_full_version}"',
+              text,
+              flags=re.MULTILINE,
+          )
+          path.write_text(updated_text, encoding="utf-8")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"version={version}\n")
+              out.write(f"full_version={new_full_version}\n")
+          EOF
+
+      - name: Install .deb packaging dependencies
+        run: |
+          echo "*** sudo apt-get update"
+          sudo apt-get update
+          echo "*** sudo apt-get install some dependencies"
+          sudo apt-get install -y \
+            xvfb \
+            pyside6-tools \
+            python3-venv \
+            python3-setuptools \
+            build-essential \
+            debhelper \
+            dpkg-dev \
+            devscripts \
+            fakeroot \
+            python3-all-dev \
+            gettext \
+            equivs
+
+      - name: Install dependencies from pkg/debian/control
+        run: |
+          echo "*** Install dependencies from pkg/debian/control"
+          sudo mk-build-deps --install --remove --tool "apt-get -o Debug::pkgProblemResolver=yes --no-install-recommends --yes" pkg/debian/control
+
+      - name: Set up virtual environment with system site-packages
+        run: |
+          echo "*** Set up virtual environment with system site-packages"
+          python3 -m venv --system-site-packages /tmp/.venv
+          echo /tmp/.venv/bin >> "$GITHUB_PATH"
+
+      - name: Install Python build dependencies
+        run: |
+          echo "*** Install Python build dependencies"
+          python -m pip install --only-binary :all: -r requirements.txt -r requirements-extra.txt
+
+      - name: Check feature formatting and lint
+        run: |
+          echo "*** python -m black --check ."
+          python -m black --check .
+          echo "*** python -m flake8"
+          python -m flake8
+
+      - name: Build application
+        run: python build.py --clean
+
+      - name: Package to Ubuntu .deb file
+        run: python3 -X faulthandler -u package.py
+
+      - name: Inspect generated .deb contents
+        run: |
+          echo "*** dpkg-deb --info build/*.deb"
+          ls -al build/*.deb
+          dpkg-deb --info build/*.deb
+          echo "*** dpkg-deb --contents build/*.deb"
+          dpkg-deb --contents build/*.deb
+
+      - name: Install the .deb package for smoke tests
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ./build/*.deb
+
+      - name: Smoke test packaged application (5s survival)
+        run: |
+          echo "*** Smoke test one, test it does not crash within 5 seconds"
+          APP_BIN="/usr/bin/dupeguru"
+          LOG_FILE="$HOME/.local/share/Hardcoded Software/dupeGuru/debug.log"
+
+          cleanup() {
+            if [ -n "${PID:-}" ]; then
+              kill -TERM -"$PID" 2>/dev/null || true
+              wait "$PID" 2>/dev/null || true
+              for _ in $(seq 1 50); do
+                kill -0 -"$PID" 2>/dev/null || break
+                sleep 0.1
+              done
+              kill -KILL -"$PID" 2>/dev/null || true
+            fi
+            if [ -f "$LOG_FILE" ]; then
+              cat "$LOG_FILE"
+            fi
+          }
+          trap cleanup EXIT
+
+          setsid xvfb-run -a "$APP_BIN" &
+          PID=$!
+
+          sleep 5
+          if ! kill -0 "$PID" 2>/dev/null; then
+            wait "$PID" || EXIT_CODE=$?
+            echo "Packaged application exited prematurely with code: ${EXIT_CODE:-unknown}"
+            exit 1
+          fi
+          echo "Packaged Qt application started and is running cleanly (PID: $PID)"
+
+      - name: Smoke test packaged application (--smoke-test flag)
+        run: |
+          echo "*** Smoke test two, test with --smoke-test arg it stops within 10 seconds"
+          APP_BIN="/usr/bin/dupeguru"
+          LOG_FILE="$HOME/.local/share/Hardcoded Software/dupeGuru/debug.log"
+
+          print_log() {
+            if [ -f "$LOG_FILE" ]; then
+              cat "$LOG_FILE"
+            fi
+          }
+          trap print_log EXIT
+
+          set +e
+          timeout --kill-after=5s 10s xvfb-run -a "$APP_BIN" --smoke-test
+          EXIT_CODE=$?
+          set -e
+
+          if [ "$EXIT_CODE" -eq 124 ] || [ "$EXIT_CODE" -eq 137 ]; then
+            echo "Packaged application startup timed out"
+            exit 1
+          elif [ "$EXIT_CODE" -ne 0 ]; then
+            echo "Packaged application failed with exit code: $EXIT_CODE"
+            exit "$EXIT_CODE"
+          fi
+          echo "Packaged Qt application initialized and exited successfully"
+
+      - name: Upload Ubuntu .deb package
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: dupeguru.${{ steps.version.outputs.full_version }}.amd64
+          retention-days: 2
+          path: |
+            build/*.deb
+            build/*.dsc
+            build/*.tar.*
+          if-no-files-found: error

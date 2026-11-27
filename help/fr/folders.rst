@@ -1,57 +1,91 @@
-Sélection de dossiers
-=====================
+Sélection des dossiers
+======================
 
-La première fenêtre qui apparaît lorsque dupeGuru démarre est la fenêtre de sélection de dossiers à scanner. Elle détermine la liste des dossiers qui seront scannés lorsque vous cliquerez sur **Scan**.
+La première fenêtre que vous voyez au lancement de dupeGuru est la fenêtre de sélection des
+dossiers. Cette fenêtre contient les informations de base dont dupeGuru a besoin pour démarrer
+une analyse :
 
-Pour ajouter un dossier, cliquez sur le bouton **+**. Si vous avez ajouté des dossiers dans le passé, un menu vous permettra de rapidement choisir un de ceux ci. Autrement, il vous sera demandé d'indiquer le dossier à ajouter.
+* Un choix du mode d'application
+* Un choix du type d'analyse
+* Les dossiers à analyser
 
-Vous pouvez aussi utiliser le drag & drop pour ajouter des dossiers à la liste.
+Mode d'application
+------------------
 
-Pour retirer un dossier, sélectionnez le et cliquez sur **-**. Si le dossier sélectionné est un sous-dossier, son type changera pour **exclus** (voyez plus bas) au lieu d'être retiré.
+dupeGuru possède trois modes principaux : Standard, Musique et Image.
 
-Types de dossiers
------------------
+Le mode Standard convient à tout type de fichiers. Cela en fait le mode le plus polyvalent, mais
+il est dépourvu des fonctionnalités spécialisées que possèdent les autres modes.
 
-Tout dossier ajouté à la liste est d'un type parmis ces trois:
+Le mode Musique n'analyse que les fichiers musicaux, mais il prend en charge la comparaison des
+tags et sa fenêtre de résultats comporte de nombreuses colonnes d'information liées à l'audio.
 
-* **Normal:** Les doublons trouvés dans ce dossier peuvent être effacés.
-* **Reference:** Les doublons trouvés dans ce dossier ne peuvent **pas** être effacés. Les fichiers provenant de ce dossier ne peuvent qu'être en position "Référence" dans le groupes de doublons.
-* **Excluded:** Les fichiers provenant de ce dossier ne sont pas scannés.
+Le mode Image n'analyse que les images, mais son type d'analyse par contenu est un puissant
+comparateur flou capable de trouver des images similaires sans être strictement identiques.
 
-Le type par défaut pour un dossier est, bien entendu, **Normal**. Vous pouvez utiliser le type **Référence** pour les dossiers desquels vous ne voulez pas effacer de fichiers.
+Le choix d'un mode d'application ne change pas seulement les types d'analyse disponibles dans le
+sélecteur ci-dessous, mais aussi les options disponibles dans le panneau des préférences. Par
+conséquent, si vous voulez affiner votre analyse, assurez-vous d'ouvrir le panneau des
+préférences **après** avoir sélectionné le mode d'application.
 
-Le type d'un dossier s'applique à ses sous-dossiers, excepté si un sous-dossier a un autre type explicitement défini.
+Type d'analyse
+--------------
 
-.. only:: edition_pe
+Ce sélecteur détermine le type d'analyse que nous allons effectuer. Voir :doc:`scan` pour plus de
+détails sur les types d'analyse.
 
-    Bibliothèques iPhoto et Aperture
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Liste des dossiers
+------------------
 
-    dupeGuru PE supporte iPhoto et Aperture, ce qui veut dire qu'il sait comment lire le contenu de
-    ces bibliothèques et comment communiquer avec ces applications pour correctement supprimer des
-    photos de celles-ci. Pour utiliser cette fonctionnalité, vous devez ajouter iPhoto et/ou
-    Aperture avec les boutons spéciaux "Ajouter librairie iPhoto" et "Ajouter librairie Aperture",
-    qui apparaissent quand on clique sur le petit "+". Les dossiers ajoutés seront alors
-    correctement interprétés par dupeGuru.
+Pour ajouter un dossier, cliquez sur le bouton **+**. Si vous avez déjà ajouté des dossiers, un
+menu contextuel affichant la liste des dossiers récemment ajoutés apparaît. Vous pouvez cliquer
+sur l'un d'eux pour l'ajouter directement à votre liste. Si vous cliquez sur le premier élément
+du menu, **Ajouter un nouveau dossier...**, il vous sera demandé de choisir un dossier à ajouter.
+Si vous n'avez jamais ajouté de dossier, aucun menu n'apparaît et il vous est directement demandé
+de choisir un nouveau dossier à ajouter.
 
-    Quand une photo est supprimée d'iPhoto, elle est envoyée dans la corbeille d'iPhoto.
+Une autre manière d'ajouter des dossiers à la liste consiste à les y glisser.
 
-    Quand une photo est supprimée d'Aperture, il n'est malheureusement pas possible de l'envoyer
-    dans sa corbeille. Ce que dupeGuru fait à la place, c'est de créer un projet "dupeGuru Trash"
-    et d'envoyer les photos dans ce projet. Vous pouvez alors supprimer toutes les photos de ce
-    projet manuellement.
+Pour retirer un dossier, sélectionnez-le et cliquez sur **-**. Si un sous-dossier est sélectionné
+au moment du clic, le dossier sélectionné passera à l'état **exclu** (voir ci-dessous) au lieu
+d'être retiré.
 
-.. only:: edition_me
+États des dossiers
+------------------
 
-    Bibliothèques iTunes
-    ^^^^^^^^^^^^^^^^^^^^
+Chaque dossier peut se trouver dans l'un de ces 3 états :
 
-    dupeGuru ME supporte iTunes, ce qui veut dire qu'il sait comment lire le contenu de sa
-    bibliothèque et comment communiquer avec iTunes pour correctement supprimer des chansons de sa
-    bibliothèque. Pour utiliser cette fonctionnalité, vous devez ajouter iTunes avec le bouton
-    spécial "Ajouter librairie iTunes", qui apparait quand on clique sur le petit "+". Le dossier
-    ajouté sera alors correctement interprété par dupeGuru.
+**Normal :**
+    Les doublons trouvés dans ce dossier peuvent être supprimés.
+**Référence :**
+    Les doublons trouvés dans ce dossier **ne peuvent pas** être supprimés. Les fichiers de ce
+    dossier ne peuvent se retrouver qu'en position de **référence** dans le groupe de doublons.
+    Si plus d'un fichier provenant de dossiers de référence se retrouve dans le même groupe de
+    doublons, un seul sera conservé. Les autres seront retirés du groupe.
+**Exclu :**
+    Les fichiers de ce répertoire ne seront pas inclus dans l'analyse.
 
-    Quand une chanson est supprimée d'iTunes, elle est envoyée à la corebeille du système, comme un
-    fichier normal. La différence ici, c'est qu'après la suppression, iTunes est correctement mis au
-    fait de cette suppression et retire sa référence à cette chanson de sa bibliothèque.
+L'état par défaut d'un dossier est, bien sûr, **Normal**. Vous pouvez utiliser l'état
+**Référence** pour un dossier si vous voulez être certain de ne supprimer aucun fichier qu'il
+contient.
+
+Lorsque vous définissez l'état d'un répertoire, tous ses sous-dossiers héritent automatiquement
+de cet état, sauf si vous définissez explicitement l'état d'un sous-dossier.
+
+Pour modifier plusieurs dossiers à la fois, utilisez Ctrl-clic pour sélectionner des lignes
+individuelles ou Maj-clic pour sélectionner une plage, comme dans la fenêtre de résultats.
+Cliquez sur la cellule État de n'importe quelle ligne sélectionnée et choisissez Normal,
+Référence ou Exclu. Le choix s'applique à chaque dossier sélectionné, tandis que la sélection et
+les dossiers dépliés restent en place.
+
+Par exemple, laissez Albums à Normal, dépliez-le, sélectionnez uniquement ses sous-dossiers
+d'artistes, puis choisissez Référence. Albums reste Normal et les sous-dossiers plus profonds des
+artistes héritent de Référence. Si un dossier parent et son enfant sont tous deux sélectionnés,
+les deux reçoivent l'état choisi. Modifier l'état d'un parent réinitialise toujours les
+surcharges de ses descendants selon les règles d'héritage habituelles.
+
+Analyse
+-------
+
+Lorsque vous êtes prêt, cliquez sur le bouton **Analyser** pour lancer le processus d'analyse.
+Une fois celui-ci terminé, les :doc:`results` vous seront présentés.

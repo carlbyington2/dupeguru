@@ -1,25 +1,28 @@
-Re-Prioritizing duplicates
-==========================
+Repriorisation des doublons
+===========================
 
-dupeGuru tries to automatically determine which duplicate should go in each group's reference
-position, but sometimes it gets it wrong. In many cases, clever dupe sorting with "Delta Values"
-and "Dupes Only" options in addition to the "Make Selected into Reference" action does the trick,
-but sometimes, a more powerful option is needed. This is where the Re-Prioritization dialog comes
-into play. You can summon it through the "Re-Prioritize Results" item in the "Actions" menu.
+dupeGuru essaie de déterminer automatiquement quel doublon doit occuper la position de
+référence de chaque groupe, mais il se trompe parfois. Dans de nombreux cas, un tri astucieux
+des doublons avec les options « Valeurs delta » et « Doublons uniquement », en plus de l'action
+« Faire de la sélection la référence », fait l'affaire, mais parfois une option plus puissante
+est nécessaire. C'est là que la boîte de dialogue de repriorisation entre en jeu. Vous pouvez
+l'ouvrir via l'élément « Repriorisation des résultats » du menu « Actions ».
 
-This dialog allows you to select criteria according to which a reference dupe will be selected in
-each dupe group. The list of available criteria is on the left and the list of criteria you've
-selected is on the right.
+Cette boîte de dialogue vous permet de choisir des critères selon lesquels un doublon de
+référence sera sélectionné dans chaque groupe de doublons. La liste des critères disponibles se
+trouve à gauche et la liste des critères que vous avez choisis à droite.
 
-A criteria is a category followed by an argument. For example, "Size (Highest)" means that the dupe
-with the biggest size will win. "Folder (/foo/bar)" means that dupes in this folder will win. To add
-a criterion to the rightmost list, first select a category in the combobox, then select a
-subargument in the list below, and then click on the right pointing arrow button.
+Un critère est une catégorie suivie d'un argument. Par exemple, « Taille (Plus grande) » signifie
+que le doublon ayant la plus grande taille l'emporte. « Dossier (/foo/bar) » signifie que les
+doublons situés dans ce dossier l'emportent. Pour ajouter un critère à la liste de droite,
+sélectionnez d'abord une catégorie dans la liste déroulante, puis un sous-argument dans la liste
+située en dessous, et cliquez enfin sur le bouton en forme de flèche pointant vers la droite.
 
-The order of the list on the right is important (you can re-order items through drag & drop). When
-picking a dupe for reference position, the first criterion is used. If there's a tie, the second
-criterion is used and so on and so on. For example, if your arguments are "Size (Highest)" and then
-"Filename (Doesn't end with a number)", the reference file that will be picked in a group will be
-the biggest file, and if two or more files have the same size, the one that has a filename that
-doesn't end with a number will be used. When all criteria result in ties, the order in which dupes
-previously were in the group will be used.
+L'ordre de la liste de droite est important (vous pouvez réordonner les éléments par
+glisser-déposer). Pour choisir un doublon pour la position de référence, le premier critère est
+utilisé en premier. En cas d'égalité, le deuxième critère est utilisé, et ainsi de suite. Par
+exemple, si vos arguments sont « Taille (Plus grande) » puis « Nom de fichier (Ne se termine pas
+par un nombre) », le fichier de référence choisi dans un groupe sera le plus gros fichier ; si
+deux fichiers ou plus ont la même taille, celui dont le nom de fichier ne se termine pas par un
+nombre sera utilisé. Lorsque tous les critères aboutissent à des égalités, l'ordre dans lequel
+les doublons se trouvaient précédemment dans le groupe est utilisé.

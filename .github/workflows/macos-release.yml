@@ -1,0 +1,169 @@
+name: macOS release
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8
+
+      - name: 'Update full version to {ver}+{date}git{hash}.macos'
+        id: version
+        run: |
+          echo '*** Update full version to {ver}+{date}git{hash}.macos'
+          python3 - << 'EOF'
+          import os, re, subprocess
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          path = Path("dupeguru/core/__init__.py")
+          text = path.read_text(encoding="utf-8")
+
+          match = re.search(r'^__version__\s*=\s*["\']([^"\']+)["\']', text, re.MULTILINE)
+          version = match.group(1)
+          build_date = datetime.now(timezone.utc).strftime("%Y%m%d")
+          short_sha = subprocess.check_output(["git", "rev-parse", "--short", "HEAD"], text=True).strip()
+          new_full_version = f"{version}+{build_date}git{short_sha}.macos"
+
+          updated_text = re.sub(
+              r'^(__full_version__\s*=\s*)["\'][^"\']+["\']',
+              rf'\g<1>"{new_full_version}"',
+              text,
+              flags=re.MULTILINE,
+          )
+          path.write_text(updated_text, encoding="utf-8")
+
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as out:
+              out.write(f"version={version}\n")
+              out.write(f"full_version={new_full_version}\n")
+          EOF
+
+      - name: Install system dependencies via Homebrew
+        run: |
+          echo "*** Install gettext and coreutils"
+          brew update
+          brew install gettext coreutils
+          brew link --force gettext
+
+      - name: Set up virtual environment
+        run: |
+          echo "*** Set up virtual environment"
+          python3 -m venv /tmp/.venv
+          echo /tmp/.venv/bin >> "$GITHUB_PATH"
+
+      - name: Install Python build and packaging dependencies
+        run: |
+          echo "*** Install Python build dependencies"
+          python -m pip install --upgrade pip
+          python -m pip install --only-binary :all: -r requirements.txt -r requirements-extra.txt PySide6-Essentials
+
+      - name: Check feature formatting and lint
+        run: |
+          echo "*** python -m black --check ."
+          python -m black --check .
+          echo "*** python -m flake8"
+          python -m flake8
+
+      - name: Build application
+        run: |
+          echo "*** Build application"
+          python build.py --clean
+          echo "*** Remove build-only PySide6 so PyInstaller only bundles PyQt6"
+          python -m pip uninstall -y PySide6-Essentials shiboken6
+
+      - name: Run core and Qt regression tests
+        run: |
+          echo "*** Run core and Qt regression tests"
+          python -m pytest dupeguru
+
+      - name: Package to macOS bundle/archive
+        run: python package.py
+
+      - name: Build the dmg file from the bundle
+        run: |
+          echo "*** Build the dmg file from the bundle"
+          hdiutil create -volname "dupeGuru" -srcfolder dist/dupeguru.app -ov -format UDZO dist/dupeguru.dmg
+
+      - name: Prepare packaged app for smoke tests
+        run: |
+          echo "*** Prepare packaged app for smoke tests"
+          cp -R dist/dupeguru.app /Applications/
+          ls -al /Applications/dupeguru.app/Contents/MacOS/
+          echo "*** inspect the binary app"
+          pyi-archive_viewer dist/dupeguru.app/Contents/MacOS/dupeguru
+
+      - name: Smoke test packaged application (5s survival)
+        run: |
+          echo "*** Smoke test one, test it does not crash within 5 seconds"
+          APP_BIN="/Applications/dupeguru.app/Contents/MacOS/dupeguru"
+          LOG_FILE="$HOME/Library/Application Support/Hardcoded Software/dupeGuru/debug.log"
+
+          cleanup() {
+            if [ -n "${PID:-}" ]; then
+              kill -TERM "$PID" 2>/dev/null || true
+              wait "$PID" 2>/dev/null || true
+              for _ in $(seq 1 50); do
+                kill -0 "$PID" 2>/dev/null || break
+                sleep 0.1
+              done
+              kill -KILL "$PID" 2>/dev/null || true
+            fi
+            if [ -f "$LOG_FILE" ]; then
+              cat "$LOG_FILE"
+            fi
+          }
+          trap cleanup EXIT
+
+          "$APP_BIN" &
+          PID=$!
+
+          sleep 5
+          if ! kill -0 "$PID" 2>/dev/null; then
+            wait "$PID" || EXIT_CODE=$?
+            echo "Packaged application exited prematurely with code: ${EXIT_CODE:-unknown}"
+            exit 1
+          fi
+          echo "Packaged Qt application started and is running cleanly (PID: $PID)"
+
+      - name: Smoke test packaged application (--smoke-test flag)
+        run: |
+          echo "*** Smoke test two, test with --smoke-test arg it stops within 10 seconds"
+          APP_BIN="/Applications/dupeguru.app/Contents/MacOS/dupeguru"
+          LOG_FILE="$HOME/Library/Application Support/Hardcoded Software/dupeGuru/debug.log"
+
+          print_log() {
+            if [ -f "$LOG_FILE" ]; then
+              cat "$LOG_FILE"
+            fi
+          }
+          trap print_log EXIT
+
+          set +e
+          gtimeout --kill-after=5s 10s "$APP_BIN" --smoke-test
+          EXIT_CODE=$?
+          set -e
+
+          if [ "$EXIT_CODE" -eq 124 ] || [ "$EXIT_CODE" -eq 137 ]; then
+            echo "Packaged application startup timed out"
+            exit 1
+          elif [ "$EXIT_CODE" -ne 0 ]; then
+            echo "Packaged application failed with exit code: $EXIT_CODE"
+            exit "$EXIT_CODE"
+          fi
+          echo "Packaged Qt application initialized and exited successfully"
+
+      - name: Upload macOS release package
+        uses: actions/upload-artifact@b7c566a772e6b6bfb58ed0dc250532a479d7789f # v6.0.0
+        with:
+          name: dupeguru.${{ steps.version.outputs.full_version }}.arm64
+          retention-days: 2
+          path: |
+            dist/dupeguru.app
+            dist/dupeguru.dmg
+          if-no-files-found: error

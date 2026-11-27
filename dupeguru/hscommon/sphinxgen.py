@@ -13,7 +13,7 @@ from sphinx.cmd.build import build_main as sphinx_build
 
 CHANGELOG_FORMAT = """
 {version} ({date})
-----------------------
+{underline}
 
 {description}
 """
@@ -60,7 +60,11 @@ def gen(
         # The format of the changelog descriptions is in markdown, but since we only use bulled list
         # and links, it's not worth depending on the markdown package. A simple regexp suffice.
         description = re.sub(r"\[(.*?)\]\((.*?)\)", "`\\1 <\\2>`__", description)
-        rendered = CHANGELOG_FORMAT.format(version=log["version"], date=log["date_str"], description=description)
+        version = log["version"]
+        datestr = log["date_str"]
+        # match the length of the underline to the length of the {version} ({date}) heading
+        underline = "-" * len("{version} ({date})".format(version=version, date=datestr))
+        rendered = CHANGELOG_FORMAT.format(version=version, date=datestr, underline=underline, description=description)
         rendered_logs.append(rendered)
     confrepl["version"] = changelog[0]["version"]
     changelog_out = Path(basepath, "changelog.rst")

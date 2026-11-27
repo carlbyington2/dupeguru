@@ -1,14 +1,14 @@
 Démarrage rapide
-=================
+================
 
-Voici les étapes à suivre pour faire un simple scan par défaut:
+Pour bien démarrer avec dupeGuru, effectuons simplement une analyse standard avec les préférences par défaut.
 
-* Démarrer dupeGuru.
-* Ajouter les dossiers à scanner soit avec le drag & drop, soit avec le boutton "+".
-* Cliquez sur **Scan**.
-* Attendez que le scan soit completé.
-* Vérifiez que les doublons (les fichiers légèrement indentés) soient  vraiment le doublon de la référence du groupe (le fichier au haut du groupe qui ne peut pas être marqué).
-* Si vous voyer un faux doublon, sélectionnez le puis cliquez sur l'action **Retirer sélectionnés des résultats**.
-* Quand vous êtes certains de ne pas avoir de faux doublons dans vos résultats, cliquez sur **Tout marquer** dans le menu Marquer et cliquez sur l'action **Envoyer marqués à la corbeille**.
+* Lancez dupeGuru.
+* Ajoutez les dossiers à analyser par glisser-déposer ou avec le bouton « + ».
+* Cliquez sur **Analyser**.
+* Attendez la fin du processus d'analyse.
+* Examinez chaque doublon (les fichiers indentés) et vérifiez qu'il s'agit bien d'un doublon de la référence du groupe (le fichier situé au-dessus du doublon, non indenté et dont la case de marquage est désactivée).
+* Si un fichier est un faux doublon, sélectionnez-le et cliquez sur **Actions-->Retirer la sélection des résultats**.
+* Une fois certain qu'il n'y a plus de faux doublon dans vos résultats, cliquez sur **Édition-->Tout marquer**, puis sur **Actions-->Envoyer les éléments marqués à la corbeille**.
 
-Ceci est seulement un scan de base. Il est possible de configurer dupeGuru afin d'obtenir exactement le type de résultat recherché. Pour en savoir plus, il lisez le reste du fichier d'aide.
+Il ne s'agit que d'une analyse de base. Vous pouvez ajuster de nombreux paramètres pour obtenir des résultats différents, et il existe plusieurs méthodes pour examiner et modifier vos résultats. Pour les découvrir, lisez simplement le reste de ce fichier d'aide.

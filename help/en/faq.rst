@@ -16,7 +16,7 @@ scanners can't.
 What makes it special?
 ----------------------
 
-It's mostly about customizability. There's a lot of scanning options that allow you to get the
+It's mostly about customizability. There are a lot of scanning options that allow you to get the
 type of results you're really looking for.
 
 How safe is it to use dupeGuru?
@@ -176,5 +176,5 @@ Preferences are stored elsewhere:
 * Linux: ``~/.config/Hardcoded Software/dupeGuru.conf``
 * Mac OS X: In the built-in ``defaults`` system, as ``com.hardcoded-software.dupeguru``
 
-.. _GitHub: https://github.com/arsenetar/dupeguru
-.. _open an issue: https://github.com/arsenetar/dupeguru/wiki/issue-labels
+.. _GitHub: https://github.com/carlbyington2/dupeguru
+.. _open an issue: https://github.com/carlbyington2/dupeguru/issues

@@ -1,11 +1,18 @@
 # dupeGuru
 
 dupeGuru is a cross-platform (Linux, OS X, Windows) GUI tool to find duplicate files in
-a system. It is written mostly in Python 3 and uses [qt](https://www.qt.io/) for the UI.
+a system. It is written mostly in Python 3 and uses [Qt6](https://www.qt.io/) for the UI.
+
+## Why this fork?
+
+See the [notes.md](notes.md) file for an explanation of the reasons for the
+existance of this fork.
 
 ## Current status
+
 Still looking for additional help especially with regards to:
-* OSX maintenance: reproducing bugs, packaging verification.
+
+* OSX maintenance: reproducing bugs
 * Linux maintenance: reproducing bugs, maintaining PPA repository, Debian package.
 * Documentation: keeping it up-to-date.
 
@@ -14,78 +21,38 @@ Still looking for additional help especially with regards to:
 This folder contains the source for dupeGuru. Its documentation is in `help`
 Here's how this source tree is organized:
 
-* dupeguru/core: Contains the core logic code for dupeGuru. It's Python code.
-* dupeguru/qt: UI code for the Qt toolkit. It's written in Python and uses PyQt.
-* images: Images used by the different UI codebases.
-* pkg: Skeleton files required to create different packages
+* dupeguru/core: the core Python logic code for dupeGuru
+* dupeguru/qt: Python UI code for the Qt toolkit using PyQt
+* dupeguru/hscommon: a collection of helpers
 * help: Help document, written for Sphinx.
+* help/translate: a script to generate Claude prompts and files for translation
+* images: Images used by the different UI codebases.
 * locale: .po files for localization.
-* dupeguru/hscommon: A collection of helpers used across HS applications.
+* pkg/{debian,macos,windows}: Skeleton files and templates required to create packages
+* pkg/build-scripts: manual setup and build scripts to create packages
+* .github/workflows/{ubuntu,macos,windows}-release.yml - github workflows to create packages
 
 ## How to build dupeGuru from source
 
-### Windows & macOS specific additional instructions
-For windows instructions see the [Windows Instructions](Windows.md).
+### Fedora
 
-For macos instructions see the [macOS Instructions](macos.md).
+dupeguru is in the Fedora repositories, so a simple
 
-### Prerequisites
-* [Python 3.7+][python]
-* [PyQt6][pyqt]
+> sudo dnf install dupeguru
 
-### System Setup
-When running in a linux based environment the following system packages or equivalents are needed to build:
-* python3-pyqt6
-* python3-venv (only if using a virtual environment)
-* python3-dev
-* build-essential
+will install the package. You can rebuild that package from source
+by running:
 
-To create packages the following are also needed:
-* python3-setuptools
-* debhelper
+> dnf download --source dupeguru<br>
+> rpmbuild --rebuild dupeguru*.src.rpm
 
-### Building with Make
-dupeGuru comes with a makefile that can be used to build and run:
+### Ubuntu, macOS, Windows
 
-    $ make && make run
+If you have forked the project on GitHub, then manually run the
+appropriate release workflow and download the build artifacts when it
+finishes.
 
-### Building without Make
-
-    $ cd <dupeGuru directory>
-    $ python3 -m venv --system-site-packages ./env
-    $ source ./env/bin/activate
-    $ pip install -r requirements.txt
-    $ python build.py
-    $ python run.py
-
-### Generating Debian/Ubuntu package
-To generate packages the extra requirements in requirements-extra.txt must be installed, the
-steps are as follows:
-
-    $ cd <dupeGuru directory>
-    $ python3 -m venv --system-site-packages ./env
-    $ source ./env/bin/activate
-    $ pip install -r requirements.txt -r requirements-extra.txt
-    $ python build.py --clean
-    $ python package.py
-
-This can be made a one-liner (once in the directory) as:
-
-    $ bash -c "python3 -m venv --system-site-packages env && source env/bin/activate && pip install -r requirements.txt -r requirements-extra.txt && python build.py --clean && python package.py"
-
-## Running tests
-
-The complete test suite is run with [Tox 1.7+][tox]. If you have it installed system-wide, you
-don't even need to set up a virtualenv. Just `cd` into the root project folder and run `tox`.
-
-If you don't have Tox system-wide, install it in your virtualenv with `pip install tox` and then
-run `tox`.
-
-You can also run automated tests without Tox. Extra requirements for running tests are in
-`requirements-extra.txt`. So, you can do `pip install -r requirements-extra.txt` inside your
-virtualenv and then `py.test dupeguru`
-
-[cross-toolkit]: http://www.hardcoded.net/articles/cross-toolkit-software
-[python]: http://www.python.org/
-[pyqt]: http://www.riverbankcomputing.com
-[tox]: https://tox.readthedocs.org/en/latest/
+If you have cloned the project to a local working directory, then run
+the appropriate script in pkg/build-scripts. These scripts were generated
+by Google Gemini from the corresponding GitHub workflows, and have
+not been tested.
