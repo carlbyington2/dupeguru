@@ -52,27 +52,27 @@ msgstr ""
 "rujukan ditanda: pautan tersebut akan merujuk kepada fail yang sedang "
 "dipadamkan. Tiada apa-apa yang dilakukan."
 
-#: dupeguru/core/app.py:95
+#: dupeguru/core/app.py:96
 msgid "Scanning for duplicates"
 msgstr "Mengimbas untuk duplikasi"
 
-#: dupeguru/core/app.py:96
+#: dupeguru/core/app.py:97
 msgid "Loading"
 msgstr "Memuatkan"
 
-#: dupeguru/core/app.py:97
+#: dupeguru/core/app.py:98
 msgid "Moving"
 msgstr "Memindahkan"
 
-#: dupeguru/core/app.py:98
+#: dupeguru/core/app.py:99
 msgid "Copying"
 msgstr "Menyalinkan"
 
-#: dupeguru/core/app.py:99
+#: dupeguru/core/app.py:100
 msgid "Sending to Trash"
 msgstr "Menghantarkan ke Tong Sampah"
 
-#: dupeguru/core/app.py:316
+#: dupeguru/core/app.py:317
 msgid ""
 "A previous action is still hanging in there. You can't start a new one yet. "
 "Wait a few seconds, then try again."
@@ -80,35 +80,35 @@ msgstr ""
 "Tindakan sebelum ini masih tergantung. Anda tidak boleh mulakan yang baharu "
 "lagi. Tunggu beberapa saat, kemudian cuba lagi."
 
-#: dupeguru/core/app.py:327
+#: dupeguru/core/app.py:328
 msgid "No duplicates found."
 msgstr "Tiada duplikasi dijumpai."
 
-#: dupeguru/core/app.py:342
+#: dupeguru/core/app.py:343
 msgid "All marked files were copied successfully."
 msgstr "Semua fail yang ditandai telah berjaya disalin."
 
-#: dupeguru/core/app.py:344
+#: dupeguru/core/app.py:345
 msgid "All marked files were moved successfully."
 msgstr "Semua fail yang ditandai telah berjaya dipindah."
 
-#: dupeguru/core/app.py:346
+#: dupeguru/core/app.py:347
 msgid "All marked files were deleted successfully."
 msgstr "Semua fail yang ditandai telah berjaya dipadam."
 
-#: dupeguru/core/app.py:348
+#: dupeguru/core/app.py:349
 msgid "All marked files were successfully sent to Trash."
 msgstr "Semua fail yang ditandai telah berjaya dihantar ke Tong Sampah."
 
-#: dupeguru/core/app.py:353
+#: dupeguru/core/app.py:354
 msgid "Could not load file: {}"
 msgstr "Tidak mampu memuatkan fail: {}"
 
-#: dupeguru/core/app.py:420
+#: dupeguru/core/app.py:421
 msgid "'{}' already is in the list."
 msgstr "'{}' sudah ada dalam senarai."
 
-#: dupeguru/core/app.py:423
+#: dupeguru/core/app.py:424
 msgid ""
 "'{}' could not be read. It might be on a disconnected network share, or you "
 "might not have the permission to access it."
@@ -116,11 +116,11 @@ msgstr ""
 "'{}' tidak dapat dibaca. Ia mungkin berada pada perkongsian rangkaian yang "
 "terputus, atau anda mungkin tidak mempunyai kebenaran untuk mengaksesnya."
 
-#: dupeguru/core/app.py:429
+#: dupeguru/core/app.py:430
 msgid "'{}' does not exist."
 msgstr "'{}' tidak wujud."
 
-#: dupeguru/core/app.py:437
+#: dupeguru/core/app.py:438
 msgid ""
 "All selected %d matches are going to be ignored in all subsequent scans. "
 "Continue?"
@@ -128,53 +128,53 @@ msgstr ""
 "Kesemua %d padanan yang dipilih akan diabaikan dalam semua imbasan "
 "terkemudian. Ingin teruskan?"
 
-#: dupeguru/core/app.py:521
+#: dupeguru/core/app.py:522
 msgid "Select a directory to copy marked files to"
 msgstr "Pilih direktori dituju untuk salin fail yang ditandai"
 
-#: dupeguru/core/app.py:523
+#: dupeguru/core/app.py:524
 msgid "Select a directory to move marked files to"
 msgstr "Pilih direktori dituju untuk pindah fail yang ditandai"
 
-#: dupeguru/core/app.py:569
+#: dupeguru/core/app.py:570
 msgid "Select a destination for your exported CSV"
 msgstr "Pilih tempat tujuan untuk eksport CSV anda"
 
-#: dupeguru/core/app.py:575 dupeguru/core/app.py:845 dupeguru/core/app.py:855
+#: dupeguru/core/app.py:576 dupeguru/core/app.py:846 dupeguru/core/app.py:856
 msgid "Couldn't write to file: {}"
 msgstr "Tidak mampu menulis ke fail: {}"
 
-#: dupeguru/core/app.py:599
+#: dupeguru/core/app.py:600
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr ""
 "Anda tidak ada perintah tersuai ditetapkan. Tetapkannya melalui menu "
 "keutamaan anda."
 
-#: dupeguru/core/app.py:615
+#: dupeguru/core/app.py:616
 msgid "Invalid custom command syntax: {}"
 msgstr "Sintaks perintah tersuai tidak sah: {}"
 
-#: dupeguru/core/app.py:625
+#: dupeguru/core/app.py:626
 msgid "Failed to execute custom command: {}"
 msgstr "Gagal melaksanakan perintah tersuai: {}"
 
-#: dupeguru/core/app.py:768 dupeguru/core/app.py:780
+#: dupeguru/core/app.py:769 dupeguru/core/app.py:781
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "Anda bakal mengalih keluar %d fail dari keputusan. Ingin teruskan?"
 
-#: dupeguru/core/app.py:817
+#: dupeguru/core/app.py:818
 msgid "{} duplicate groups were changed by the re-prioritization."
 msgstr "{} kumpulan duplikasi telah diubah oleh pengutamaan semula."
 
-#: dupeguru/core/app.py:865
+#: dupeguru/core/app.py:866
 msgid "The selected directories contain no scannable file."
 msgstr "Direktori yang dipilih tidak mempunyai fail yang boleh diimbas."
 
-#: dupeguru/core/app.py:881
+#: dupeguru/core/app.py:882
 msgid "Collecting files to scan"
 msgstr "Mengumpulkan fail untuk diimbas"
 
-#: dupeguru/core/app.py:947
+#: dupeguru/core/app.py:948
 msgid "%s (%d discarded)"
 msgstr "%s (%d dibuang)"
 
@@ -336,18 +336,22 @@ msgstr "Folder"
 msgid "(X discarded)"
 msgstr ""
 
-#: dupeguru/core/app.py:68
+#: dupeguru/core/app.py:69
 msgid "Folder (/some/folder)"
 msgstr ""
 
-#: dupeguru/core/app.py:69
+#: dupeguru/core/app.py:70
 msgid "Size (Highest)"
 msgstr ""
 
-#: dupeguru/core/app.py:70
+#: dupeguru/core/app.py:71
 msgid "Filename (Doesn't end with a number)"
 msgstr ""
 
-#: dupeguru/core/app.py:72
+#: dupeguru/core/app.py:73
 msgid "Custom Command"
+msgstr ""
+
+#: dupeguru/core/app.py:67
+msgid "EXIF"
 msgstr ""

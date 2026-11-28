@@ -45,121 +45,121 @@ msgid ""
 msgstr ""
 "参照ファイルにマークが付いている間は、削除されたファイルをリンクに置き換えることはできません。リンク先が削除されるファイルになってしまうためです。何も実行されませんでした。"
 
-#: dupeguru/core/app.py:95
+#: dupeguru/core/app.py:96
 msgid "Scanning for duplicates"
 msgstr "重複のスキャン"
 
-#: dupeguru/core/app.py:96
+#: dupeguru/core/app.py:97
 msgid "Loading"
 msgstr "読み込み中"
 
-#: dupeguru/core/app.py:97
+#: dupeguru/core/app.py:98
 msgid "Moving"
 msgstr "移動します"
 
-#: dupeguru/core/app.py:98
+#: dupeguru/core/app.py:99
 msgid "Copying"
 msgstr "コピー中"
 
-#: dupeguru/core/app.py:99
+#: dupeguru/core/app.py:100
 msgid "Sending to Trash"
 msgstr "ごみ箱に送信します"
 
-#: dupeguru/core/app.py:316
+#: dupeguru/core/app.py:317
 msgid ""
 "A previous action is still hanging in there. You can't start a new one yet. "
 "Wait a few seconds, then try again."
 msgstr "前のアクションはまだそこにぶら下がっています。 まだ新しいものを始めることはできません。 数秒待ってから、再試行してください。"
 
-#: dupeguru/core/app.py:327
+#: dupeguru/core/app.py:328
 msgid "No duplicates found."
 msgstr "重複は見つかりませんでした。"
 
-#: dupeguru/core/app.py:342
+#: dupeguru/core/app.py:343
 msgid "All marked files were copied successfully."
 msgstr "チェックを入れたファイルをすべてコピーしました。"
 
-#: dupeguru/core/app.py:344
+#: dupeguru/core/app.py:345
 msgid "All marked files were moved successfully."
 msgstr "チェックを入れたファイルをすべて移動しました。"
 
-#: dupeguru/core/app.py:346
+#: dupeguru/core/app.py:347
 msgid "All marked files were deleted successfully."
 msgstr "チェックを入れたファイルをすべて削除しました。"
 
-#: dupeguru/core/app.py:348
+#: dupeguru/core/app.py:349
 msgid "All marked files were successfully sent to Trash."
 msgstr "チェックを入れたファイルをすべてごみ箱に移動しました。"
 
-#: dupeguru/core/app.py:353
+#: dupeguru/core/app.py:354
 msgid "Could not load file: {}"
 msgstr "ファイルを読み込めませんでした：{}"
 
-#: dupeguru/core/app.py:420
+#: dupeguru/core/app.py:421
 msgid "'{}' already is in the list."
 msgstr "「{}」既にリストに含まれています。"
 
-#: dupeguru/core/app.py:423
+#: dupeguru/core/app.py:424
 msgid ""
 "'{}' could not be read. It might be on a disconnected network share, or you "
 "might not have the permission to access it."
 msgstr "「{}」を読み込めませんでした。接続されていないネットワーク共有上にあるか、アクセス権限がない可能性があります。"
 
-#: dupeguru/core/app.py:429
+#: dupeguru/core/app.py:430
 msgid "'{}' does not exist."
 msgstr "'{}' 存在しません。"
 
-#: dupeguru/core/app.py:437
+#: dupeguru/core/app.py:438
 msgid ""
 "All selected %d matches are going to be ignored in all subsequent scans. "
 "Continue?"
 msgstr "選択した%d個の一致は、以降のすべてのスキャンで無視されます。 継続する？"
 
-#: dupeguru/core/app.py:521
+#: dupeguru/core/app.py:522
 msgid "Select a directory to copy marked files to"
 msgstr "マークされたファイルをコピーするディレクトリを選択してください"
 
-#: dupeguru/core/app.py:523
+#: dupeguru/core/app.py:524
 msgid "Select a directory to move marked files to"
 msgstr "マークされたファイルを移動するディレクトリを選択してください"
 
-#: dupeguru/core/app.py:569
+#: dupeguru/core/app.py:570
 msgid "Select a destination for your exported CSV"
 msgstr "エクスポートしたCSVの宛先を選択します。"
 
-#: dupeguru/core/app.py:575 dupeguru/core/app.py:845 dupeguru/core/app.py:855
+#: dupeguru/core/app.py:576 dupeguru/core/app.py:846 dupeguru/core/app.py:856
 msgid "Couldn't write to file: {}"
 msgstr "ファイルに書き込めませんでした：{}"
 
-#: dupeguru/core/app.py:599
+#: dupeguru/core/app.py:600
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr "カスタムコマンドは設定されていません。 お好みで設定してください。"
 
-#: dupeguru/core/app.py:615
+#: dupeguru/core/app.py:616
 msgid "Invalid custom command syntax: {}"
 msgstr "カスタムコマンドの構文が無効です: {}"
 
-#: dupeguru/core/app.py:625
+#: dupeguru/core/app.py:626
 msgid "Failed to execute custom command: {}"
 msgstr "カスタムコマンドの実行に失敗しました：{}"
 
-#: dupeguru/core/app.py:768 dupeguru/core/app.py:780
+#: dupeguru/core/app.py:769 dupeguru/core/app.py:781
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "結果から%d個のファイルを削除しようとしています。 継続する？"
 
-#: dupeguru/core/app.py:817
+#: dupeguru/core/app.py:818
 msgid "{} duplicate groups were changed by the re-prioritization."
 msgstr "{}重複するグループは、再優先順位付けによって変更されました。"
 
-#: dupeguru/core/app.py:865
+#: dupeguru/core/app.py:866
 msgid "The selected directories contain no scannable file."
 msgstr "選択したディレクトリにはスキャン可能なファイルが含まれていません。"
 
-#: dupeguru/core/app.py:881
+#: dupeguru/core/app.py:882
 msgid "Collecting files to scan"
 msgstr "スキャンするファイルを収集しています"
 
-#: dupeguru/core/app.py:947
+#: dupeguru/core/app.py:948
 msgid "%s (%d discarded)"
 msgstr "%s (%d 廃棄)"
 
@@ -320,18 +320,22 @@ msgstr "フォルダー"
 msgid "(X discarded)"
 msgstr ""
 
-#: dupeguru/core/app.py:68
+#: dupeguru/core/app.py:69
 msgid "Folder (/some/folder)"
 msgstr ""
 
-#: dupeguru/core/app.py:69
+#: dupeguru/core/app.py:70
 msgid "Size (Highest)"
 msgstr ""
 
-#: dupeguru/core/app.py:70
+#: dupeguru/core/app.py:71
 msgid "Filename (Doesn't end with a number)"
 msgstr ""
 
-#: dupeguru/core/app.py:72
+#: dupeguru/core/app.py:73
 msgid "Custom Command"
+msgstr ""
+
+#: dupeguru/core/app.py:67
+msgid "EXIF"
 msgstr ""

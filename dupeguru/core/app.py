@@ -56,14 +56,15 @@ MSG_NO_LINKS_TO_MARKED_REFERENCES = tr(
 )
 
 # This section only exists to make the following sequence:
-#     build.py --updatepot
-#     build.py --mergepot
-#     build.py --normpo
+#     python3 build.py --updatepot
+#     python3 build.py --mergepot
+#     python3 build.py --normpo
 # include localization for transifex to generate translations for
 # UI strings in the help files.
 
 # faq.rst
 MSG_D = tr("(X discarded)")
+MSG_D = tr("EXIF")
 # reprioritize.rst
 MSG_D = tr("Folder (/some/folder)")
 MSG_D = tr("Size (Highest)")

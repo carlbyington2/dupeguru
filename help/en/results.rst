@@ -124,13 +124,13 @@ have to contain a string matching the expression.
 File Menu
 -----------
 
-**Export Results to HTML:**
-    Take the current results, and create an XHTML file out of it. The
+**Export to HTML:**
+    Take the current results, and create an HTML file out of it. The
     columns that are visible when you click on this button will be the columns present in the XHTML
     file. The file will automatically be opened in your default browser.
 
-**Export Results to CSV:**
-    Take the current results, and create an XHTML file out of it. The
+**Export to CSV:**
+    Take the current results, and create a CSV file out of it. The
     columns that are visible when you click on this button will be the columns present in the XHTML
     file. The file will automatically be opened in your default browser.
 

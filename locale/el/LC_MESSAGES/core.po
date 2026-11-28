@@ -52,27 +52,27 @@ msgstr ""
 "υπάρχουν επισημασμένα αρχεία αναφοράς: οι σύνδεσμοι θα έδειχναν σε αρχεία "
 "που διαγράφονται. Δεν έχει γίνει καμία ενέργεια."
 
-#: dupeguru/core/app.py:95
+#: dupeguru/core/app.py:96
 msgid "Scanning for duplicates"
 msgstr "Σάρωση για διπλότυπα"
 
-#: dupeguru/core/app.py:96
+#: dupeguru/core/app.py:97
 msgid "Loading"
 msgstr "Φόρτωση"
 
-#: dupeguru/core/app.py:97
+#: dupeguru/core/app.py:98
 msgid "Moving"
 msgstr "Μετακίνηση"
 
-#: dupeguru/core/app.py:98
+#: dupeguru/core/app.py:99
 msgid "Copying"
 msgstr "Αντιγραφή"
 
-#: dupeguru/core/app.py:99
+#: dupeguru/core/app.py:100
 msgid "Sending to Trash"
 msgstr "Αποστολή στα σκουπίδια"
 
-#: dupeguru/core/app.py:316
+#: dupeguru/core/app.py:317
 msgid ""
 "A previous action is still hanging in there. You can't start a new one yet. "
 "Wait a few seconds, then try again."
@@ -80,35 +80,35 @@ msgstr ""
 "Μια προηγούμενη ενέργεια είναι σε εξέλιξη. Δεν μπορείτε να ξεκινήσετε "
 "καινούργια ακόμα. Περιμένετε λίγα δευτερόλεπτα, έπειτα προσπαθήστε ξανά."
 
-#: dupeguru/core/app.py:327
+#: dupeguru/core/app.py:328
 msgid "No duplicates found."
 msgstr "Δεν βρέθηκαν διπλότυπα."
 
-#: dupeguru/core/app.py:342
+#: dupeguru/core/app.py:343
 msgid "All marked files were copied successfully."
 msgstr "Όλα τα επιλεγμένα αρχεία αντιγράφηκαν επιτυχώς."
 
-#: dupeguru/core/app.py:344
+#: dupeguru/core/app.py:345
 msgid "All marked files were moved successfully."
 msgstr "Όλα τα επιλεγμένα αρχεία μετακινήθηκαν επιτυχώς."
 
-#: dupeguru/core/app.py:346
+#: dupeguru/core/app.py:347
 msgid "All marked files were deleted successfully."
 msgstr "Όλα τα επιλεγμένα αρχεία διαγράφηκαν επιτυχώς."
 
-#: dupeguru/core/app.py:348
+#: dupeguru/core/app.py:349
 msgid "All marked files were successfully sent to Trash."
 msgstr "Όλα τα επιλεγμένα αρχεία στάλθηκαν με επιτυχία στον κάδο."
 
-#: dupeguru/core/app.py:353
+#: dupeguru/core/app.py:354
 msgid "Could not load file: {}"
 msgstr "Δεν ήταν δυνατή η φόρτωση του αρχείου: {}"
 
-#: dupeguru/core/app.py:420
+#: dupeguru/core/app.py:421
 msgid "'{}' already is in the list."
 msgstr "'{}' υπάρχει ήδη στη λίστα."
 
-#: dupeguru/core/app.py:423
+#: dupeguru/core/app.py:424
 msgid ""
 "'{}' could not be read. It might be on a disconnected network share, or you "
 "might not have the permission to access it."
@@ -117,62 +117,62 @@ msgstr ""
 "κοινόχρηστη θέση δικτύου ή ενδέχεται να μην έχετε δικαιώματα πρόσβασης σε "
 "αυτό."
 
-#: dupeguru/core/app.py:429
+#: dupeguru/core/app.py:430
 msgid "'{}' does not exist."
 msgstr "'{}' δεν υπάρχει."
 
-#: dupeguru/core/app.py:437
+#: dupeguru/core/app.py:438
 msgid ""
 "All selected %d matches are going to be ignored in all subsequent scans. "
 "Continue?"
 msgstr ""
 "Όλα τα επιλεγμένα %d στοιχεία θα αγνοηθούν σε μελλοντικές σαρώσεις.Συνέχεια;"
 
-#: dupeguru/core/app.py:521
+#: dupeguru/core/app.py:522
 msgid "Select a directory to copy marked files to"
 msgstr "Επιλέξτε έναν κατάλογο για να αντιγράψετε επισημασμένα αρχεία."
 
-#: dupeguru/core/app.py:523
+#: dupeguru/core/app.py:524
 msgid "Select a directory to move marked files to"
 msgstr "Επιλέξτε έναν κατάλογο για να μετακινήσετε τα επισημασμένα αρχεία."
 
-#: dupeguru/core/app.py:569
+#: dupeguru/core/app.py:570
 msgid "Select a destination for your exported CSV"
 msgstr "Επιλέξτε έναν προορισμό για το εξαγόμενο CSV σας"
 
-#: dupeguru/core/app.py:575 dupeguru/core/app.py:845 dupeguru/core/app.py:855
+#: dupeguru/core/app.py:576 dupeguru/core/app.py:846 dupeguru/core/app.py:856
 msgid "Couldn't write to file: {}"
 msgstr "Δεν ήταν δυνατή η εγγραφή στο αρχείο: {}"
 
-#: dupeguru/core/app.py:599
+#: dupeguru/core/app.py:600
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr "Δεν έχετε ορίσει ειδική εντολή. Ρυθμίστε τη στις προτιμήσεις σας. "
 
-#: dupeguru/core/app.py:615
+#: dupeguru/core/app.py:616
 msgid "Invalid custom command syntax: {}"
 msgstr "Μη έγκυρη σύνταξη προσαρμοσμένης εντολής: {}"
 
-#: dupeguru/core/app.py:625
+#: dupeguru/core/app.py:626
 msgid "Failed to execute custom command: {}"
 msgstr "Αποτυχία εκτέλεσης προσαρμοσμένης εντολής: {}"
 
-#: dupeguru/core/app.py:768 dupeguru/core/app.py:780
+#: dupeguru/core/app.py:769 dupeguru/core/app.py:781
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "Πρόκειται να αφαιρέσετε %d αρχεία από τα αποτελέσματα. Συνέχεια;"
 
-#: dupeguru/core/app.py:817
+#: dupeguru/core/app.py:818
 msgid "{} duplicate groups were changed by the re-prioritization."
 msgstr "{} ομάδες διπλοτύπων άλλαξαν από το επαναπροσδιορισμό."
 
-#: dupeguru/core/app.py:865
+#: dupeguru/core/app.py:866
 msgid "The selected directories contain no scannable file."
 msgstr "Οι επιλεγμένοι φάκελοι δεν περιέχουν σαρώσιμα αρχεία."
 
-#: dupeguru/core/app.py:881
+#: dupeguru/core/app.py:882
 msgid "Collecting files to scan"
 msgstr "Συλλογή αρχείων για σάρωση"
 
-#: dupeguru/core/app.py:947
+#: dupeguru/core/app.py:948
 msgid "%s (%d discarded)"
 msgstr "%s (%d απορρίφθηκαν)"
 
@@ -333,18 +333,22 @@ msgstr "ντοσιέ"
 msgid "(X discarded)"
 msgstr ""
 
-#: dupeguru/core/app.py:68
+#: dupeguru/core/app.py:69
 msgid "Folder (/some/folder)"
 msgstr ""
 
-#: dupeguru/core/app.py:69
+#: dupeguru/core/app.py:70
 msgid "Size (Highest)"
 msgstr ""
 
-#: dupeguru/core/app.py:70
+#: dupeguru/core/app.py:71
 msgid "Filename (Doesn't end with a number)"
 msgstr ""
 
-#: dupeguru/core/app.py:72
+#: dupeguru/core/app.py:73
 msgid "Custom Command"
+msgstr ""
+
+#: dupeguru/core/app.py:67
+msgid "EXIF"
 msgstr ""
