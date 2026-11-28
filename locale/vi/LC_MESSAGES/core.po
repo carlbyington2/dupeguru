@@ -53,27 +53,27 @@ msgstr ""
 "đánh dấu: các liên kết sẽ trỏ đến các tệp đang bị xóa. Không có gì được thực"
 " hiện."
 
-#: dupeguru/core/app.py:80
+#: dupeguru/core/app.py:95
 msgid "Scanning for duplicates"
 msgstr "Quét các phần trùng nhau"
 
-#: dupeguru/core/app.py:81
+#: dupeguru/core/app.py:96
 msgid "Loading"
 msgstr "Đang tải"
 
-#: dupeguru/core/app.py:82
+#: dupeguru/core/app.py:97
 msgid "Moving"
 msgstr "Đang di chuyển"
 
-#: dupeguru/core/app.py:83
+#: dupeguru/core/app.py:98
 msgid "Copying"
 msgstr "Đang sao chép"
 
-#: dupeguru/core/app.py:84
+#: dupeguru/core/app.py:99
 msgid "Sending to Trash"
 msgstr "Đang gửi vào thùng rác"
 
-#: dupeguru/core/app.py:301
+#: dupeguru/core/app.py:316
 msgid ""
 "A previous action is still hanging in there. You can't start a new one yet. "
 "Wait a few seconds, then try again."
@@ -81,36 +81,36 @@ msgstr ""
 "Hiện đã có một tiến trình đang được tiến hành. Bạn không thể bắt đầu một "
 "phần khác. Hãy đợi trong vài giây, và sau đó thử lại lần nữa."
 
-#: dupeguru/core/app.py:312
+#: dupeguru/core/app.py:327
 msgid "No duplicates found."
 msgstr "Không tìm thấy thành phần trùng nhau."
 
-#: dupeguru/core/app.py:327
+#: dupeguru/core/app.py:342
 msgid "All marked files were copied successfully."
 msgstr "Tất cả tập tin được đánh dấu đã được sao chép thành công."
 
-#: dupeguru/core/app.py:329
+#: dupeguru/core/app.py:344
 msgid "All marked files were moved successfully."
 msgstr "Tất cả các tập tin được đánh dấu đã được di chuyển thành công."
 
-#: dupeguru/core/app.py:331
+#: dupeguru/core/app.py:346
 msgid "All marked files were deleted successfully."
 msgstr "Tất cả các tập tin được đánh dấu đã được xóa thành công."
 
-#: dupeguru/core/app.py:333
+#: dupeguru/core/app.py:348
 msgid "All marked files were successfully sent to Trash."
 msgstr ""
 "Tất cả các tập tin được đánh dấu đã được gửi đến Thùng Rác thành công."
 
-#: dupeguru/core/app.py:338
+#: dupeguru/core/app.py:353
 msgid "Could not load file: {}"
 msgstr "Không thể tải tệp: {}"
 
-#: dupeguru/core/app.py:405
+#: dupeguru/core/app.py:420
 msgid "'{}' already is in the list."
 msgstr "'{}' đã tồn tại trong danh sách."
 
-#: dupeguru/core/app.py:408
+#: dupeguru/core/app.py:423
 msgid ""
 "'{}' could not be read. It might be on a disconnected network share, or you "
 "might not have the permission to access it."
@@ -118,11 +118,11 @@ msgstr ""
 "Không thể đọc được '{}'. Tệp có thể nằm trên một chia sẻ mạng đã ngắt kết "
 "nối hoặc bạn không có quyền truy cập vào tệp đó."
 
-#: dupeguru/core/app.py:414
+#: dupeguru/core/app.py:429
 msgid "'{}' does not exist."
 msgstr "'{}' không tồn tại."
 
-#: dupeguru/core/app.py:422
+#: dupeguru/core/app.py:437
 msgid ""
 "All selected %d matches are going to be ignored in all subsequent scans. "
 "Continue?"
@@ -130,55 +130,55 @@ msgstr ""
 "Các phần được chọn %d khớp với nhau sẽ được bỏ qua trong các lần quét sau. "
 "Tiếp tục?"
 
-#: dupeguru/core/app.py:506
+#: dupeguru/core/app.py:521
 msgid "Select a directory to copy marked files to"
 msgstr ""
 "Vui lòng chọn một thư mục mà bạn muốn sao chép các tệp đã đánh dấu vào"
 
-#: dupeguru/core/app.py:508
+#: dupeguru/core/app.py:523
 msgid "Select a directory to move marked files to"
 msgstr ""
 "Vui lòng chọn một thư mục mà bạn muốn di chuyển các tệp đã đánh dấu đến"
 
-#: dupeguru/core/app.py:554
+#: dupeguru/core/app.py:569
 msgid "Select a destination for your exported CSV"
 msgstr "Chọn một điểm xuất dữ liệu dạng CSV"
 
-#: dupeguru/core/app.py:560 dupeguru/core/app.py:830 dupeguru/core/app.py:840
+#: dupeguru/core/app.py:575 dupeguru/core/app.py:845 dupeguru/core/app.py:855
 msgid "Couldn't write to file: {}"
 msgstr "Không thể ghi vào tệp: {}"
 
-#: dupeguru/core/app.py:584
+#: dupeguru/core/app.py:599
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr ""
 "Bạn vẫn chưa chỉnh sửa phần thiết lập dòng lệnh. Hãy sử dụng tính năng này "
 "trong phần tùy biến của bạn."
 
-#: dupeguru/core/app.py:600
+#: dupeguru/core/app.py:615
 msgid "Invalid custom command syntax: {}"
 msgstr "Cú pháp lệnh tùy chỉnh không hợp lệ: {}"
 
-#: dupeguru/core/app.py:610
+#: dupeguru/core/app.py:625
 msgid "Failed to execute custom command: {}"
 msgstr "Không thể thực thi lệnh tùy chỉnh: {}"
 
-#: dupeguru/core/app.py:753 dupeguru/core/app.py:765
+#: dupeguru/core/app.py:768 dupeguru/core/app.py:780
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "Bạn chuẩn bị loại bỏ %d tập tin từ phần kết quả. Tiếp tục?"
 
-#: dupeguru/core/app.py:802
+#: dupeguru/core/app.py:817
 msgid "{} duplicate groups were changed by the re-prioritization."
 msgstr "{} các nhóm trùng nhau đã được thay đổi bởi thứ tự-tái ưu tiên."
 
-#: dupeguru/core/app.py:850
+#: dupeguru/core/app.py:865
 msgid "The selected directories contain no scannable file."
 msgstr "Các thứ mục được chọn chứa các tập tin không thể quét được."
 
-#: dupeguru/core/app.py:866
+#: dupeguru/core/app.py:881
 msgid "Collecting files to scan"
 msgstr "Đang thu thập các tập tin để quét"
 
-#: dupeguru/core/app.py:932
+#: dupeguru/core/app.py:947
 msgid "%s (%d discarded)"
 msgstr "%s (%d bị bỏ qua)"
 
@@ -334,3 +334,23 @@ msgstr "Sắp xong! Loay hoay với kết quả..."
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "Thư mục"
+
+#: dupeguru/core/app.py:66
+msgid "(X discarded)"
+msgstr ""
+
+#: dupeguru/core/app.py:68
+msgid "Folder (/some/folder)"
+msgstr ""
+
+#: dupeguru/core/app.py:69
+msgid "Size (Highest)"
+msgstr ""
+
+#: dupeguru/core/app.py:70
+msgid "Filename (Doesn't end with a number)"
+msgstr ""
+
+#: dupeguru/core/app.py:72
+msgid "Custom Command"
+msgstr ""

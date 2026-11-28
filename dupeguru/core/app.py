@@ -55,6 +55,21 @@ MSG_NO_LINKS_TO_MARKED_REFERENCES = tr(
     "the links would point to files being deleted. Nothing has been done."
 )
 
+# This section only exists to make the following sequence:
+#     build.py --updatepot
+#     build.py --mergepot
+#     build.py --normpo
+# include localization for transifex to generate translations for
+# UI strings in the help files.
+
+# faq.rst
+MSG_D = tr("(X discarded)")
+# reprioritize.rst
+MSG_D = tr("Folder (/some/folder)")
+MSG_D = tr("Size (Highest)")
+MSG_D = tr("Filename (Doesn't end with a number)")
+# preferences.rst
+MSG_D = tr("Custom Command")
 
 class DestType:
     DIRECT = 0

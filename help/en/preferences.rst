@@ -39,7 +39,7 @@ Preferences
     **regular expression**. Explaining them is beyond the scope of this document. A good place to
     start learning it is `regular-expressions.info`_.
 
-**Remove empty folders after delete or move:**
+**Remove empty folders on delete or move:**
     When this option is enabled, folders are deleted after a file is deleted or moved and the folder
     is empty.
 

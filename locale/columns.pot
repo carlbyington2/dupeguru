@@ -1,4 +1,4 @@
-#
+
 msgid ""
 msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
@@ -8,110 +8,111 @@ msgstr ""
 #: dupeguru/core/gui/ignore_list_table.py:20
 #: dupeguru/core/gui/problem_table.py:18
 msgid "File Path"
-msgstr "File Path"
+msgstr ""
 
 #: dupeguru/core/gui/problem_table.py:19
 msgid "Error Message"
-msgstr "Error Message"
+msgstr ""
 
 #: dupeguru/core/me/prioritize.py:23
 msgid "Duration"
-msgstr "Duration"
+msgstr ""
 
 #: dupeguru/core/me/prioritize.py:30 dupeguru/core/me/result_table.py:23
 msgid "Bitrate"
-msgstr "Bitrate"
+msgstr ""
 
 #: dupeguru/core/me/prioritize.py:37
 msgid "Samplerate"
-msgstr "Samplerate"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:19 dupeguru/core/pe/result_table.py:19
 #: dupeguru/core/prioritize.py:127 dupeguru/core/se/result_table.py:19
 msgid "Filename"
-msgstr "Filename"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:20 dupeguru/core/pe/result_table.py:20
 #: dupeguru/core/prioritize.py:108 dupeguru/core/se/result_table.py:20
 msgid "Folder"
-msgstr "Folder"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:21
 msgid "Size (MB)"
-msgstr "Size (MB)"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:22
 msgid "Time"
-msgstr "Time"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:24
 msgid "Sample Rate"
-msgstr "Sample Rate"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:25 dupeguru/core/pe/result_table.py:22
 #: dupeguru/core/prioritize.py:98 dupeguru/core/se/result_table.py:22
 msgid "Kind"
-msgstr "Kind"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:26 dupeguru/core/pe/result_table.py:25
 #: dupeguru/core/prioritize.py:226 dupeguru/core/se/result_table.py:23
 msgid "Modification"
-msgstr "Modification"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:27
 msgid "Title"
-msgstr "Title"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:28
 msgid "Artist"
-msgstr "Artist"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:29
 msgid "Album"
-msgstr "Album"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:30
 msgid "Genre"
-msgstr "Genre"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:31
 msgid "Year"
-msgstr "Year"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:32
 msgid "Track Number"
-msgstr "Track Number"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:33
 msgid "Comment"
-msgstr "Comment"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:34 dupeguru/core/pe/result_table.py:26
 #: dupeguru/core/se/result_table.py:24
 msgid "Match %"
-msgstr "Match %"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:35 dupeguru/core/se/result_table.py:25
 msgid "Words Used"
-msgstr "Words Used"
+msgstr ""
 
 #: dupeguru/core/me/result_table.py:36 dupeguru/core/pe/result_table.py:27
 #: dupeguru/core/se/result_table.py:26
 msgid "Dupe Count"
-msgstr "Dupe Count"
+msgstr ""
 
 #: dupeguru/core/pe/prioritize.py:23 dupeguru/core/pe/result_table.py:23
 msgid "Dimensions"
-msgstr "Dimensions"
+msgstr ""
 
 #: dupeguru/core/pe/result_table.py:21 dupeguru/core/se/result_table.py:21
 msgid "Size (KB)"
-msgstr "Size (KB)"
+msgstr ""
 
 #: dupeguru/core/pe/result_table.py:24
 msgid "EXIF Timestamp"
-msgstr "EXIF Timestamp"
+msgstr ""
 
 #: dupeguru/core/prioritize.py:219
 msgid "Size"
-msgstr "Size"
+msgstr ""
+

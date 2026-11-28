@@ -52,27 +52,27 @@ msgstr ""
 "riferimento sono contrassegnati: i link punterebbero a file in fase di "
 "eliminazione. Non è stato fatto nulla."
 
-#: dupeguru/core/app.py:80
+#: dupeguru/core/app.py:95
 msgid "Scanning for duplicates"
 msgstr "Scansione per i duplicati"
 
-#: dupeguru/core/app.py:81
+#: dupeguru/core/app.py:96
 msgid "Loading"
 msgstr "Caricamento"
 
-#: dupeguru/core/app.py:82
+#: dupeguru/core/app.py:97
 msgid "Moving"
 msgstr "Spostamento"
 
-#: dupeguru/core/app.py:83
+#: dupeguru/core/app.py:98
 msgid "Copying"
 msgstr "Copia in corso"
 
-#: dupeguru/core/app.py:84
+#: dupeguru/core/app.py:99
 msgid "Sending to Trash"
 msgstr "Spostamento nel cestino"
 
-#: dupeguru/core/app.py:301
+#: dupeguru/core/app.py:316
 msgid ""
 "A previous action is still hanging in there. You can't start a new one yet. "
 "Wait a few seconds, then try again."
@@ -80,35 +80,35 @@ msgstr ""
 "Un'azione precedente è ancora in corso. Non puoi cominciarne una nuova. "
 "Aspetta qualche secondo e quindi riprova."
 
-#: dupeguru/core/app.py:312
+#: dupeguru/core/app.py:327
 msgid "No duplicates found."
 msgstr "Non sono stati trovati dei duplicati."
 
-#: dupeguru/core/app.py:327
+#: dupeguru/core/app.py:342
 msgid "All marked files were copied successfully."
 msgstr "Tutti i file marcati sono stati copiati correttamente."
 
-#: dupeguru/core/app.py:329
+#: dupeguru/core/app.py:344
 msgid "All marked files were moved successfully."
 msgstr "Tutti i file marcati sono stati spostati correttamente."
 
-#: dupeguru/core/app.py:331
+#: dupeguru/core/app.py:346
 msgid "All marked files were deleted successfully."
 msgstr "Tutti i file marcati sono stati cancellati correttamente."
 
-#: dupeguru/core/app.py:333
+#: dupeguru/core/app.py:348
 msgid "All marked files were successfully sent to Trash."
 msgstr "Tutti i file marcati sono stati spostati nel cestino."
 
-#: dupeguru/core/app.py:338
+#: dupeguru/core/app.py:353
 msgid "Could not load file: {}"
 msgstr "Impossibile caricare il file: {}"
 
-#: dupeguru/core/app.py:405
+#: dupeguru/core/app.py:420
 msgid "'{}' already is in the list."
 msgstr "'{}' è già nella lista."
 
-#: dupeguru/core/app.py:408
+#: dupeguru/core/app.py:423
 msgid ""
 "'{}' could not be read. It might be on a disconnected network share, or you "
 "might not have the permission to access it."
@@ -116,11 +116,11 @@ msgstr ""
 "Impossibile leggere '{}'. Potrebbe trovarsi in una condivisione di rete "
 "disconnessa o potresti non disporre dell'autorizzazione per accedervi."
 
-#: dupeguru/core/app.py:414
+#: dupeguru/core/app.py:429
 msgid "'{}' does not exist."
 msgstr "'{}' non esiste."
 
-#: dupeguru/core/app.py:422
+#: dupeguru/core/app.py:437
 msgid ""
 "All selected %d matches are going to be ignored in all subsequent scans. "
 "Continue?"
@@ -128,54 +128,54 @@ msgstr ""
 "Tutti i %d elementi che coincidono verranno ignorati in tutte le scansioni "
 "successive. Continuare?"
 
-#: dupeguru/core/app.py:506
+#: dupeguru/core/app.py:521
 msgid "Select a directory to copy marked files to"
 msgstr "Seleziona una directory in cui desideri copiare i file contrassegnati"
 
-#: dupeguru/core/app.py:508
+#: dupeguru/core/app.py:523
 msgid "Select a directory to move marked files to"
 msgstr ""
 "Seleziona una directory in cui desideri spostare i file contrassegnati"
 
-#: dupeguru/core/app.py:554
+#: dupeguru/core/app.py:569
 msgid "Select a destination for your exported CSV"
 msgstr "Seleziona una destinazione per il file CSV"
 
-#: dupeguru/core/app.py:560 dupeguru/core/app.py:830 dupeguru/core/app.py:840
+#: dupeguru/core/app.py:575 dupeguru/core/app.py:845 dupeguru/core/app.py:855
 msgid "Couldn't write to file: {}"
 msgstr "Impossibile modificare il file: {}"
 
-#: dupeguru/core/app.py:584
+#: dupeguru/core/app.py:599
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr ""
 "Non hai impostato nessun comando personalizzato. Impostalo nelle tue "
 "preferenze."
 
-#: dupeguru/core/app.py:600
+#: dupeguru/core/app.py:615
 msgid "Invalid custom command syntax: {}"
 msgstr "Sintassi del comando personalizzato non valida: {}"
 
-#: dupeguru/core/app.py:610
+#: dupeguru/core/app.py:625
 msgid "Failed to execute custom command: {}"
 msgstr "Impossibile eseguire il comando personalizzato: {}"
 
-#: dupeguru/core/app.py:753 dupeguru/core/app.py:765
+#: dupeguru/core/app.py:768 dupeguru/core/app.py:780
 msgid "You are about to remove %d files from results. Continue?"
 msgstr "Stai per rimuovere %d file dai risultati. Continuare?"
 
-#: dupeguru/core/app.py:802
+#: dupeguru/core/app.py:817
 msgid "{} duplicate groups were changed by the re-prioritization."
 msgstr "{} gruppi duplicati sono stati cambiati dalla nuova priorirità"
 
-#: dupeguru/core/app.py:850
+#: dupeguru/core/app.py:865
 msgid "The selected directories contain no scannable file."
 msgstr "Le cartelle selezionate non contengono file da scansionare."
 
-#: dupeguru/core/app.py:866
+#: dupeguru/core/app.py:881
 msgid "Collecting files to scan"
 msgstr "Raccolta file da scansionare"
 
-#: dupeguru/core/app.py:932
+#: dupeguru/core/app.py:947
 msgid "%s (%d discarded)"
 msgstr "%s (%d scartati)"
 
@@ -333,3 +333,23 @@ msgstr "Quasi finito! Sto organizzando i risultati..."
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "Cartelle"
+
+#: dupeguru/core/app.py:66
+msgid "(X discarded)"
+msgstr ""
+
+#: dupeguru/core/app.py:68
+msgid "Folder (/some/folder)"
+msgstr ""
+
+#: dupeguru/core/app.py:69
+msgid "Size (Highest)"
+msgstr ""
+
+#: dupeguru/core/app.py:70
+msgid "Filename (Doesn't end with a number)"
+msgstr ""
+
+#: dupeguru/core/app.py:72
+msgid "Custom Command"
+msgstr ""

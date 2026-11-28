@@ -5,14 +5,14 @@ dupeGuru tries to automatically determine which duplicate should go in each grou
 position, but sometimes it gets it wrong. In many cases, clever dupe sorting with "Delta Values"
 and "Dupes Only" options in addition to the "Make Selected into Reference" action does the trick,
 but sometimes, a more powerful option is needed. This is where the Re-Prioritization dialog comes
-into play. You can summon it through the "Re-Prioritize Results" item in the "Actions" menu.
+into play. You can summon it through the "Re-Prioritize Results..." item in the "Actions" menu.
 
 This dialog allows you to select criteria according to which a reference dupe will be selected in
 each dupe group. The list of available criteria is on the left and the list of criteria you've
 selected is on the right.
 
 A criteria is a category followed by an argument. For example, "Size (Highest)" means that the dupe
-with the biggest size will win. "Folder (/foo/bar)" means that dupes in this folder will win. To add
+with the biggest size will win. "Folder (/some/folder)" means that dupes in this folder will win. To add
 a criterion to the rightmost list, first select a category in the combobox, then select a
 subargument in the list below, and then click on the right pointing arrow button.
 

@@ -52,27 +52,27 @@ msgstr ""
 "referentiebestanden zijn geselecteerd: de links zouden verwijzen naar "
 "bestanden die worden verwijderd. Er is niets gedaan."
 
-#: dupeguru/core/app.py:80
+#: dupeguru/core/app.py:95
 msgid "Scanning for duplicates"
 msgstr "Dubbelingen aan het opsporen"
 
-#: dupeguru/core/app.py:81
+#: dupeguru/core/app.py:96
 msgid "Loading"
 msgstr "Laden"
 
-#: dupeguru/core/app.py:82
+#: dupeguru/core/app.py:97
 msgid "Moving"
 msgstr "Verplaatsen"
 
-#: dupeguru/core/app.py:83
+#: dupeguru/core/app.py:98
 msgid "Copying"
 msgstr "Kopiëren"
 
-#: dupeguru/core/app.py:84
+#: dupeguru/core/app.py:99
 msgid "Sending to Trash"
 msgstr "Naar de prullebak verplaatsen"
 
-#: dupeguru/core/app.py:301
+#: dupeguru/core/app.py:316
 msgid ""
 "A previous action is still hanging in there. You can't start a new one yet. "
 "Wait a few seconds, then try again."
@@ -80,35 +80,35 @@ msgstr ""
 "Er is nog een vorige actie bezig. Je kan nu nog geen nieuwe actie starten. "
 "Wacht een paar seconden en probeer het opnieuw"
 
-#: dupeguru/core/app.py:312
+#: dupeguru/core/app.py:327
 msgid "No duplicates found."
 msgstr "Geen dubbelingen gevonden"
 
-#: dupeguru/core/app.py:327
+#: dupeguru/core/app.py:342
 msgid "All marked files were copied successfully."
 msgstr "Alle gemarkeerde bestanden zijn succesvol gekopieerd."
 
-#: dupeguru/core/app.py:329
+#: dupeguru/core/app.py:344
 msgid "All marked files were moved successfully."
 msgstr "Alle gemarkeerde bestanden zijn succesvol verplaatst."
 
-#: dupeguru/core/app.py:331
+#: dupeguru/core/app.py:346
 msgid "All marked files were deleted successfully."
 msgstr "Alle gemarkeerde bestanden zijn succesvol verwijderd."
 
-#: dupeguru/core/app.py:333
+#: dupeguru/core/app.py:348
 msgid "All marked files were successfully sent to Trash."
 msgstr "Alle gemarkeerde bestanden zijn met succes in de prullenbak gedaan."
 
-#: dupeguru/core/app.py:338
+#: dupeguru/core/app.py:353
 msgid "Could not load file: {}"
 msgstr "Kan bestand niet laden: {}"
 
-#: dupeguru/core/app.py:405
+#: dupeguru/core/app.py:420
 msgid "'{}' already is in the list."
 msgstr "'{}' staat al in de lijst."
 
-#: dupeguru/core/app.py:408
+#: dupeguru/core/app.py:423
 msgid ""
 "'{}' could not be read. It might be on a disconnected network share, or you "
 "might not have the permission to access it."
@@ -116,11 +116,11 @@ msgstr ""
 "'{}' kon niet worden gelezen. Het bestand staat mogelijk op een niet-"
 "verbonden netwerkshare, of u hebt geen toestemming om toegang te krijgen."
 
-#: dupeguru/core/app.py:414
+#: dupeguru/core/app.py:429
 msgid "'{}' does not exist."
 msgstr "'{}' bestaat niet."
 
-#: dupeguru/core/app.py:422
+#: dupeguru/core/app.py:437
 msgid ""
 "All selected %d matches are going to be ignored in all subsequent scans. "
 "Continue?"
@@ -128,60 +128,60 @@ msgstr ""
 "Alle geselecteerde %d overeenkomsten zullen in toekomstige onderzoeken "
 "worden overgslagen. Doorgaan?"
 
-#: dupeguru/core/app.py:506
+#: dupeguru/core/app.py:521
 msgid "Select a directory to copy marked files to"
 msgstr ""
 "Selecteer een map waar u de gemarkeerde bestanden naartoe wilt kopiëren"
 
-#: dupeguru/core/app.py:508
+#: dupeguru/core/app.py:523
 msgid "Select a directory to move marked files to"
 msgstr ""
 "Selecteer een map waar u de gemarkeerde bestanden naartoe wilt verplaatsen"
 
-#: dupeguru/core/app.py:554
+#: dupeguru/core/app.py:569
 msgid "Select a destination for your exported CSV"
 msgstr "Selecteer een locatie voor de CSV export"
 
-#: dupeguru/core/app.py:560 dupeguru/core/app.py:830 dupeguru/core/app.py:840
+#: dupeguru/core/app.py:575 dupeguru/core/app.py:845 dupeguru/core/app.py:855
 msgid "Couldn't write to file: {}"
 msgstr "Kan niet schrijven naar bestand: {}"
 
-#: dupeguru/core/app.py:584
+#: dupeguru/core/app.py:599
 msgid "You have no custom command set up. Set it up in your preferences."
 msgstr ""
 "Er is nog geen \"aangepaste opdracht\" ingericht. Je kan dit doen bij de "
 "voorkeuren."
 
-#: dupeguru/core/app.py:600
+#: dupeguru/core/app.py:615
 msgid "Invalid custom command syntax: {}"
 msgstr "Ongeldige syntaxis voor aangepaste opdracht: {}"
 
-#: dupeguru/core/app.py:610
+#: dupeguru/core/app.py:625
 msgid "Failed to execute custom command: {}"
 msgstr "Uitvoeren van aangepaste opdracht mislukt: {}"
 
-#: dupeguru/core/app.py:753 dupeguru/core/app.py:765
+#: dupeguru/core/app.py:768 dupeguru/core/app.py:780
 msgid "You are about to remove %d files from results. Continue?"
 msgstr ""
 "Je staat op het punt om %d bestanden te verwijderen uit de resultaten. "
 "Doorgaan?"
 
-#: dupeguru/core/app.py:802
+#: dupeguru/core/app.py:817
 msgid "{} duplicate groups were changed by the re-prioritization."
 msgstr ""
 "{} dubbelingen groepen waren veranderd door de prioriteits verschuiving."
 
-#: dupeguru/core/app.py:850
+#: dupeguru/core/app.py:865
 msgid "The selected directories contain no scannable file."
 msgstr ""
 "De geselecteerde folders bevatten geen bestanden die onderzocht kunnen "
 "worden."
 
-#: dupeguru/core/app.py:866
+#: dupeguru/core/app.py:881
 msgid "Collecting files to scan"
 msgstr "Bestanden aan het verzamelen om te onderzoeken"
 
-#: dupeguru/core/app.py:932
+#: dupeguru/core/app.py:947
 msgid "%s (%d discarded)"
 msgstr "%s (%d weggelaten)"
 
@@ -338,3 +338,23 @@ msgstr "Bijna klaar! Gehannes met resultaten..."
 #: dupeguru/core/se/scanner.py:18
 msgid "Folders"
 msgstr "Mappen"
+
+#: dupeguru/core/app.py:66
+msgid "(X discarded)"
+msgstr ""
+
+#: dupeguru/core/app.py:68
+msgid "Folder (/some/folder)"
+msgstr ""
+
+#: dupeguru/core/app.py:69
+msgid "Size (Highest)"
+msgstr ""
+
+#: dupeguru/core/app.py:70
+msgid "Filename (Doesn't end with a number)"
+msgstr ""
+
+#: dupeguru/core/app.py:72
+msgid "Custom Command"
+msgstr ""

@@ -121,17 +121,23 @@ Matches are case insensitive in both simple and regexp mode.
 For the filter to match, your regular expression don't have to match the whole filename, it just
 have to contain a string matching the expression.
 
-Action Menu
+File Menu
 -----------
 
-**Clear Ignore List:**
-    Remove all ignored matches you added. You have to start a new scan for the
-    newly cleared ignore list to be effective.
-**Export Results to XHTML:**
+**Export Results to HTML:**
     Take the current results, and create an XHTML file out of it. The
     columns that are visible when you click on this button will be the columns present in the XHTML
     file. The file will automatically be opened in your default browser.
-**Send Marked to Trash:**
+
+**Export Results to CSV:**
+    Take the current results, and create an XHTML file out of it. The
+    columns that are visible when you click on this button will be the columns present in the XHTML
+    file. The file will automatically be opened in your default browser.
+
+Action Menu
+-----------
+
+**Send Marked to Recycle Bin...:**
     Send all marked duplicates to trash, obviously. Before proceeding,
     you'll be presented deletion options (see below).
 **Move Marked to...:**
@@ -148,20 +154,20 @@ Action Menu
 **Remove Selected from Results:**
     Remove all selected duplicates from results. Note that all
     selected reference files will be ignored, only duplicates can be removed with this action.
+**Add Selected to Ignore List:**
+    This first removes all selected duplicates from results, and
+    then add the match of that duplicate and the current reference in the ignore list. This match
+    will not come up again in further scan. The duplicate itself might come back, but it will be
+    matched with another reference file. You can clear the ignore list by displaying it from the
+    "View" menu, then using the "Clear" button.
 **Make Selected into Reference:**
     Promote all selected duplicates to reference. If a duplicate is
     a part of a group having a reference file coming from a reference folder (in blue color), no
     action will be taken for this duplicate. If more than one duplicate among the same group are
     selected, only the first of each group will be promoted.
-**Add Selected to Ignore List:**
-    This first removes all selected duplicates from results, and
-    then add the match of that duplicate and the current reference in the ignore list. This match
-    will not come up again in further scan. The duplicate itself might come back, but it will be
-    matched with another reference file. You can clear the ignore list with the Clear Ignore List
-    command.
 **Open Selected with Default Application:**
     Open the file with the application associated with selected file's type.
-**Reveal Selected in Finder:**
+**Open Containing Folder of Selected:**
     Open the folder containing selected file.
 **Invoke Custom Command:**
     Invokes the external application you've set up in your preferences using the current selection
